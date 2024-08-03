@@ -1,24 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/2024/07/29/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>我的个人简历</title>
     <url>/2024/08/03/My-Curriculum-Vitae/</url>
     <content><![CDATA[<p>这篇文章主要介绍了我本科生活中的一些经历和项目。</p>
@@ -97,8 +79,8 @@
 <li><strong>知识领域</strong>：Pytorch 深度学习框架、时间序列预测、知识图谱、机器学习</li>
 </ul>
 <h2 id="联系方式"><a href="#联系方式" class="headerlink" title="联系方式"></a>联系方式</h2><ul>
-<li><strong>个人邮箱</strong>：<a href="mailto:&#109;&#x65;&#108;&#109;&#97;&#112;&#104;&#111;&#116;&#104;&#x65;&#x72;&#64;&#103;&#109;&#x61;&#105;&#x6c;&#x2e;&#99;&#x6f;&#109;">&#109;&#x65;&#108;&#109;&#97;&#112;&#104;&#111;&#116;&#104;&#x65;&#x72;&#64;&#103;&#109;&#x61;&#105;&#x6c;&#x2e;&#99;&#x6f;&#109;</a></li>
-<li><strong>学校邮箱</strong>：<a href="mailto:&#119;&#100;&#x79;&#48;&#51;&#x30;&#x34;&#x32;&#x38;&#x40;&#x6d;&#x61;&#105;&#108;&#46;&#x75;&#115;&#x74;&#99;&#46;&#101;&#100;&#x75;&#x2e;&#x63;&#x6e;">&#119;&#100;&#x79;&#48;&#51;&#x30;&#x34;&#x32;&#x38;&#x40;&#x6d;&#x61;&#105;&#108;&#46;&#x75;&#115;&#x74;&#99;&#46;&#101;&#100;&#x75;&#x2e;&#x63;&#x6e;</a></li>
+<li><strong>个人邮箱</strong>：<a href="mailto:&#x6d;&#101;&#108;&#x6d;&#97;&#112;&#x68;&#111;&#x74;&#x68;&#x65;&#x72;&#64;&#x67;&#109;&#x61;&#105;&#x6c;&#x2e;&#x63;&#x6f;&#x6d;">&#x6d;&#101;&#108;&#x6d;&#97;&#112;&#x68;&#111;&#x74;&#x68;&#x65;&#x72;&#64;&#x67;&#109;&#x61;&#105;&#x6c;&#x2e;&#x63;&#x6f;&#x6d;</a></li>
+<li><strong>学校邮箱</strong>：<a href="mailto:&#119;&#x64;&#121;&#48;&#x33;&#48;&#x34;&#x32;&#x38;&#64;&#109;&#97;&#105;&#x6c;&#x2e;&#x75;&#115;&#x74;&#99;&#46;&#x65;&#100;&#x75;&#46;&#99;&#x6e;">&#119;&#x64;&#121;&#48;&#x33;&#48;&#x34;&#x32;&#x38;&#64;&#109;&#97;&#105;&#x6c;&#x2e;&#x75;&#115;&#x74;&#99;&#46;&#x65;&#100;&#x75;&#46;&#99;&#x6e;</a></li>
 <li><strong>Github</strong>：<a href="https://github.com/Melmaphother">Melmaphother</a></li>
 </ul>
 ]]></content>
@@ -108,5 +90,23 @@
       <tags>
         <tag>CV</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2024/07/29/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
   </entry>
 </search>
