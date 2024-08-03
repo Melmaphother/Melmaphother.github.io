@@ -18,4 +18,95 @@
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
   </entry>
+  <entry>
+    <title>我的个人简历</title>
+    <url>/2024/08/03/My-Curriculum-Vitae/</url>
+    <content><![CDATA[<p>这篇文章主要介绍了我本科生活中的一些经历和项目。</p>
+<span id="more"></span>
+
+<h2 id="教育背景"><a href="#教育背景" class="headerlink" title="教育背景"></a>教育背景</h2><ul>
+<li><strong>中国科学技术大学</strong><ul>
+<li>专业：计算机科学与技术</li>
+<li>学历：本科</li>
+<li>研究方向：时间序列、深度学习、大模型</li>
+</ul>
+</li>
+</ul>
+<h2 id="科研？"><a href="#科研？" class="headerlink" title="科研？"></a>科研？</h2><ul>
+<li><strong>时间序列预测模型 预测算法研究</strong><ul>
+<li>项目介绍：基于 TimeMAE 自监督学习架构的时序预测任务。TimeMAE 是一种新颖的自监督范式，用于学习基于 Transformer 网络的可转移的时间序列表征。</li>
+<li>工作内容：研究 TimeMAE 的自监督学习架构，设计时序预测任务的实验方案，进行代码实现和实验，并与当前时序预测工作进行对比。</li>
+<li>项目地址：<a href="https://github.com/Melmaphother/TimeMAE-Forecasting">TimeMAE-Forecasting</a></li>
+<li>时间：2024年1月 - 2024年4月</li>
+</ul>
+</li>
+</ul>
+<h2 id="比赛"><a href="#比赛" class="headerlink" title="比赛"></a>比赛</h2><ul>
+<li><p><strong>Meta KDD Cup 2024 CRAG: Comprehensive RAG Benchmark 团队队员</strong></p>
+<ul>
+<li>比赛介绍：Meta KDD Cup 2024 的一个子任务，旨在提供一个全面的 RAG 基准测试集，以评估各种 RAG 模型的性能。</li>
+<li>工作内容：负责知识图谱的分析与解析，微调 llama 3 以及 prompt 修正，模型的融合与后处理。</li>
+<li>成绩：Phase 1 第六名 Phase 2 银牌</li>
+<li>时间：2024年4月 - 2024年5月</li>
+</ul>
+</li>
+<li><p><strong>2024 年第十五届全国大学生数学竞赛</strong></p>
+<ul>
+<li>荣誉：全国一等奖</li>
+<li>时间：2023年11月 - 2023年12月</li>
+</ul>
+</li>
+</ul>
+<h2 id="项目"><a href="#项目" class="headerlink" title="项目"></a>项目</h2><ul>
+<li><p><strong>基于 MySQL 的银行管理系统全栈开发 项目负责人</strong></p>
+<ul>
+<li>项目介绍：基于 MySQL、Django、HTML 开发一个简易的银行管理系统，包括前端界面、后端数据库维护和中间件。</li>
+<li>项目成果：实现了用户注册、登录、存取款、转账等功能，并实现了银行管理系统的数据可视化。</li>
+<li>项目地址：<a href="https://github.com/Melmaphother/2024-USTC-Database-Lab2">银行管理系统</a></li>
+<li>时间：2024年5月 - 2024年6月</li>
+</ul>
+</li>
+<li><p><strong>基于爬虫、检索、推荐技术的简易搜索引擎 团队队长</strong></p>
+<ul>
+<li>项目介绍：基于爬虫（Crawler）、检索（Retrieval）、推荐（Recommendation）、知识图谱（KG）等技术，实现一个简易搜索引擎。</li>
+<li>工作职责：负责爬虫、检索、知识图谱技术的实现，项目文档撰写和项目答辩。</li>
+<li>项目地址：<a href="https://github.com/Melmaphother/USTC-2023-WebInfo-Labs/tree/main">简易搜索引擎</a></li>
+<li>时间：2023年10月 - 2024年1月</li>
+</ul>
+</li>
+<li><p><strong>基于 FPGA 的五级流水线 CPU 设计 项目负责人</strong></p>
+<ul>
+<li>项目介绍：基于 risc-v 指令集和 FPGA 开发板的五级流水线 CPU 设计，包括指令译码、数据通路、控制通路、缓存、输入输出模块等。</li>
+<li>项目成果：实现了基于 risc-v 指令集的五级流水线 CPU 设计，并分析不同缓存配置下 CPU 的频率和性能。</li>
+<li>项目地址：<a href="https://github.com/Melmaphother/ustc-codh-2023/tree/main/LABH6">五级流水线 CPU</a></li>
+<li>时间：2023年5月 - 2023年6月</li>
+</ul>
+</li>
+<li><p><strong>基于 zero-copy 技术，对 ROS2 机器人操作系统的实时性优化 团队成员</strong></p>
+<ul>
+<li>项目介绍：基于 zero-copy 技术，对 ROS2 机器人操作系统进行实时性优化，实现数据传输的超低延迟，解决多个物理中断的实时沟通问题。</li>
+<li>工作职责：负责 ROS2 机器人操作系统的实时性优化，项目文档撰写和项目答辩。</li>
+<li>项目地址：<a href="https://github.com/OSH-2023/Code-ForWWWard/tree/main">ROS2 实时性优化</a></li>
+<li>时间：2023年3月 - 2023年7月</li>
+</ul>
+</li>
+</ul>
+<h2 id="专业"><a href="#专业" class="headerlink" title="专业"></a>专业</h2><ul>
+<li><strong>程序语言</strong>：C&#x2F;C++、Python、SQL</li>
+<li><strong>开发技术</strong>：熟悉 Linux、Git，了解 Docker、Django 等框架与中间件</li>
+<li><strong>知识领域</strong>：Pytorch 深度学习框架、时间序列预测、知识图谱、机器学习</li>
+</ul>
+<h2 id="联系方式"><a href="#联系方式" class="headerlink" title="联系方式"></a>联系方式</h2><ul>
+<li><strong>个人邮箱</strong>：<a href="mailto:&#109;&#x65;&#108;&#109;&#97;&#112;&#104;&#111;&#116;&#104;&#x65;&#x72;&#64;&#103;&#109;&#x61;&#105;&#x6c;&#x2e;&#99;&#x6f;&#109;">&#109;&#x65;&#108;&#109;&#97;&#112;&#104;&#111;&#116;&#104;&#x65;&#x72;&#64;&#103;&#109;&#x61;&#105;&#x6c;&#x2e;&#99;&#x6f;&#109;</a></li>
+<li><strong>学校邮箱</strong>：<a href="mailto:&#119;&#100;&#x79;&#48;&#51;&#x30;&#x34;&#x32;&#x38;&#x40;&#x6d;&#x61;&#105;&#108;&#46;&#x75;&#115;&#x74;&#99;&#46;&#101;&#100;&#x75;&#x2e;&#x63;&#x6e;">&#119;&#100;&#x79;&#48;&#51;&#x30;&#x34;&#x32;&#x38;&#x40;&#x6d;&#x61;&#105;&#108;&#46;&#x75;&#115;&#x74;&#99;&#46;&#101;&#100;&#x75;&#x2e;&#x63;&#x6e;</a></li>
+<li><strong>Github</strong>：<a href="https://github.com/Melmaphother">Melmaphother</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>CV</category>
+      </categories>
+      <tags>
+        <tag>CV</tag>
+      </tags>
+  </entry>
 </search>
