@@ -31,7 +31,7 @@
 <meta property="og:image" content="http://example.com/2024/08/08/Denoising-Diffusion-Probabilistic-Model/2.png">
 <meta property="og:image" content="http://example.com/2024/08/08/Denoising-Diffusion-Probabilistic-Model/3.png">
 <meta property="article:published_time" content="2024-08-08T13:22:09.000Z">
-<meta property="article:modified_time" content="2024-08-08T14:33:51.946Z">
+<meta property="article:modified_time" content="2024-08-09T05:42:26.192Z">
 <meta property="article:author" content="Daoyu Wang">
 <meta property="article:tag" content="Diffusion">
 <meta property="article:tag" content="AI">
@@ -245,9 +245,15 @@ Model 的训练和采样</span></a><ol class="nav-child"><li class="nav-item nav
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2024-08-08 21:22:09 / 修改时间：22:33:51" itemprop="dateCreated datePublished" datetime="2024-08-08T21:22:09+08:00">2024-08-08</time>
+      <time title="创建时间：2024-08-08 21:22:09" itemprop="dateCreated datePublished" datetime="2024-08-08T21:22:09+08:00">2024-08-08</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-08-09 13:42:26" itemprop="dateModified" datetime="2024-08-09T13:42:26+08:00">2024-08-09</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -650,19 +656,21 @@ forward process or diffusion process: <strong>is fixed to</strong> a
 Markov chain that gradually adds Gaussian noise to the data
 ...，也就是说 <span class="math inline">\(t-1\)</span> 状态一定会转移到
 <span class="math inline">\(t\)</span> 状态。</p>
-<p>另外这里 <span class="math inline">\(x_{1:T}\)</span> 表示 <span
-class="math inline">\(x_1,x_2,\cdots,x_T\)</span>
-的联合分布，下文同理。</p>
+<p>另外<strong>这里 <span class="math inline">\(x_{1:T}\)</span> 表示
+<span class="math inline">\(x_1,x_2,\cdots,x_T\)</span>
+的联合分布</strong>，下文同理。</p>
 </blockquote>
 <p><strong>但是这样算太麻烦了，为了得到 <span
 class="math inline">\(x_T\)</span>，就得重复采样 <span
 class="math inline">\(T\)</span>
 次再求积。</strong>但是可以使用重参数化方法来简化这个过程：</p>
 <p>对任意的时间 <span class="math inline">\(t\)</span>，为了得到 <span
-class="math inline">\(t\)</span> 时刻的采样：</p>
-<p>每一个状态首先采集一个二维标准正态分布变量 $ <em>{1:T} (0, I)
-$，然后通过参数 <span class="math inline">\(\beta_t\)</span> 由 $
-x</em>{t-1} $ 获得 <span class="math inline">\(x_t\)</span>：</p>
+class="math inline">\(t\)</span> 时刻的采样：
+每一个状态首先采集一个二维标准正态分布变量 <span
+class="math inline">\(\epsilon_{1:T} \sim \mathcal{N}(0,
+I)\)</span>，然后通过参数 <span class="math inline">\(\beta_t\)</span>
+由 <span class="math inline">\(x_{t-1}\)</span> 获得 <span
+class="math inline">\(x_t\)</span>：</p>
 <p><span class="math display">\[
 x_t = \sqrt{1 - \beta_t} x_{t-1} + \sqrt{\beta_t} \epsilon_{t-1}
 \]</span></p>
@@ -739,7 +747,8 @@ class="math inline">\(T\)</span> 足够大时，收敛到各向同性的高斯�
 <span class="math inline">\(\theta\)</span>，所以将反向过程 <span
 class="math inline">\(p(x|\theta)\)</span> 写作 <span
 class="math inline">\(p_\theta(x)\)</span>，前向过程写作 <span
-class="math inline">\(q(x)\)</span>。与数学基础的符号表示有出入。</p>
+class="math inline">\(q(x)\)</span>。与数学基础的符号表示（<span
+class="math inline">\(p(\theta|x)\)</span>）有出入。</p>
 </blockquote>
 <p>首先，当时间步长 <span class="math inline">\(T \to \infty\)</span>
 时，隐变量 <span class="math inline">\(x_T\)</span>
@@ -868,7 +877,9 @@ q(x_T|x_0)}{p(x_T)} \\
 &amp;=\int\log\frac{ q(x_T|x_0)}{p(x_T)}\text{d}x_0\text{d}x_T \int
 q(x_{0:T}) \text{d}_{x_{1:T-1}}\\
 &amp;=\int q(x_T)\cdot \log\frac{
-q(x_T|x_0)}{p(x_T)}\text{d}x_T\text{d}x_0\\
+q(x_T|x_0)}{p(x_T)}\text{d}x_0\text{d}x_T\\
+&amp;=\int q(x_0)\text{d}x_0\int q(x_T|x_0)\cdot \log\frac{
+q(x_T|x_0)}{p(x_T)}\text{d}x_T\\
 &amp;=\mathbb{E}_{q(x_0)}\left[ D_{KL}(q(x_T|x_0)\|p(x_T))\right]
 \end{aligned}
 \]</span></p>
@@ -881,11 +892,14 @@ q(x_T|x_0)}{p(x_T)}\text{d}x_T\text{d}x_0\\
 x_0)}{p_\theta(x_{t-1}|x_t)} &amp;= \int\text{d}x_{0:T}~
 q(x_{0:T})\cdot\sum_{t=2}^T \log \frac{q(x_{t-1}|x_t,
 x_0)}{p_\theta(x_{t-1}|x_t)} \\
-&amp;=\sum_{t=2}^T \int\text{d} x_0\text{d}x_T~
-q(x_0,x_T)\int\text{d}x_{1:T-1}~ q(x_{1:T-1})\log \frac{q(x_{t-1}|x_t,
-x_0)}{p_\theta(x_{t-1}|x_t)}\\
-&amp;=\sum_{t=2}^T\int\text{d} x_0\text{d}x_T~ q(x_0,x_T)q(x_{t-1}) \log
-\frac{q(x_{t-1}|x_t, x_0)}{p_\theta(x_{t-1}|x_t)}\\
+&amp;=\sum_{t=2}^T \int\log \frac{q(x_{t-1}|x_t,
+x_0)}{p_\theta(x_{t-1}|x_t)}\text{d} x_0\text{d} x_{t-1}\text{d}x_t\int
+q(x_{0:T})\text{d}x_{0:T/(0,t-1,t)}\\
+&amp;=\sum_{t=2}^T\int q(x_0,x_{t-1},x_t) \log \frac{q(x_{t-1}|x_t,
+x_0)}{p_\theta(x_{t-1}|x_t)}\text{d} x_0\text{d} x_{t-1}\text{d}x_t\\
+&amp;=\sum_{t=2}^T\int q(x_0,x_t)\text{d} x_0\text{d}x_t\int
+q(x_{t-1}|x_0,x_t) \log \frac{q(x_{t-1}|x_t,
+x_0)}{p_\theta(x_{t-1}|x_t)}\text{d} x_{t-1}\\
 &amp;=\sum_{t=2}^T\mathbb{E}_{q(x_0,x_T)}\left[D_{KL}(q(x_{t-1}|x_t,
 x_0)\|p_\theta(x_{t-1}|x_t))\right]
 \end{aligned}
@@ -898,6 +912,9 @@ x_0)\|p_\theta(x_{t-1}|x_t))\right]
 -\mathbb{E}_{q(x_{0:T})} \left[\log p_\theta(x_1|x_0)\right] &amp;= -
 \int\text{d}x_{0:T}~ q(x_{0:T})\cdot \left[\log p_\theta(x_1|x_0)\right]
 \\
+&amp;=-\int \log p_\theta(x_1|x_0)\text{d}x_0 \text{d}x_1 \int
+q(x_{0:T})\text{d}x_{0:T/(0,1)} \\
+&amp;=-\int q(x_0,x_1) \log p_\theta(x_1|x_0)\text{d}x_0 \text{d}x_1\\
 &amp;=-\mathbb{E}_{q(x_0,x_1)} \left[\log p_\theta(x_1|x_0)\right]
 \end{aligned}
 \]</span></p>
@@ -929,7 +946,8 @@ x_0) \| p_\theta(x_{t-1}|x_t)) \right] -\mathbb{E}_{q(x_0,x_1)}
 <span class="math inline">\(q(x_{t-1}|x_t,x_0)\)</span> 与预测分布 <span
 class="math inline">\(p_\theta(x_{t-1}|x_t)\)</span>​ 的接近程度，DDPM
 的目标也正是保证<strong>真实的去噪过程</strong>和<strong>模型预测的去噪过程</strong>尽可能一致。</li>
-<li><span class="math inline">\(L_0\)</span> 可以看作图像重建损失。</li>
+<li><span class="math inline">\(L_0\)</span>
+可以看作图像重建（reconstruction）损失。</li>
 </ul>
 <h4 id="l_t-1-项讨论"><span class="math inline">\(L_{t-1}\)</span>
 项讨论</h4>
@@ -1087,8 +1105,10 @@ class="math inline">\(x_1\)</span> 应该是一个离散化过程，因为图像
 class="math inline">\(p_\theta(x_1|x_0)\)</span>
 构建了一个离散化的分段积分累乘，有点类似基于分类目标的自回归（auto-regressive）学习。</p>
 </blockquote>
-<p>可以看到，<strong>在采样的最后一步，使用了无噪声的采样</strong>，也就是：</p>
-<p><span class="math display">\[
+<p>（DDPM Explanation）类比在普通 VAE 中的
+ELMO，这一项可以使用蒙特卡洛估计来近似和优化。</p>
+<p>可以看到，<strong>在采样的最后一步，使用了无噪声的采样</strong>，也就是：
+<span class="math display">\[
 x_0=\frac{1}{\sqrt{\alpha_1}} \left(x_1 - \frac{1 - \alpha_1}{\sqrt{1 -
 \overline{\alpha_1}}}\epsilon_\theta(x_1,1)\right)
 \]</span></p>
