@@ -1,8 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Hello World</title>
+    <url>/project/2024/07/29/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very
+first post. Check <a href="https://hexo.io/docs/">documentation</a> for
+more info. If you get any problems when using Hexo, you can find the
+answer in <a
+href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or
+you can ask me on <a
+href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="quick-start">Quick Start</h2>
+<h3 id="create-a-new-post">Create a new post</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a
+href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="run-server">Run server</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="generate-static-files">Generate static files</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a
+href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="deploy-to-remote-sites">Deploy to remote sites</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a
+href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>Denoising Diffusion Probabilistic Model 解读</title>
-    <url>/2024/08/08/Denoising-Diffusion-Probabilistic-Model/</url>
+    <url>/project/2024/08/08/Denoising-Diffusion-Probabilistic-Model/</url>
     <content><![CDATA[<p>这篇文章是我关于 Denoising Diffusion Probabilistic Model
 文章的解读。</p>
 <span id="more"></span>
@@ -326,7 +354,7 @@ Decoder，能够将原始图片映射到隐变量中，又能解码回来，看�
 Encoder 或 Decoder。而 Diffusion Model 就是去掉了 Encoder
 部分的学习，只关心如何学好 Decoder，即逆向过程中如何重建数据。</p>
 <p>DDPM 建模：</p>
-<img src="/2024/08/08/Denoising-Diffusion-Probabilistic-Model/1.png" class="" title="DDPM">
+<img src="/project/2024/08/08/Denoising-Diffusion-Probabilistic-Model/1.png" class="" title="DDPM">
 <h3 id="前向过程">前向过程</h3>
 <h4 id="简单介绍">简单介绍</h4>
 <p>输入图像 <span class="math inline">\(x_0\)</span>，经过时间 <span
@@ -845,9 +873,9 @@ x_0=\frac{1}{\sqrt{\alpha_1}} \left(x_1 - \frac{1 - \alpha_1}{\sqrt{1 -
 <p>由上述的讨论，我们已经得到了训练的优化目标（即损失函数），以及采样时的反向建模，所以，训练和采样的流程也是非常显然了：</p>
 <ol type="1">
 <li><p>训练（Training）</p>
-<img src="/2024/08/08/Denoising-Diffusion-Probabilistic-Model/2.png" class="" title="Training"></li>
+<img src="/project/2024/08/08/Denoising-Diffusion-Probabilistic-Model/2.png" class="" title="Training"></li>
 <li><p>采样（Sampling）</p>
-<img src="/2024/08/08/Denoising-Diffusion-Probabilistic-Model/3.png" class="" title="Sampling"></li>
+<img src="/project/2024/08/08/Denoising-Diffusion-Probabilistic-Model/3.png" class="" title="Sampling"></li>
 </ol>
 ]]></content>
       <categories>
@@ -860,7 +888,7 @@ x_0=\frac{1}{\sqrt{\alpha_1}} \left(x_1 - \frac{1 - \alpha_1}{\sqrt{1 -
   </entry>
   <entry>
     <title>我的个人简历</title>
-    <url>/2024/08/03/My-Curriculum-Vitae/</url>
+    <url>/project/2024/08/03/My-Curriculum-Vitae/</url>
     <content><![CDATA[<p>这篇文章主要介绍了我本科生活中的一些经历和项目。</p>
 <span id="more"></span>
 <h2 id="教育背景">教育背景</h2>
@@ -969,33 +997,5 @@ href="https://github.com/Melmaphother">Melmaphother</a></li>
       <tags>
         <tag>CV</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2024/07/29/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very
-first post. Check <a href="https://hexo.io/docs/">documentation</a> for
-more info. If you get any problems when using Hexo, you can find the
-answer in <a
-href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or
-you can ask me on <a
-href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="quick-start">Quick Start</h2>
-<h3 id="create-a-new-post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a
-href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="run-server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="generate-static-files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a
-href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="deploy-to-remote-sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a
-href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
   </entry>
 </search>
