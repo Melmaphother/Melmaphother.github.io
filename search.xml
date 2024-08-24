@@ -1,36 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/project/2024/07/29/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very
-first post. Check <a href="https://hexo.io/docs/">documentation</a> for
-more info. If you get any problems when using Hexo, you can find the
-answer in <a
-href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or
-you can ask me on <a
-href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="quick-start">Quick Start</h2>
-<h3 id="create-a-new-post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a
-href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="run-server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="generate-static-files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a
-href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="deploy-to-remote-sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a
-href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+    <title>我的个人简历</title>
+    <url>/2024/08/03/My-Curriculum-Vitae/</url>
+    <content><![CDATA[<p>这篇文章主要介绍了我本科生活中的一些经历和项目。</p>
+<span id="more"></span>
+<h2 id="教育背景">教育背景</h2>
+<ul>
+<li><strong>中国科学技术大学</strong>
+<ul>
+<li>专业：计算机科学与技术</li>
+<li>学历：本科</li>
+<li>研究方向：时间序列、深度学习、大模型</li>
+</ul></li>
+</ul>
+<h2 id="科研">科研？</h2>
+<ul>
+<li><strong>时间序列预测模型 预测算法研究</strong>
+<ul>
+<li>项目介绍：基于 TimeMAE 自监督学习架构的时序预测任务。TimeMAE
+是一种新颖的自监督范式，用于学习基于 Transformer
+网络的可转移的时间序列表征。</li>
+<li>工作内容：研究 TimeMAE
+的自监督学习架构，设计时序预测任务的实验方案，进行代码实现和实验，并与当前时序预测工作进行对比。</li>
+<li>项目地址：<a
+href="https://github.com/Melmaphother/TimeMAE-Forecasting">TimeMAE-Forecasting</a></li>
+<li>时间：2024年1月 - 2024年4月</li>
+</ul></li>
+</ul>
+<h2 id="比赛">比赛</h2>
+<ul>
+<li><strong>Meta KDD Cup 2024 CRAG: Comprehensive RAG Benchmark
+团队队员</strong>
+<ul>
+<li>比赛介绍：Meta KDD Cup 2024 的一个子任务，旨在提供一个全面的 RAG
+基准测试集，以评估各种 RAG 模型的性能。</li>
+<li>工作内容：负责知识图谱的分析与解析，微调 llama 3 以及 prompt
+修正，模型的融合与后处理。</li>
+<li>成绩：Phase 1 第六名 Phase 2 银牌</li>
+<li>时间：2024年4月 - 2024年5月</li>
+</ul></li>
+<li><strong>2024 年第十五届全国大学生数学竞赛</strong>
+<ul>
+<li>荣誉：全国一等奖</li>
+<li>时间：2023年11月 - 2023年12月</li>
+</ul></li>
+</ul>
+<h2 id="项目">项目</h2>
+<ul>
+<li><strong>基于 MySQL 的银行管理系统全栈开发 项目负责人</strong>
+<ul>
+<li>项目介绍：基于 MySQL、Django、HTML
+开发一个简易的银行管理系统，包括前端界面、后端数据库维护和中间件。</li>
+<li>项目成果：实现了用户注册、登录、存取款、转账等功能，并实现了银行管理系统的数据可视化。</li>
+<li>项目地址：<a
+href="https://github.com/Melmaphother/2024-USTC-Database-Lab2">银行管理系统</a></li>
+<li>时间：2024年5月 - 2024年6月</li>
+</ul></li>
+<li><strong>基于爬虫、检索、推荐技术的简易搜索引擎 团队队长</strong>
+<ul>
+<li>项目介绍：基于爬虫（Crawler）、检索（Retrieval）、推荐（Recommendation）、知识图谱（KG）等技术，实现一个简易搜索引擎。</li>
+<li>工作职责：负责爬虫、检索、知识图谱技术的实现，项目文档撰写和项目答辩。</li>
+<li>项目地址：<a
+href="https://github.com/Melmaphother/USTC-2023-WebInfo-Labs/tree/main">简易搜索引擎</a></li>
+<li>时间：2023年10月 - 2024年1月</li>
+</ul></li>
+<li><strong>基于 FPGA 的五级流水线 CPU 设计 项目负责人</strong>
+<ul>
+<li>项目介绍：基于 risc-v 指令集和 FPGA 开发板的五级流水线 CPU
+设计，包括指令译码、数据通路、控制通路、缓存、输入输出模块等。</li>
+<li>项目成果：实现了基于 risc-v 指令集的五级流水线 CPU
+设计，并分析不同缓存配置下 CPU 的频率和性能。</li>
+<li>项目地址：<a
+href="https://github.com/Melmaphother/ustc-codh-2023/tree/main/LABH6">五级流水线
+CPU</a></li>
+<li>时间：2023年5月 - 2023年6月</li>
+</ul></li>
+<li><strong>基于 zero-copy 技术，对 ROS2 机器人操作系统的实时性优化
+团队成员</strong>
+<ul>
+<li>项目介绍：基于 zero-copy 技术，对 ROS2
+机器人操作系统进行实时性优化，实现数据传输的超低延迟，解决多个物理中断的实时沟通问题。</li>
+<li>工作职责：负责 ROS2
+机器人操作系统的实时性优化，项目文档撰写和项目答辩。</li>
+<li>项目地址：<a
+href="https://github.com/OSH-2023/Code-ForWWWard/tree/main">ROS2
+实时性优化</a></li>
+<li>时间：2023年3月 - 2023年7月</li>
+</ul></li>
+</ul>
+<h2 id="专业">专业</h2>
+<ul>
+<li><strong>程序语言</strong>：C/C++、Python、SQL</li>
+<li><strong>开发技术</strong>：熟悉 Linux、Git，了解 Docker、Django
+等框架与中间件</li>
+<li><strong>知识领域</strong>：Pytorch
+深度学习框架、时间序列预测、知识图谱、机器学习</li>
+</ul>
+<h2 id="联系方式">联系方式</h2>
+<ul>
+<li><strong>个人邮箱</strong>：melmaphother@gmail.com</li>
+<li><strong>学校邮箱</strong>：wdy030428@mail.ustc.edu.cn</li>
+<li><strong>Github</strong>：<a
+href="https://github.com/Melmaphother">Melmaphother</a></li>
+</ul>
 ]]></content>
+      <categories>
+        <category>CV</category>
+      </categories>
+      <tags>
+        <tag>CV</tag>
+      </tags>
   </entry>
   <entry>
     <title>Denoising Diffusion Probabilistic Model 解读</title>
-    <url>/project/2024/08/08/Denoising-Diffusion-Probabilistic-Model/</url>
+    <url>/2024/08/08/Denoising-Diffusion-Probabilistic-Model/</url>
     <content><![CDATA[<p>这篇文章是我关于 Denoising Diffusion Probabilistic Model
 文章的解读。</p>
 <span id="more"></span>
@@ -354,7 +438,7 @@ Decoder，能够将原始图片映射到隐变量中，又能解码回来，看�
 Encoder 或 Decoder。而 Diffusion Model 就是去掉了 Encoder
 部分的学习，只关心如何学好 Decoder，即逆向过程中如何重建数据。</p>
 <p>DDPM 建模：</p>
-<img src="/project/2024/08/08/Denoising-Diffusion-Probabilistic-Model/1.png" class="" title="DDPM">
+<img src="/2024/08/08/Denoising-Diffusion-Probabilistic-Model/1.png" class="" title="DDPM">
 <h3 id="前向过程">前向过程</h3>
 <h4 id="简单介绍">简单介绍</h4>
 <p>输入图像 <span class="math inline">\(x_0\)</span>，经过时间 <span
@@ -873,9 +957,9 @@ x_0=\frac{1}{\sqrt{\alpha_1}} \left(x_1 - \frac{1 - \alpha_1}{\sqrt{1 -
 <p>由上述的讨论，我们已经得到了训练的优化目标（即损失函数），以及采样时的反向建模，所以，训练和采样的流程也是非常显然了：</p>
 <ol type="1">
 <li><p>训练（Training）</p>
-<img src="/project/2024/08/08/Denoising-Diffusion-Probabilistic-Model/2.png" class="" title="Training"></li>
+<img src="/2024/08/08/Denoising-Diffusion-Probabilistic-Model/2.png" class="" title="Training"></li>
 <li><p>采样（Sampling）</p>
-<img src="/project/2024/08/08/Denoising-Diffusion-Probabilistic-Model/3.png" class="" title="Sampling"></li>
+<img src="/2024/08/08/Denoising-Diffusion-Probabilistic-Model/3.png" class="" title="Sampling"></li>
 </ol>
 ]]></content>
       <categories>
@@ -887,115 +971,31 @@ x_0=\frac{1}{\sqrt{\alpha_1}} \left(x_1 - \frac{1 - \alpha_1}{\sqrt{1 -
       </tags>
   </entry>
   <entry>
-    <title>我的个人简历</title>
-    <url>/project/2024/08/03/My-Curriculum-Vitae/</url>
-    <content><![CDATA[<p>这篇文章主要介绍了我本科生活中的一些经历和项目。</p>
-<span id="more"></span>
-<h2 id="教育背景">教育背景</h2>
-<ul>
-<li><strong>中国科学技术大学</strong>
-<ul>
-<li>专业：计算机科学与技术</li>
-<li>学历：本科</li>
-<li>研究方向：时间序列、深度学习、大模型</li>
-</ul></li>
-</ul>
-<h2 id="科研">科研？</h2>
-<ul>
-<li><strong>时间序列预测模型 预测算法研究</strong>
-<ul>
-<li>项目介绍：基于 TimeMAE 自监督学习架构的时序预测任务。TimeMAE
-是一种新颖的自监督范式，用于学习基于 Transformer
-网络的可转移的时间序列表征。</li>
-<li>工作内容：研究 TimeMAE
-的自监督学习架构，设计时序预测任务的实验方案，进行代码实现和实验，并与当前时序预测工作进行对比。</li>
-<li>项目地址：<a
-href="https://github.com/Melmaphother/TimeMAE-Forecasting">TimeMAE-Forecasting</a></li>
-<li>时间：2024年1月 - 2024年4月</li>
-</ul></li>
-</ul>
-<h2 id="比赛">比赛</h2>
-<ul>
-<li><strong>Meta KDD Cup 2024 CRAG: Comprehensive RAG Benchmark
-团队队员</strong>
-<ul>
-<li>比赛介绍：Meta KDD Cup 2024 的一个子任务，旨在提供一个全面的 RAG
-基准测试集，以评估各种 RAG 模型的性能。</li>
-<li>工作内容：负责知识图谱的分析与解析，微调 llama 3 以及 prompt
-修正，模型的融合与后处理。</li>
-<li>成绩：Phase 1 第六名 Phase 2 银牌</li>
-<li>时间：2024年4月 - 2024年5月</li>
-</ul></li>
-<li><strong>2024 年第十五届全国大学生数学竞赛</strong>
-<ul>
-<li>荣誉：全国一等奖</li>
-<li>时间：2023年11月 - 2023年12月</li>
-</ul></li>
-</ul>
-<h2 id="项目">项目</h2>
-<ul>
-<li><strong>基于 MySQL 的银行管理系统全栈开发 项目负责人</strong>
-<ul>
-<li>项目介绍：基于 MySQL、Django、HTML
-开发一个简易的银行管理系统，包括前端界面、后端数据库维护和中间件。</li>
-<li>项目成果：实现了用户注册、登录、存取款、转账等功能，并实现了银行管理系统的数据可视化。</li>
-<li>项目地址：<a
-href="https://github.com/Melmaphother/2024-USTC-Database-Lab2">银行管理系统</a></li>
-<li>时间：2024年5月 - 2024年6月</li>
-</ul></li>
-<li><strong>基于爬虫、检索、推荐技术的简易搜索引擎 团队队长</strong>
-<ul>
-<li>项目介绍：基于爬虫（Crawler）、检索（Retrieval）、推荐（Recommendation）、知识图谱（KG）等技术，实现一个简易搜索引擎。</li>
-<li>工作职责：负责爬虫、检索、知识图谱技术的实现，项目文档撰写和项目答辩。</li>
-<li>项目地址：<a
-href="https://github.com/Melmaphother/USTC-2023-WebInfo-Labs/tree/main">简易搜索引擎</a></li>
-<li>时间：2023年10月 - 2024年1月</li>
-</ul></li>
-<li><strong>基于 FPGA 的五级流水线 CPU 设计 项目负责人</strong>
-<ul>
-<li>项目介绍：基于 risc-v 指令集和 FPGA 开发板的五级流水线 CPU
-设计，包括指令译码、数据通路、控制通路、缓存、输入输出模块等。</li>
-<li>项目成果：实现了基于 risc-v 指令集的五级流水线 CPU
-设计，并分析不同缓存配置下 CPU 的频率和性能。</li>
-<li>项目地址：<a
-href="https://github.com/Melmaphother/ustc-codh-2023/tree/main/LABH6">五级流水线
-CPU</a></li>
-<li>时间：2023年5月 - 2023年6月</li>
-</ul></li>
-<li><strong>基于 zero-copy 技术，对 ROS2 机器人操作系统的实时性优化
-团队成员</strong>
-<ul>
-<li>项目介绍：基于 zero-copy 技术，对 ROS2
-机器人操作系统进行实时性优化，实现数据传输的超低延迟，解决多个物理中断的实时沟通问题。</li>
-<li>工作职责：负责 ROS2
-机器人操作系统的实时性优化，项目文档撰写和项目答辩。</li>
-<li>项目地址：<a
-href="https://github.com/OSH-2023/Code-ForWWWard/tree/main">ROS2
-实时性优化</a></li>
-<li>时间：2023年3月 - 2023年7月</li>
-</ul></li>
-</ul>
-<h2 id="专业">专业</h2>
-<ul>
-<li><strong>程序语言</strong>：C/C++、Python、SQL</li>
-<li><strong>开发技术</strong>：熟悉 Linux、Git，了解 Docker、Django
-等框架与中间件</li>
-<li><strong>知识领域</strong>：Pytorch
-深度学习框架、时间序列预测、知识图谱、机器学习</li>
-</ul>
-<h2 id="联系方式">联系方式</h2>
-<ul>
-<li><strong>个人邮箱</strong>：melmaphother@gmail.com</li>
-<li><strong>学校邮箱</strong>：wdy030428@mail.ustc.edu.cn</li>
-<li><strong>Github</strong>：<a
-href="https://github.com/Melmaphother">Melmaphother</a></li>
-</ul>
+    <title>Hello World</title>
+    <url>/2024/07/29/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very
+first post. Check <a href="https://hexo.io/docs/">documentation</a> for
+more info. If you get any problems when using Hexo, you can find the
+answer in <a
+href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or
+you can ask me on <a
+href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="quick-start">Quick Start</h2>
+<h3 id="create-a-new-post">Create a new post</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a
+href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="run-server">Run server</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="generate-static-files">Generate static files</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a
+href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="deploy-to-remote-sites">Deploy to remote sites</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a
+href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
-      <categories>
-        <category>CV</category>
-      </categories>
-      <tags>
-        <tag>CV</tag>
-      </tags>
   </entry>
 </search>
