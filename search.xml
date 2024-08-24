@@ -293,7 +293,8 @@ class="math inline">\(\theta\)</span>，使得观测数据的似然函数最大�
 id="expectation-maximization-算法和置信下界-elbo">Expectation-Maximization
 算法和置信下界 ELBO</h3>
 <blockquote>
-<p>参考 ，EM
+<p>参考 <a
+href="https://bookdown.org/hezhijian/book/est.html">数理统计讲义</a>，EM
 算法用于求解<strong>不完备数据的最大似然估计</strong>，在这种情况中，直接对观测数据求最大似然估计比较困难。但是可以借用隐变量来获取似然函数的置信下界。</p>
 <p>注：这里下标 <span
 class="math inline">\(\mathbb{E}_{q(z|x,\theta)}\)</span> 均为 <span

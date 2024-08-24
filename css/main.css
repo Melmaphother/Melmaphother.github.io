@@ -11,7 +11,7 @@
   --table-row-odd-bg-color: #f9f9f9;
   --table-row-hover-bg-color: #f5f5f5;
   --menu-item-bg-color: #f5f5f5;
-  --theme-color: #eb77bd;
+  --theme-color: #b0d3f5;
   --btn-default-bg: #fff;
   --btn-default-color: #555;
   --btn-default-border-color: #555;
@@ -38,7 +38,7 @@
     --table-row-odd-bg-color: #282828;
     --table-row-hover-bg-color: #363636;
     --menu-item-bg-color: #555;
-    --theme-color: #db448c;
+    --theme-color: #2b9fce;
     --btn-default-bg: #222;
     --btn-default-color: #ccc;
     --btn-default-border-color: #555;
@@ -1425,7 +1425,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #ff1638;
+    background: #1790b8;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -2984,15 +2984,6 @@ body {
   background-size: cover;
   background-position: 50% 50%;
 }
-.content-wrap {
-  opacity: 0.9;
-}
-.sidebar {
-  opacity: 0.9;
-}
-.header-inner {
-  background: rgba(255,255,255,0.9);
-}
-.popup {
-  opacity: 0.9;
+:root {
+  --content-bg-color: rgba(255,255,255,0.902);
 }
