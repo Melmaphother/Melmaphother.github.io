@@ -630,7 +630,7 @@ x_0)}{p_\theta(x_{t-1}|x_t)}\text{d} x_0\text{d} x_{t-1}\text{d}x_t\\
 &amp;=\sum_{t=2}^T\int q(x_0,x_t)\text{d} x_0\text{d}x_t\int
 q(x_{t-1}|x_0,x_t) \log \frac{q(x_{t-1}|x_t,
 x_0)}{p_\theta(x_{t-1}|x_t)}\text{d} x_{t-1}\\
-&amp;=\sum_{t=2}^T\mathbb{E}_{q(x_0,x_T)}\left[D_{KL}(q(x_{t-1}|x_t,
+&amp;=\sum_{t=2}^T\mathbb{E}_{q(x_0,x_t)}\left[D_{KL}(q(x_{t-1}|x_t,
 x_0)\|p_\theta(x_{t-1}|x_t))\right]
 \end{aligned}
 \]</span></p>
@@ -652,7 +652,7 @@ q(x_{0:T})\text{d}x_{0:T/(0,1)} \\
 <p><span class="math display">\[
 \begin{aligned}
 L &amp;= \mathbb{E}_{q(x_0)}\left[ D_{KL}(q(x_T|x_0)\|p(x_T))\right] \\
-&amp;+ \sum_{t=2}^T \mathbb{E}_{q(x_0,x_T)} \left[ D_{KL}(q(x_{t-1}|x_t,
+&amp;+ \sum_{t=2}^T \mathbb{E}_{q(x_0,x_t)} \left[ D_{KL}(q(x_{t-1}|x_t,
 x_0) \| p_\theta(x_{t-1}|x_t)) \right] -\mathbb{E}_{q(x_0,x_1)}
 \left[\log p_\theta(x_1|x_0)\right]
 \end{aligned}
@@ -663,7 +663,7 @@ x_0) \| p_\theta(x_{t-1}|x_t)) \right] -\mathbb{E}_{q(x_0,x_1)}
 &amp;L = L_T+L_{T-1}+\cdots+L_0 \\
 &amp;L_T = \mathbb{E}_{q(x_0)}\left[ D_{KL}(q(x_T|x_0)\|p(x_T))\right]
 \\
-&amp;L_{t-1} = \mathbb{E}_{q(x_0,x_T)} \left[ D_{KL}(q(x_{t-1}|x_t, x_0)
+&amp;L_{t-1} = \mathbb{E}_{q(x_0,x_t)} \left[ D_{KL}(q(x_{t-1}|x_t, x_0)
 \| p_\theta(x_{t-1}|x_t)) \right]; \quad 1 \leq t-1 \leq T - 1 \\
 &amp;L_0 = -\mathbb{E}_{q(x_0,x_1)} \left[\log p_\theta(x_1|x_0)\right]
 \end{aligned}
@@ -714,7 +714,7 @@ q(x_{t}|x_0) &amp;=\mathcal{N}\left( x_{t}; \sqrt{\bar{\alpha}_t} x_0,
 (1 - \bar{\alpha}_t) \mathbf{I} \right)
 \end{aligned}
 \]</span></p>
-<p>这样代入公式，一通计算，具体计算可以查看论文 <a
+<p>这样代入公式，高斯分布展开再合成，一通计算，具体计算可以查看论文 <a
 href="https://arxiv.org/pdf/2208.11970">Understanding Diffusion Models:
 A Unified Perspective</a> 公式 [71] 到公式
 [84]。总之，它的计算结果表明：</p>
@@ -739,10 +739,10 @@ p_\theta(x_{t-1}|x_t) =
 \mathcal{N}(x_{t-1};\mu_{\theta}(x_t,t),\sigma_t^2\mathbf{I})
 \]</span></p>
 <p>其中 <span
-class="math inline">\(\sigma_t^2=\tilde{\beta}_t\)</span>，那么根据数学基础中两个高斯分布的
+class="math inline">\(\sigma_t^2=\tilde{\beta}_t\)</span>，那么根据数学基础中两个方差相同高斯分布的
 KL 散度，可以得到：</p>
 <p><span class="math display">\[
-L_{t-1}=\mathbb{E}_{q(x_0,x_T)}\left[\frac{1}{2\sigma_t^2}\|\tilde{\mu}_t
+L_{t-1}=\mathbb{E}_{q(x_0,x_t)}\left[\frac{1}{2\sigma_t^2}\|\tilde{\mu}_t
 (x_t, x_0)-\mu_{\theta}(x_t,t)\|\right]
 \]</span></p></li>
 <li><p><span class="math inline">\(L_{t-1}\)</span></p>
@@ -767,7 +767,7 @@ x_0 = \frac{1}{\sqrt{\overline{\alpha}_t}} \left( x_t - \sqrt{1 -
 \]</span></p>
 <p>所以 <span class="math inline">\(L_{t-1}\)</span> 可以写为：</p>
 <p><span class="math display">\[
-L_{t-1}=\mathbb{E}_{q(x_0,x_T)}\left[\frac{1}{2\sigma_t^2}\left\|\frac{1}{\sqrt{\alpha_t}}
+L_{t-1}=\mathbb{E}_{q(x_0,x_t)}\left[\frac{1}{2\sigma_t^2}\left\|\frac{1}{\sqrt{\alpha_t}}
 \left(x_t - \frac{1 - \alpha_t}{\sqrt{1 -
 \overline{\alpha_t}}}\epsilon\right)
 -\mu_{\theta}(x_t,t)\right\|^2\right]
@@ -779,9 +779,11 @@ L_{t-1}=\mathbb{E}_{q(x_0,x_T)}\left[\frac{1}{2\sigma_t^2}\left\|\frac{1}{\sqrt{
 class="math inline">\(\mu_\theta\)</span> 在给定 <span
 class="math inline">\(x_t\)</span> 时必须预测 <span
 class="math inline">\(\frac{1}{\sqrt{\alpha_t}} \left(x_t - \frac{1 -
-\alpha_t}{\sqrt{1 - \overline{\alpha_t}}}\epsilon\right)\)</span>。因为
+\alpha_t}{\sqrt{1 - \overline{\alpha_t}}}\epsilon\right)\)</span>，而
 <span class="math inline">\(x_t\)</span>​
-可以作为模型输入，我们可以选择如下参数化：</p>
+可以作为模型输入，为了方便计算，可以尽量消去相同的项以及合并同类项。对于
+<span class="math inline">\(\mu_\theta\)</span>，它只取决于我们如何
+<strong>参数化</strong> 它，为了方便，我们可以选择如下参数化：</p>
 <p><span class="math display">\[
 \mu_\theta (x_t, t) = \frac{1}{\sqrt{\alpha_t}} \left(x_t - \frac{1 -
 \alpha_t}{\sqrt{1 - \overline{\alpha_t}}}\epsilon_\theta(x_t,t)\right)
@@ -789,7 +791,7 @@ class="math inline">\(\frac{1}{\sqrt{\alpha_t}} \left(x_t - \frac{1 -
 <p>联立上述公式，<span class="math inline">\(L_{t-1}\)</span>
 就可以被写为：</p>
 <p><span class="math display">\[
-L_{t-1}=\mathbb{E}_{q(x_0,x_T)}\left[\frac{(1-\alpha_t)^2}{2\sigma_t^2\alpha_t(1-\overline{\alpha_t})}\left\|\epsilon-\epsilon_\theta(x_t,t)\right\|^2\right]
+L_{t-1}=\mathbb{E}_{q(x_0,x_t)}\left[\frac{(1-\alpha_t)^2}{2\sigma_t^2\alpha_t(1-\overline{\alpha_t})}\left\|\epsilon-\epsilon_\theta(x_t,t)\right\|^2\right]
 \]</span></p>
 <p>由于训练时 <span class="math inline">\(x_0\)</span> 和每轮的 <span
 class="math inline">\(\epsilon\)</span>
@@ -797,7 +799,7 @@ class="math inline">\(\epsilon\)</span>
 class="math inline">\(x_t\)</span>，<span
 class="math inline">\(L_{t-1}\)</span> 要改写为：</p>
 <p><span class="math display">\[
-L_{t-1}=\mathbb{E}_{x_0,epsilon}\left[\frac{(1-\alpha_t)^2}{2\sigma_t^2\alpha_t(1-\overline{\alpha_t})}\left\|\epsilon-\epsilon_\theta(\sqrt{\overline{\alpha_t}}x_0
+L_{t-1}=\mathbb{E}_{q(x_0,\epsilon)}\left[\frac{(1-\alpha_t)^2}{2\sigma_t^2\alpha_t(1-\overline{\alpha_t})}\left\|\epsilon-\epsilon_\theta(\sqrt{\overline{\alpha_t}}x_0
 + \sqrt{1-\overline{\alpha_t}}\epsilon,t)\right\|^2\right]
 \]</span></p>
 <blockquote>
@@ -810,8 +812,8 @@ class="math inline">\(\epsilon\)</span>
 class="math inline">\(x_0\)</span>，只不过经过 DDPM
 的验证，这种方式在实验的早期就会导致样本质量变差）。通过预测 <span
 class="math inline">\(\epsilon\)</span> 和 <span
-class="math inline">\(\tilde \mu_t\)</span> 的消融试验中，验证了预测
-<span class="math inline">\(\epsilon\)</span> 的有效性。</p>
+class="math inline">\(x_0\)</span> 的消融试验中，验证了预测 <span
+class="math inline">\(\epsilon\)</span> 的有效性。</p>
 </blockquote>
 <p>而采样时，<span class="math inline">\(x_t\)</span> 和采样 <span
 class="math inline">\(z\)</span> 是输入，所以采样时不能出现 <span
@@ -858,6 +860,34 @@ x_0=\frac{1}{\sqrt{\alpha_1}} \left(x_1 - \frac{1 - \alpha_1}{\sqrt{1 -
         <tag>Diffusion</tag>
         <tag>AI</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2024/07/29/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very
+first post. Check <a href="https://hexo.io/docs/">documentation</a> for
+more info. If you get any problems when using Hexo, you can find the
+answer in <a
+href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or
+you can ask me on <a
+href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="quick-start">Quick Start</h2>
+<h3 id="create-a-new-post">Create a new post</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a
+href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="run-server">Run server</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="generate-static-files">Generate static files</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a
+href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="deploy-to-remote-sites">Deploy to remote sites</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a
+href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
   </entry>
   <entry>
     <title>我的个人简历</title>
@@ -970,33 +1000,5 @@ href="https://github.com/Melmaphother">Melmaphother</a></li>
       <tags>
         <tag>CV</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2024/07/29/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very
-first post. Check <a href="https://hexo.io/docs/">documentation</a> for
-more info. If you get any problems when using Hexo, you can find the
-answer in <a
-href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or
-you can ask me on <a
-href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="quick-start">Quick Start</h2>
-<h3 id="create-a-new-post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a
-href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="run-server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="generate-static-files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a
-href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="deploy-to-remote-sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a
-href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
   </entry>
 </search>
