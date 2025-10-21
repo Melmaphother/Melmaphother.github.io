@@ -155,7 +155,7 @@ function createPublicationElement(publication) {
     if (publication.links.pdf) {
       const pdfLink = document.createElement('a');
       pdfLink.href = publication.links.pdf;
-      pdfLink.textContent = '[PDF]';
+      pdfLink.textContent = '[Paper]';
       links.appendChild(pdfLink);
     }
     
@@ -328,10 +328,17 @@ function createProjectElement(project) {
   
   content.appendChild(venueContainer);
   
-  // Add links if they exist (only Code for projects)
+  // Add links if they exist
   if (project.links && Object.keys(project.links).length > 0) {
     const links = document.createElement('div');
     links.className = 'pub-links';
+    
+    if (project.links.pdf) {
+      const pdfLink = document.createElement('a');
+      pdfLink.href = project.links.pdf;
+      pdfLink.textContent = '[Paper]';
+      links.appendChild(pdfLink);
+    }
     
     if (project.links.code) {
       const codeLink = document.createElement('a');
