@@ -1,0 +1,60 @@
+{
+  "publications": [
+    {
+      "title": "PaperArena: An Evaluation Benchmark for Tool-Augmented Agentic Reasoning on Scientific Literature",
+      "authors": [
+        "Daoyu Wang",
+        "Mingyue Cheng",
+        "Qi Liu",
+        "Shuo Yu",
+        "Zirui Liu",
+        "Ze Guo"
+      ],
+      "venue": "Preprint (2024)",
+      "thumbnail": "images/publications/3.png",
+      "selected": 1,
+      "award": "",
+      "links": {
+        "pdf": "https://arxiv.org/abs/2510.10909",
+        "code": "https://github.com/Melmaphother/Science-Star",
+        "project": "https://github.com/Melmaphother/Science-Star"
+      }
+    },
+    {
+      "title": "Multi-Source Knowledge Pruning for Retrieval-Augmented Generation: A Benchmark and Empirical Study",
+      "authors": [
+        "Shuo Yu",
+        "Mingyue Cheng",
+        "Qi Liu",
+        "Daoyu Wang",
+        "Jiqian Yang",
+        "et al."
+      ],
+      "venue": "ACM International Conference on Information and Knowledge Management (CIKM 2025)",
+      "thumbnail": "images/publications/2.png",
+      "selected": 1,
+      "award": "",
+      "links": {
+        "pdf": "https://arxiv.org/abs/2409.13694"
+      }
+    },
+    {
+      "title": "TimeDART: A Diffusion Autoregressive Transformer for Self-Supervised Time Series Representation",
+      "authors": [
+        "Daoyu Wang",
+        "Mingyue Cheng",
+        "Zhiding Liu",
+        "Qi Liu"
+      ],
+      "venue": "International Conference on Machine Learning (ICML 2025)",
+      "thumbnail": "images/publications/1.png",
+      "selected": 1,
+      "award": "ICML 2025",
+      "links": {
+        "pdf": "https://arxiv.org/abs/2410.05711",
+        "code": "https://github.com/Melmaphother/TimeDART",
+        "project": "https://github.com/Melmaphother/TimeDART"
+      }
+    }
+  ]
+}

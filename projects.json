@@ -1,0 +1,75 @@
+{
+  "projects": [
+    {
+      "title": "Science-Star: Platform for Building, Extending, and Experimenting with Scientific Agents",
+      "authors": [
+        "Daoyu Wang",
+        "Qingchuan Li",
+        "Tian Gao",
+        "Shuo Yu",
+        "Xiaoyu Tao",
+        "Mingyue Cheng",
+        "Qi Liu"
+      ],
+      "venue": "Maintainer (Aug. 2025)",
+      "thumbnail": "images/projects/4.png",
+      "selected": 1,
+      "award": "Stars 700+",
+      "links": {
+        "code": "https://github.com/Melmaphother/Science-Star",
+        "project": "https://github.com/Melmaphother/Science-Star"
+      }
+    },
+    {
+      "title": "Agent-R1: Training Powerful LLM Agents with End-to-End Reinforcement Learning",
+      "authors": [
+        "Jie Ouyang",
+        "Ruiran Yan",
+        "Yucong Luo",
+        "Mingyue Cheng",
+        "Qi Liu",
+        "Zirui Liu",
+        "Shuo Yu",
+        "Daoyu Wang"
+      ],
+      "venue": "Committer (May 2025)",
+      "thumbnail": "images/projects/3.png",
+      "selected": 1,
+      "award": "Stars 800+",
+      "links": {
+        "code": "https://github.com/0russwest0/Agent-R1",
+        "project": "https://github.com/0russwest0/Agent-R1"
+      }
+    },
+    {
+      "title": "TimeDART: Codebase for Time Series Self-Supervised Learning and Supervised Finetuning",
+      "authors": [
+        "Daoyu Wang",
+        "Mingyue Cheng",
+        "Zhiding Liu",
+        "Qi Liu"
+      ],
+      "venue": "Maintainer (Apr. 2025)",
+      "thumbnail": "images/projects/2.png",
+      "selected": 1,
+      "award": "Stars 100+",
+      "links": {
+        "code": "https://github.com/Melmaphother/TimeDART",
+        "project": "https://github.com/Melmaphother/TimeDART"
+      }
+    },
+    {
+      "title": "Meta KDD Cup 2024 CRAG·Comprehensive RAG Benchmark",
+      "authors": [
+        "Daoyu Wang",
+        "et al."
+      ],
+      "venue": "Committer (Jun. 2024)",
+      "thumbnail": "images/projects/1.png",
+      "selected": 1,
+      "award": "Silver Medal",
+      "links": {}
+    }
+  ]
+}
+
