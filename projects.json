@@ -16,8 +16,7 @@
       "selected": 1,
       "award": "Stars 700+",
       "links": {
-        "code": "https://github.com/Melmaphother/Science-Star",
-        "project": "https://github.com/Melmaphother/Science-Star"
+        "code": "https://github.com/Melmaphother/Science-Star"
       }
     },
     {
@@ -37,8 +36,7 @@
       "selected": 1,
       "award": "Stars 800+",
       "links": {
-        "code": "https://github.com/0russwest0/Agent-R1",
-        "project": "https://github.com/0russwest0/Agent-R1"
+        "code": "https://github.com/0russwest0/Agent-R1"
       }
     },
     {
@@ -54,12 +52,11 @@
       "selected": 1,
       "award": "Stars 100+",
       "links": {
-        "code": "https://github.com/Melmaphother/TimeDART",
-        "project": "https://github.com/Melmaphother/TimeDART"
+        "code": "https://github.com/Melmaphother/TimeDART"
       }
     },
     {
-      "title": "Meta KDD Cup 2024 CRAG·Comprehensive RAG Benchmark",
+      "title": "Meta KDD Cup 2024 CRAG · Comprehensive RAG Benchmark",
       "authors": [
         "Daoyu Wang",
         "et al."
@@ -68,7 +65,9 @@
       "thumbnail": "images/projects/1.png",
       "selected": 1,
       "award": "Silver Medal",
-      "links": {}
+      "links": {
+        "code": "https://github.com/USTCAGI/CRAG-in-KDD-Cup2024"
+      }
     }
   ]
 }

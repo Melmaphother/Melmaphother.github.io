@@ -16,8 +16,8 @@
       "award": "",
       "links": {
         "pdf": "https://arxiv.org/abs/2510.10909",
-        "code": "https://github.com/Melmaphother/Science-Star",
-        "project": "https://github.com/Melmaphother/Science-Star"
+        "code": "https://github.com/Melmaphother/PaperArena",
+        "project": "https://github.com/Melmaphother/PaperArena"
       }
     },
     {
@@ -35,7 +35,9 @@
       "selected": 1,
       "award": "",
       "links": {
-        "pdf": "https://arxiv.org/abs/2409.13694"
+        "pdf": "https://arxiv.org/abs/2409.13694",
+        "code": "https://github.com/USTCAGI/PruningRAG",
+        "project": "https://ustc-rag-x.github.io/"
       }
     },
     {
@@ -52,8 +54,7 @@
       "award": "ICML 2025",
       "links": {
         "pdf": "https://arxiv.org/abs/2410.05711",
-        "code": "https://github.com/Melmaphother/TimeDART",
-        "project": "https://github.com/Melmaphother/TimeDART"
+        "code": "https://github.com/Melmaphother/TimeDART"
       }
     }
   ]

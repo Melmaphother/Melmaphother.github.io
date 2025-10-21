@@ -328,30 +328,16 @@ function createProjectElement(project) {
   
   content.appendChild(venueContainer);
   
-  // Add links if they exist
+  // Add links if they exist (only Code for projects)
   if (project.links && Object.keys(project.links).length > 0) {
     const links = document.createElement('div');
     links.className = 'pub-links';
-    
-    if (project.links.pdf) {
-      const pdfLink = document.createElement('a');
-      pdfLink.href = project.links.pdf;
-      pdfLink.textContent = '[PDF]';
-      links.appendChild(pdfLink);
-    }
     
     if (project.links.code) {
       const codeLink = document.createElement('a');
       codeLink.href = project.links.code;
       codeLink.textContent = '[Code]';
       links.appendChild(codeLink);
-    }
-    
-    if (project.links.project) {
-      const projectLink = document.createElement('a');
-      projectLink.href = project.links.project;
-      projectLink.textContent = '[Project Page]';
-      links.appendChild(projectLink);
     }
     
     content.appendChild(links);
