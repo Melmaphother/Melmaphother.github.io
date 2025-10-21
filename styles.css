@@ -19,6 +19,28 @@ body {
   color: var(--text-color);
   background-color: var(--bg-color);
   font-weight: 300;
+  position: relative;
+}
+
+/* GitHub corner icon */
+.github-corner {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: all var(--transition-time) ease;
+}
+
+.github-corner i {
+  font-size: 24px;
+  transition: transform var(--transition-time) ease;
+}
+
+.github-corner:hover {
+  transform: scale(1.15);
+  color: var(--accent-hover);
 }
 
 header {
@@ -461,5 +483,15 @@ strong {
   .service-category:hover, .misc-item:hover, .news-list li:hover,
   nav a:hover, .social-links-header a:hover, .pub-links a:hover {
     transform: none !important;
+  }
+
+  /* Make GitHub corner smaller on mobile */
+  .github-corner {
+    top: 15px;
+    right: 15px;
+  }
+
+  .github-corner i {
+    font-size: 20px;
   }
 }
