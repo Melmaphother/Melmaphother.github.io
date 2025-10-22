@@ -54,7 +54,8 @@
       "award": "ICML 2025",
       "links": {
         "pdf": "https://arxiv.org/abs/2410.05711",
-        "code": "https://github.com/Melmaphother/TimeDART"
+        "code": "https://github.com/Melmaphother/TimeDART",
+        "poster": "https://icml.cc/virtual/2025/poster/43701"
       }
     }
   ]

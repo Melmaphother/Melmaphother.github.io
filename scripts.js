@@ -173,6 +173,13 @@ function createPublicationElement(publication) {
       links.appendChild(projectLink);
     }
     
+    if (publication.links.poster) {
+      const posterLink = document.createElement('a');
+      posterLink.href = publication.links.poster;
+      posterLink.textContent = '[Poster]';
+      links.appendChild(posterLink);
+    }
+    
     content.appendChild(links);
   }
   
