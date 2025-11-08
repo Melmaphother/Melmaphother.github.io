@@ -21,6 +21,26 @@
       }
     },
     {
+        "title": "MemWeaver: A Hierarchical Memory from Textual Interactive Behaviors for Personalized Generation",
+        "authors": [
+          "Shuo Yu",
+          "Mingyue Cheng",
+          "Qi Liu",
+          "Daoyu Wang",
+          "Zirui Liu",
+          "Ze Guo",
+          "Xiaoyu Tao"
+        ],
+        "venue": "Preprint (2025)",
+        "thumbnail": "images/publications/4.png",
+        "selected": 1,
+        "award": "",
+        "links": {
+          "pdf": "https://arxiv.org/abs/2510.07713",
+          "code": "https://github.com/fishsure/MemWeaver"
+        }
+    },
+    {
       "title": "Multi-Source Knowledge Pruning for Retrieval-Augmented Generation: A Benchmark and Empirical Study",
       "authors": [
         "Shuo Yu",
@@ -30,10 +50,10 @@
         "Jiqian Yang",
         "et al."
       ],
-      "venue": "ACM International Conference on Information and Knowledge Management (CIKM 2025)",
+      "venue": "ACM International Conference on Information and Knowledge Management",
       "thumbnail": "images/publications/2.png",
       "selected": 1,
-      "award": "",
+      "award": "CIKM 2025",
       "links": {
         "pdf": "https://arxiv.org/abs/2409.13694",
         "code": "https://github.com/USTCAGI/PruningRAG",
@@ -48,7 +68,7 @@
         "Zhiding Liu",
         "Qi Liu"
       ],
-      "venue": "International Conference on Machine Learning (ICML 2025)",
+      "venue": "International Conference on Machine Learning",
       "thumbnail": "images/publications/1.png",
       "selected": 1,
       "award": "ICML 2025",
