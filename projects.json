@@ -40,22 +40,6 @@
       }
     },
     {
-      "title": "TimeDART: Codebase for Time Series Self-Supervised Learning and Supervised Finetuning",
-      "authors": [
-        "Daoyu Wang",
-        "Mingyue Cheng",
-        "Zhiding Liu",
-        "Qi Liu"
-      ],
-      "venue": "Maintainer (Apr. 2025)",
-      "thumbnail": "images/projects/2.png",
-      "selected": 0,
-      "award": "Stars 100+",
-      "links": {
-        "code": "https://github.com/Melmaphother/TimeDART"
-      }
-    },
-    {
       "title": "Meta KDD Cup 2024 CRAG · Comprehensive RAG Benchmark",
       "authors": [
         "Jie Ouyang",
@@ -74,6 +58,22 @@
         "pdf": "https://arxiv.org/abs/2409.15337",
         "code": "https://github.com/USTCAGI/CRAG-in-KDD-Cup2024"
       }
+    },
+    {
+        "title": "TimeDART: Codebase for Time Series Self-Supervised Learning and Supervised Finetuning",
+        "authors": [
+          "Daoyu Wang",
+          "Mingyue Cheng",
+          "Zhiding Liu",
+          "Qi Liu"
+        ],
+        "venue": "Maintainer (Apr. 2025)",
+        "thumbnail": "images/projects/2.png",
+        "selected": 0,
+        "award": "Stars 100+",
+        "links": {
+          "code": "https://github.com/Melmaphother/TimeDART"
+        }
     }
   ]
 }
