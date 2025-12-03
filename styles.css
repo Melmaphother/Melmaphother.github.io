@@ -117,11 +117,48 @@ nav a:hover, .social-links-header a:hover {
 .social-links-header {
   display: flex;
   gap: 1.25rem;
-  margin: 1.2rem 0;
+  margin: 1.2rem 0 0.6rem 0;
+}
+
+.social-links-header a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
 }
 
 .social-links-header a i {
-  margin-right: 0.4rem;
+  font-size: 1.2rem;
+  display: inline-flex;
+  align-items: center;
+}
+
+.social-links-header a span {
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+}
+
+.info-line {
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+.info-line i {
+  margin-right: 0.5rem;
+  width: 1.2rem;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+.info-line a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color var(--transition-time) ease;
+}
+
+.info-line a:hover {
+  color: var(--accent-color);
 }
 
 /* Unified animation for elements (not sections) */
