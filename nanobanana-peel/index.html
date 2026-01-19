@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Nanobanana Peel - Remove backgrounds from AI-generated images instantly in your browser">
+    <meta name="keywords" content="background removal, AI images, transparent PNG, image processing">
+    <meta name="author" content="Daoyu Wang">
+    <meta property="og:title" content="🍌 Nanobanana Peel - Background Remover">
+    <meta property="og:description" content="Remove backgrounds from AI-generated images instantly in your browser">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://melmaphother.github.io/nanobanana-peel">
+    <title>Nanobanana Peel - Background Remover</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍌</text></svg>">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #fefefe;
+            --bg-secondary: #f8f8fa;
+            --bg-tertiary: #f0f0f5;
+            --accent-yellow: #f5a623;
+            --accent-yellow-dim: #d4900e;
+            --accent-green: #e85d04;
+            --text-primary: #1a1a2e;
+            --text-secondary: #4a4a68;
+            --text-muted: #71717a;
+            --border-color: #e5e5eb;
+            --border-hover: #d1d1db;
+            --shadow-glow: 0 0 40px rgba(245, 166, 35, 0.12);
+            --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-smooth: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated background */
+        .bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(245, 166, 35, 0.06) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(232, 93, 4, 0.04) 0%, transparent 50%),
+                linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            padding: 40px 0 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .logo {
+            font-size: 3.5rem;
+            margin-bottom: 8px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        h1 {
+            font-family: 'Space Mono', monospace;
+            font-size: clamp(2.2rem, 6vw, 3.2rem);
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-yellow) 0%, #e85d04 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+            text-shadow: 0 4px 30px rgba(245, 166, 35, 0.2);
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.15rem;
+            max-width: 650px;
+            margin: 0 auto 12px;
+            white-space: nowrap;
+        }
+
+        .github-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color var(--transition-fast);
+        }
+
+        .github-link:hover {
+            color: var(--accent-yellow-dim);
+        }
+
+        .github-link i {
+            font-size: 1.1rem;
+        }
+
+        /* Main content */
+        main {
+            padding: 20px 0 60px;
+        }
+
+        /* Upload zone */
+        .upload-zone {
+            background: var(--bg-secondary);
+            border: 2px dashed var(--border-color);
+            border-radius: 20px;
+            padding: 60px 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: all var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .upload-zone::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 225, 53, 0.05) 0%, rgba(57, 255, 20, 0.02) 100%);
+            opacity: 0;
+            transition: opacity var(--transition-smooth);
+        }
+
+        .upload-zone:hover,
+        .upload-zone.drag-over {
+            border-color: var(--accent-yellow);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .upload-zone:hover::before,
+        .upload-zone.drag-over::before {
+            opacity: 1;
+        }
+
+        .upload-zone.drag-over {
+            transform: scale(1.01);
+        }
+
+        .upload-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .upload-text {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .upload-hint {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .upload-hint kbd {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        #file-input {
+            display: none;
+        }
+
+        /* Settings panel */
+        .settings-panel {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px;
+            margin-top: 24px;
+            display: none;
+        }
+
+        .settings-panel.visible {
+            display: block;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .settings-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .settings-title {
+            font-family: 'Space Mono', monospace;
+            font-size: 1rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .settings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .setting-item {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .setting-label {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .setting-label span {
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .setting-value {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--accent-yellow);
+            background: var(--bg-tertiary);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .setting-description {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 6px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: var(--bg-tertiary);
+            border-radius: 3px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            background: var(--accent-yellow);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+        }
+
+        input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+            box-shadow: 0 0 12px rgba(255, 225, 53, 0.5);
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            background: var(--accent-yellow);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .color-picker-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        input[type="color"] {
+            width: 50px;
+            height: 36px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            cursor: pointer;
+            background: transparent;
+            padding: 2px;
+        }
+
+        input[type="color"]::-webkit-color-swatch-wrapper {
+            padding: 0;
+        }
+
+        input[type="color"]::-webkit-color-swatch {
+            border: none;
+            border-radius: 4px;
+        }
+
+        .color-input {
+            flex: 1;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 8px 12px;
+            color: var(--text-primary);
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        .color-input:focus {
+            outline: none;
+            border-color: var(--accent-yellow);
+        }
+
+        /* Preview section */
+        .preview-section {
+            margin-top: 32px;
+            display: none;
+        }
+
+        .preview-section.visible {
+            display: block;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .preview-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .preview-title {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+
+        .preview-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            border: none;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: var(--accent-yellow);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-yellow-dim);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(245, 166, 35, 0.35);
+        }
+
+        .btn-secondary {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-secondary);
+            border-color: var(--border-hover);
+        }
+
+        .btn-success {
+            background: var(--accent-green);
+            color: #fff;
+        }
+
+        .btn-success:hover {
+            filter: brightness(0.9);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(57, 255, 20, 0.3);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .preview-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .preview-card-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .preview-card-title {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .preview-card-badge {
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        .badge-original {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+        }
+
+        .badge-processed {
+            background: rgba(57, 255, 20, 0.15);
+            color: var(--accent-green);
+        }
+
+        .preview-card-body {
+            padding: 20px;
+            min-height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Checkerboard pattern for transparency */
+            background-image:
+                linear-gradient(45deg, #e8e8ed 25%, transparent 25%),
+                linear-gradient(-45deg, #e8e8ed 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, #e8e8ed 75%),
+                linear-gradient(-45deg, transparent 75%, #e8e8ed 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+            background-color: #f5f5f8;
+        }
+
+        .preview-card-body img {
+            max-width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        /* Loading state */
+        .loading-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.92);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .loading-overlay.visible {
+            display: flex;
+        }
+
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid var(--border-color);
+            border-top-color: var(--accent-yellow);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .loading-text {
+            font-family: 'Space Mono', monospace;
+            color: var(--text-secondary);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 24px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        footer a {
+            color: var(--accent-yellow-dim);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: var(--accent-yellow);
+            text-decoration: underline;
+        }
+
+        /* Toast notifications */
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all var(--transition-smooth);
+            z-index: 1001;
+        }
+
+        .toast.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast-success {
+            border-color: var(--accent-green);
+        }
+
+        .toast-icon {
+            font-size: 1.2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 24px 0 16px;
+            }
+
+            .logo {
+                font-size: 2.5rem;
+            }
+
+            .upload-zone {
+                padding: 40px 24px;
+            }
+
+            .upload-icon {
+                font-size: 3rem;
+            }
+
+            .settings-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .preview-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .preview-actions {
+                width: 100%;
+            }
+
+            .preview-actions .btn {
+                flex: 1;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-pattern"></div>
+
+    <div class="container">
+        <header>
+            <div class="logo">🍌</div>
+            <h1>Nanobanana Peel</h1>
+            <p class="subtitle">Remove backgrounds from AI-generated images instantly in your browser</p>
+            <a href="https://github.com/Melmaphother/Nanobanana-Peel" target="_blank" class="github-link">
+                <i class="fab fa-github"></i>
+                View on GitHub
+            </a>
+        </header>
+
+        <main>
+            <!-- Upload Zone -->
+            <div class="upload-zone" id="upload-zone">
+                <span class="upload-icon">📤</span>
+                <p class="upload-text">Drop your image here</p>
+                <p class="upload-hint">or click to browse • paste with <kbd>Ctrl</kbd>+<kbd>V</kbd></p>
+                <input type="file" id="file-input" accept="image/*">
+            </div>
+
+            <!-- Settings Panel -->
+            <div class="settings-panel" id="settings-panel">
+                <div class="settings-header">
+                    <span class="settings-title">⚙️ Settings</span>
+                </div>
+                <div class="settings-grid">
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <span>Transparency Threshold</span>
+                            <span class="setting-value" id="threshold-value">0.10</span>
+                        </div>
+                        <input type="range" id="threshold-slider" min="0" max="0.5" step="0.01" value="0.1">
+                        <p class="setting-description">Pixels within this distance from background become transparent
+                        </p>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <span>Background Color</span>
+                        </div>
+                        <div class="color-picker-wrapper">
+                            <input type="color" id="bg-color-picker" value="#ffffff">
+                            <input type="text" class="color-input" id="bg-color-input" value="255, 255, 255"
+                                placeholder="R, G, B">
+                        </div>
+                        <p class="setting-description">The background color to detect and remove</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Preview Section -->
+            <div class="preview-section" id="preview-section">
+                <div class="preview-header">
+                    <span class="preview-title">📸 Preview</span>
+                    <div class="preview-actions">
+                        <button class="btn btn-secondary" id="btn-reset">
+                            🔄 New Image
+                        </button>
+                        <button class="btn btn-primary" id="btn-process">
+                            ✨ Process
+                        </button>
+                        <button class="btn btn-success" id="btn-download" disabled>
+                            ⬇️ Download PNG
+                        </button>
+                    </div>
+                </div>
+                <div class="preview-grid">
+                    <div class="preview-card">
+                        <div class="preview-card-header">
+                            <span class="preview-card-title">Original</span>
+                            <span class="preview-card-badge badge-original">Before</span>
+                        </div>
+                        <div class="preview-card-body">
+                            <img id="original-preview" alt="Original image">
+                        </div>
+                    </div>
+                    <div class="preview-card">
+                        <div class="preview-card-header">
+                            <span class="preview-card-title">Processed</span>
+                            <span class="preview-card-badge badge-processed">After</span>
+                        </div>
+                        <div class="preview-card-body">
+                            <img id="processed-preview" alt="Processed image">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Made with 🍌 by <a href="https://melmaphother.github.io">Daoyu Wang</a></p>
+            <p style="margin-top: 8px;">All processing happens locally in your browser. Your images never leave your
+                device.</p>
+        </footer>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="spinner"></div>
+        <span class="loading-text">Processing image...</span>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <span class="toast-icon">✅</span>
+        <span class="toast-message">Image processed successfully!</span>
+    </div>
+
+    <script>
+        // DOM Elements
+        const uploadZone = document.getElementById('upload-zone');
+        const fileInput = document.getElementById('file-input');
+        const settingsPanel = document.getElementById('settings-panel');
+        const previewSection = document.getElementById('preview-section');
+        const originalPreview = document.getElementById('original-preview');
+        const processedPreview = document.getElementById('processed-preview');
+        const thresholdSlider = document.getElementById('threshold-slider');
+        const thresholdValue = document.getElementById('threshold-value');
+        const bgColorPicker = document.getElementById('bg-color-picker');
+        const bgColorInput = document.getElementById('bg-color-input');
+        const btnProcess = document.getElementById('btn-process');
+        const btnDownload = document.getElementById('btn-download');
+        const btnReset = document.getElementById('btn-reset');
+        const loadingOverlay = document.getElementById('loading-overlay');
+        const toast = document.getElementById('toast');
+
+        // State
+        let originalImage = null;
+        let processedDataURL = null;
+        let fileName = 'image';
+
+        // === Event Listeners ===
+
+        // Click to upload
+        uploadZone.addEventListener('click', () => fileInput.click());
+
+        // File input change
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                handleFile(e.target.files[0]);
+            }
+        });
+
+        // Drag and drop
+        uploadZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadZone.classList.add('drag-over');
+        });
+
+        uploadZone.addEventListener('dragleave', () => {
+            uploadZone.classList.remove('drag-over');
+        });
+
+        uploadZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadZone.classList.remove('drag-over');
+            if (e.dataTransfer.files.length > 0) {
+                handleFile(e.dataTransfer.files[0]);
+            }
+        });
+
+        // Paste
+        document.addEventListener('paste', (e) => {
+            const items = e.clipboardData.items;
+            for (let item of items) {
+                if (item.type.startsWith('image/')) {
+                    const file = item.getAsFile();
+                    handleFile(file);
+                    break;
+                }
+            }
+        });
+
+        // Threshold slider
+        thresholdSlider.addEventListener('input', (e) => {
+            thresholdValue.textContent = parseFloat(e.target.value).toFixed(2);
+        });
+
+        // Color picker
+        bgColorPicker.addEventListener('input', (e) => {
+            const hex = e.target.value;
+            const rgb = hexToRgb(hex);
+            bgColorInput.value = `${rgb.r}, ${rgb.g}, ${rgb.b}`;
+        });
+
+        // Color input
+        bgColorInput.addEventListener('change', (e) => {
+            const rgb = parseRgbInput(e.target.value);
+            if (rgb) {
+                bgColorPicker.value = rgbToHex(rgb.r, rgb.g, rgb.b);
+            }
+        });
+
+        // Process button
+        btnProcess.addEventListener('click', processImage);
+
+        // Download button
+        btnDownload.addEventListener('click', downloadImage);
+
+        // Reset button
+        btnReset.addEventListener('click', resetAll);
+
+        // === Functions ===
+
+        function handleFile(file) {
+            if (!file.type.startsWith('image/')) {
+                showToast('Please upload an image file', '⚠️');
+                return;
+            }
+
+            fileName = file.name.replace(/\.[^/.]+$/, '');
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                originalImage = new Image();
+                originalImage.onload = () => {
+                    originalPreview.src = e.target.result;
+                    processedPreview.src = '';
+                    processedDataURL = null;
+                    btnDownload.disabled = true;
+
+                    settingsPanel.classList.add('visible');
+                    previewSection.classList.add('visible');
+
+                    // Auto-process
+                    processImage();
+                };
+                originalImage.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function processImage() {
+            if (!originalImage) return;
+
+            showLoading(true);
+            btnProcess.disabled = true;
+
+            // Use setTimeout to allow UI to update
+            setTimeout(() => {
+                try {
+                    const threshold = parseFloat(thresholdSlider.value);
+                    const bgColor = parseRgbInput(bgColorInput.value) || { r: 255, g: 255, b: 255 };
+
+                    // Create canvas
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+                    canvas.width = originalImage.width;
+                    canvas.height = originalImage.height;
+
+                    // Draw original image
+                    ctx.drawImage(originalImage, 0, 0);
+
+                    // Get image data
+                    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                    const data = imageData.data;
+
+                    // Max distance in RGB space
+                    const maxDistance = Math.sqrt(255 * 255 * 3); // ≈ 441.67
+
+                    // Process each pixel
+                    for (let i = 0; i < data.length; i += 4) {
+                        const r = data[i];
+                        const g = data[i + 1];
+                        const b = data[i + 2];
+
+                        // Calculate Euclidean distance to background color
+                        const dr = r - bgColor.r;
+                        const dg = g - bgColor.g;
+                        const db = b - bgColor.b;
+                        const distance = Math.sqrt(dr * dr + dg * dg + db * db);
+
+                        // Normalize distance to [0, 1]
+                        const normalizedDistance = distance / maxDistance;
+
+                        // Apply transparency based on threshold
+                        if (normalizedDistance < threshold) {
+                            data[i + 3] = 0; // Fully transparent
+                        }
+                        // Else keep original alpha
+                    }
+
+                    // Put processed data back
+                    ctx.putImageData(imageData, 0, 0);
+
+                    // Get result
+                    processedDataURL = canvas.toDataURL('image/png');
+                    processedPreview.src = processedDataURL;
+                    btnDownload.disabled = false;
+
+                    showToast('Image processed successfully!', '✅');
+                } catch (error) {
+                    console.error('Processing error:', error);
+                    showToast('Error processing image', '❌');
+                } finally {
+                    showLoading(false);
+                    btnProcess.disabled = false;
+                }
+            }, 50);
+        }
+
+        function downloadImage() {
+            if (!processedDataURL) return;
+
+            const link = document.createElement('a');
+            link.download = `${fileName}_rmbg.png`;
+            link.href = processedDataURL;
+            link.click();
+
+            showToast('Image downloaded!', '⬇️');
+        }
+
+        function resetAll() {
+            originalImage = null;
+            processedDataURL = null;
+            fileName = 'image';
+            originalPreview.src = '';
+            processedPreview.src = '';
+            btnDownload.disabled = true;
+            fileInput.value = '';
+            settingsPanel.classList.remove('visible');
+            previewSection.classList.remove('visible');
+        }
+
+        function showLoading(show) {
+            loadingOverlay.classList.toggle('visible', show);
+        }
+
+        function showToast(message, icon = '✅') {
+            const toastEl = document.getElementById('toast');
+            toastEl.querySelector('.toast-icon').textContent = icon;
+            toastEl.querySelector('.toast-message').textContent = message;
+            toastEl.classList.add('visible');
+
+            setTimeout(() => {
+                toastEl.classList.remove('visible');
+            }, 3000);
+        }
+
+        // === Utility Functions ===
+
+        function hexToRgb(hex) {
+            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            return result ? {
+                r: parseInt(result[1], 16),
+                g: parseInt(result[2], 16),
+                b: parseInt(result[3], 16)
+            } : { r: 255, g: 255, b: 255 };
+        }
+
+        function rgbToHex(r, g, b) {
+            return '#' + [r, g, b].map(x => {
+                const hex = Math.max(0, Math.min(255, Math.round(x))).toString(16);
+                return hex.length === 1 ? '0' + hex : hex;
+            }).join('');
+        }
+
+        function parseRgbInput(input) {
+            const parts = input.split(',').map(s => parseInt(s.trim()));
+            if (parts.length === 3 && parts.every(n => !isNaN(n) && n >= 0 && n <= 255)) {
+                return { r: parts[0], g: parts[1], b: parts[2] };
+            }
+            return null;
+        }
+    </script>
+</body>
+
+</html>

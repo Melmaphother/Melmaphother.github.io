@@ -1,6 +1,26 @@
 {
   "publications": [
     {
+        "title": "Mind2Report: A Cognitive Deep Research Agent for Expert-Level Commercial Report Synthesis",
+        "authors": [
+          "Mingyue Cheng",
+          "Daoyu Wang",
+          "Qi Liu",
+          "Shuo Yu",
+          "Xiaoyu Tao",
+          "...",
+          "Enhong Chen"
+        ],
+        "venue": "Preprint (2025)",
+        "thumbnail": "images/publications/5.png",
+        "selected": 1,
+        "award": "",
+        "links": {
+          "pdf": "https://www.arxiv.org/abs/2601.04879",
+          "code": "https://github.com/Melmaphother/Mind2Report"
+        }
+    },
+    {
       "title": "PaperArena: An Evaluation Benchmark for Tool-Augmented Agentic Reasoning on Scientific Literature",
       "authors": [
         "Daoyu Wang",
@@ -31,10 +51,10 @@
           "Ze Guo",
           "Xiaoyu Tao"
         ],
-        "venue": "Preprint (2025)",
+        "venue": "ACM The Web Conference",
         "thumbnail": "images/publications/4.png",
         "selected": 1,
-        "award": "",
+        "award": "WWW 2026",
         "links": {
           "pdf": "https://arxiv.org/abs/2510.07713",
           "code": "https://github.com/fishsure/MemWeaver"
@@ -48,11 +68,12 @@
         "Qi Liu",
         "Daoyu Wang",
         "Jiqian Yang",
-        "et al."
+        "...",
+        "Enhong Chen"
       ],
       "venue": "ACM International Conference on Information and Knowledge Management",
       "thumbnail": "images/publications/2.png",
-      "selected": 1,
+      "selected": 0,
       "award": "CIKM 2025",
       "links": {
         "pdf": "https://arxiv.org/abs/2409.13694",
