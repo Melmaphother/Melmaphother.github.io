@@ -441,60 +441,73 @@
             gap: 8px;
         }
 
-        .icon-btn {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
+        .action-btn {
+            padding: 10px 14px;
+            border-radius: 10px;
             border: 1px solid var(--border-color);
             background: var(--bg-tertiary);
             color: var(--text-secondary);
             cursor: pointer;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
+            gap: 8px;
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 1;
             transition: all var(--transition-fast);
         }
 
-        .icon-btn:hover {
+        .action-btn i {
+            font-size: 14px;
+            line-height: 1;
+        }
+
+        .action-btn span {
+            line-height: 1;
+        }
+
+        .action-btn:hover {
             border-color: var(--accent-yellow);
             color: var(--accent-yellow);
             background: var(--bg-secondary);
         }
 
-        .icon-btn-primary {
+        .action-btn-primary {
             background: var(--accent-yellow);
             border-color: var(--accent-yellow);
-            color: #fff;
+            color: #1a1a1a;
         }
 
-        .icon-btn-primary:hover {
+        .action-btn-primary:hover {
             background: var(--accent-yellow-dim);
             border-color: var(--accent-yellow-dim);
-            color: #fff;
+            color: #1a1a1a;
         }
 
-        .icon-btn:disabled {
+        .action-btn:disabled {
             opacity: 0.4;
             cursor: not-allowed;
         }
 
-        .icon-btn:disabled:hover {
+        .action-btn:disabled:hover {
             border-color: var(--border-color);
             color: var(--text-secondary);
             background: var(--bg-tertiary);
         }
 
-        .icon-btn-primary:disabled:hover {
+        .action-btn-primary:disabled:hover {
             background: var(--accent-yellow);
             border-color: var(--accent-yellow);
-            color: #fff;
+            color: #1a1a1a;
         }
 
-        .icon-btn.processing {
+        .action-btn.processing {
             pointer-events: none;
         }
 
-        .icon-btn.processing i {
+        .action-btn.processing i {
             animation: spin 0.8s linear infinite;
         }
 
@@ -662,8 +675,9 @@
                     <div class="preview-card">
                         <div class="preview-card-header">
                             <span class="preview-card-title">Original</span>
-                            <button class="icon-btn" id="btn-process" title="Re-process">
+                            <button class="action-btn" id="btn-process" title="Re-process image">
                                 <i class="fas fa-sync-alt"></i>
+                                <span>Process</span>
                             </button>
                         </div>
                         <div class="preview-card-body">
@@ -673,8 +687,10 @@
                     <div class="preview-card">
                         <div class="preview-card-header">
                             <span class="preview-card-title">Processed</span>
-                            <button class="icon-btn icon-btn-primary" id="btn-download" disabled title="Download PNG">
+                            <button class="action-btn action-btn-primary" id="btn-download" disabled
+                                title="Download PNG">
                                 <i class="fas fa-download"></i>
+                                <span>Download</span>
                             </button>
                         </div>
                         <div class="preview-card-body">
