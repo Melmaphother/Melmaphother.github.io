@@ -293,6 +293,14 @@
             color: var(--text-muted);
         }
 
+        .setting-description code {
+            background: var(--bg-tertiary);
+            padding: 1px 5px;
+            border-radius: 4px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+        }
+
         input[type="range"] {
             width: 100%;
             height: 6px;
@@ -336,13 +344,19 @@
         }
 
         input[type="color"] {
-            width: 50px;
-            height: 36px;
+            width: 42px;
+            height: 42px;
             border: 2px solid var(--border-color);
-            border-radius: 8px;
+            border-radius: 50%;
             cursor: pointer;
             background: transparent;
-            padding: 2px;
+            padding: 3px;
+            transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+        }
+
+        input[type="color"]:hover {
+            border-color: var(--accent-yellow);
+            box-shadow: 0 0 8px rgba(245, 166, 35, 0.25);
         }
 
         input[type="color"]::-webkit-color-swatch-wrapper {
@@ -351,7 +365,12 @@
 
         input[type="color"]::-webkit-color-swatch {
             border: none;
-            border-radius: 4px;
+            border-radius: 50%;
+        }
+
+        input[type="color"]::-moz-color-swatch {
+            border: none;
+            border-radius: 50%;
         }
 
         .color-input {
@@ -391,81 +410,6 @@
             }
         }
 
-        .preview-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-            gap: 16px;
-        }
-
-        .preview-title {
-            font-family: 'Space Mono', monospace;
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-        }
-
-        .preview-actions {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 24px;
-            border-radius: 10px;
-            font-family: 'DM Sans', sans-serif;
-            font-size: 0.95rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all var(--transition-fast);
-            border: none;
-            text-decoration: none;
-        }
-
-        .btn-primary {
-            background: var(--accent-yellow);
-            color: #fff;
-        }
-
-        .btn-primary:hover {
-            background: var(--accent-yellow-dim);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(245, 166, 35, 0.35);
-        }
-
-        .btn-secondary {
-            background: var(--bg-tertiary);
-            color: var(--text-primary);
-            border: 1px solid var(--border-color);
-        }
-
-        .btn-secondary:hover {
-            background: var(--bg-secondary);
-            border-color: var(--border-hover);
-        }
-
-        .btn-success {
-            background: var(--accent-green);
-            color: #fff;
-        }
-
-        .btn-success:hover {
-            filter: brightness(0.9);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(57, 255, 20, 0.3);
-        }
-
-        .btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none !important;
-        }
-
         .preview-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -492,21 +436,72 @@
             color: var(--text-primary);
         }
 
-        .preview-card-badge {
-            font-size: 0.75rem;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-weight: 500;
+        .preview-card-actions {
+            display: flex;
+            gap: 8px;
         }
 
-        .badge-original {
-            background: rgba(255, 255, 255, 0.1);
+        .icon-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid var(--border-color);
+            background: var(--bg-tertiary);
             color: var(--text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-fast);
         }
 
-        .badge-processed {
-            background: rgba(57, 255, 20, 0.15);
-            color: var(--accent-green);
+        .icon-btn:hover {
+            border-color: var(--accent-yellow);
+            color: var(--accent-yellow);
+            background: var(--bg-secondary);
+        }
+
+        .icon-btn-primary {
+            background: var(--accent-yellow);
+            border-color: var(--accent-yellow);
+            color: #fff;
+        }
+
+        .icon-btn-primary:hover {
+            background: var(--accent-yellow-dim);
+            border-color: var(--accent-yellow-dim);
+            color: #fff;
+        }
+
+        .icon-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .icon-btn:disabled:hover {
+            border-color: var(--border-color);
+            color: var(--text-secondary);
+            background: var(--bg-tertiary);
+        }
+
+        .icon-btn-primary:disabled:hover {
+            background: var(--accent-yellow);
+            border-color: var(--accent-yellow);
+            color: #fff;
+        }
+
+        .icon-btn.processing {
+            pointer-events: none;
+        }
+
+        .icon-btn.processing i {
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
         }
 
         .preview-card-body {
@@ -531,43 +526,6 @@
             max-height: 400px;
             object-fit: contain;
             border-radius: 8px;
-        }
-
-        /* Loading state */
-        .loading-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(255, 255, 255, 0.92);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .loading-overlay.visible {
-            display: flex;
-        }
-
-        .spinner {
-            width: 60px;
-            height: 60px;
-            border: 4px solid var(--border-color);
-            border-top-color: var(--accent-yellow);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        .loading-text {
-            font-family: 'Space Mono', monospace;
-            color: var(--text-secondary);
         }
 
         /* Footer */
@@ -642,20 +600,6 @@
             .settings-grid {
                 grid-template-columns: 1fr;
             }
-
-            .preview-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .preview-actions {
-                width: 100%;
-            }
-
-            .preview-actions .btn {
-                flex: 1;
-                justify-content: center;
-            }
         }
     </style>
 </head>
@@ -704,35 +648,23 @@
                         </div>
                         <div class="color-picker-wrapper">
                             <input type="color" id="bg-color-picker" value="#ffffff">
-                            <input type="text" class="color-input" id="bg-color-input" value="255, 255, 255"
-                                placeholder="R, G, B">
+                            <input type="text" class="color-input" id="bg-color-input" value="#ffffff"
+                                placeholder="#hex or r, g, b">
                         </div>
-                        <p class="setting-description">The background color to detect and remove</p>
+                        <p class="setting-description">Enter color as <code>#hex</code> or <code>r, g, b</code></p>
                     </div>
                 </div>
             </div>
 
             <!-- Preview Section -->
             <div class="preview-section" id="preview-section">
-                <div class="preview-header">
-                    <span class="preview-title">📸 Preview</span>
-                    <div class="preview-actions">
-                        <button class="btn btn-secondary" id="btn-reset">
-                            🔄 New Image
-                        </button>
-                        <button class="btn btn-primary" id="btn-process">
-                            ✨ Process
-                        </button>
-                        <button class="btn btn-success" id="btn-download" disabled>
-                            ⬇️ Download PNG
-                        </button>
-                    </div>
-                </div>
                 <div class="preview-grid">
                     <div class="preview-card">
                         <div class="preview-card-header">
                             <span class="preview-card-title">Original</span>
-                            <span class="preview-card-badge badge-original">Before</span>
+                            <button class="icon-btn" id="btn-process" title="Re-process">
+                                <i class="fas fa-sync-alt"></i>
+                            </button>
                         </div>
                         <div class="preview-card-body">
                             <img id="original-preview" alt="Original image">
@@ -741,7 +673,9 @@
                     <div class="preview-card">
                         <div class="preview-card-header">
                             <span class="preview-card-title">Processed</span>
-                            <span class="preview-card-badge badge-processed">After</span>
+                            <button class="icon-btn icon-btn-primary" id="btn-download" disabled title="Download PNG">
+                                <i class="fas fa-download"></i>
+                            </button>
                         </div>
                         <div class="preview-card-body">
                             <img id="processed-preview" alt="Processed image">
@@ -756,12 +690,6 @@
             <p style="margin-top: 8px;">All processing happens locally in your browser. Your images never leave your
                 device.</p>
         </footer>
-    </div>
-
-    <!-- Loading Overlay -->
-    <div class="loading-overlay" id="loading-overlay">
-        <div class="spinner"></div>
-        <span class="loading-text">Processing image...</span>
     </div>
 
     <!-- Toast -->
@@ -784,8 +712,6 @@
         const bgColorInput = document.getElementById('bg-color-input');
         const btnProcess = document.getElementById('btn-process');
         const btnDownload = document.getElementById('btn-download');
-        const btnReset = document.getElementById('btn-reset');
-        const loadingOverlay = document.getElementById('loading-overlay');
         const toast = document.getElementById('toast');
 
         // State
@@ -842,16 +768,15 @@
 
         // Color picker
         bgColorPicker.addEventListener('input', (e) => {
-            const hex = e.target.value;
-            const rgb = hexToRgb(hex);
-            bgColorInput.value = `${rgb.r}, ${rgb.g}, ${rgb.b}`;
+            bgColorInput.value = e.target.value;
         });
 
-        // Color input
+        // Color input - supports both hex and rgb
         bgColorInput.addEventListener('change', (e) => {
-            const rgb = parseRgbInput(e.target.value);
-            if (rgb) {
-                bgColorPicker.value = rgbToHex(rgb.r, rgb.g, rgb.b);
+            const color = parseColorInput(e.target.value);
+            if (color) {
+                bgColorPicker.value = color.hex;
+                bgColorInput.value = color.hex;
             }
         });
 
@@ -860,9 +785,6 @@
 
         // Download button
         btnDownload.addEventListener('click', downloadImage);
-
-        // Reset button
-        btnReset.addEventListener('click', resetAll);
 
         // === Functions ===
 
@@ -897,14 +819,15 @@
         function processImage() {
             if (!originalImage) return;
 
-            showLoading(true);
-            btnProcess.disabled = true;
+            // Show processing state on button
+            btnProcess.classList.add('processing');
 
             // Use setTimeout to allow UI to update
             setTimeout(() => {
                 try {
                     const threshold = parseFloat(thresholdSlider.value);
-                    const bgColor = parseRgbInput(bgColorInput.value) || { r: 255, g: 255, b: 255 };
+                    const colorResult = parseColorInput(bgColorInput.value);
+                    const bgColor = colorResult ? colorResult.rgb : { r: 255, g: 255, b: 255 };
 
                     // Create canvas
                     const canvas = document.createElement('canvas');
@@ -952,15 +875,14 @@
                     processedPreview.src = processedDataURL;
                     btnDownload.disabled = false;
 
-                    showToast('Image processed successfully!', '✅');
+                    showToast('Processed!', '✅');
                 } catch (error) {
                     console.error('Processing error:', error);
                     showToast('Error processing image', '❌');
                 } finally {
-                    showLoading(false);
-                    btnProcess.disabled = false;
+                    btnProcess.classList.remove('processing');
                 }
-            }, 50);
+            }, 10);
         }
 
         function downloadImage() {
@@ -972,22 +894,6 @@
             link.click();
 
             showToast('Image downloaded!', '⬇️');
-        }
-
-        function resetAll() {
-            originalImage = null;
-            processedDataURL = null;
-            fileName = 'image';
-            originalPreview.src = '';
-            processedPreview.src = '';
-            btnDownload.disabled = true;
-            fileInput.value = '';
-            settingsPanel.classList.remove('visible');
-            previewSection.classList.remove('visible');
-        }
-
-        function showLoading(show) {
-            loadingOverlay.classList.toggle('visible', show);
         }
 
         function showToast(message, icon = '✅') {
@@ -1024,6 +930,30 @@
             if (parts.length === 3 && parts.every(n => !isNaN(n) && n >= 0 && n <= 255)) {
                 return { r: parts[0], g: parts[1], b: parts[2] };
             }
+            return null;
+        }
+
+        // Parse color input - supports both hex (#ffffff) and rgb (255, 255, 255)
+        function parseColorInput(input) {
+            const trimmed = input.trim();
+
+            // Try hex format
+            if (trimmed.startsWith('#')) {
+                const hex = trimmed.length === 4
+                    ? '#' + trimmed[1] + trimmed[1] + trimmed[2] + trimmed[2] + trimmed[3] + trimmed[3]
+                    : trimmed;
+                if (/^#[0-9A-Fa-f]{6}$/.test(hex)) {
+                    const rgb = hexToRgb(hex);
+                    return { hex, rgb };
+                }
+            }
+
+            // Try rgb format
+            const rgb = parseRgbInput(trimmed);
+            if (rgb) {
+                return { hex: rgbToHex(rgb.r, rgb.g, rgb.b), rgb };
+            }
+
             return null;
         }
     </script>
