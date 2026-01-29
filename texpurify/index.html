@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="TexPurify - Clean LaTeX text by removing formatting commands like textbf, textit for academic writing">
+    <meta name="keywords" content="LaTeX, text cleaning, academic writing, textbf, textit, text formatting">
+    <meta name="author" content="Daoyu Wang">
+    <meta property="og:title" content="🔬 TexPurify - LaTeX Text Cleaner">
+    <meta property="og:description" content="Clean LaTeX text by removing formatting commands for academic writing">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://melmaphother.github.io/texpurify">
+    <title>TexPurify - LaTeX Text Cleaner</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔬</text></svg>">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #fefefe;
+            --bg-secondary: #f8f8fa;
+            --bg-tertiary: #f0f0f5;
+            --accent-blue: #4a90e2;
+            --accent-blue-dim: #357abd;
+            --accent-purple: #7b68ee;
+            --text-primary: #1a1a2e;
+            --text-secondary: #4a4a68;
+            --text-muted: #71717a;
+            --border-color: #e5e5eb;
+            --border-hover: #d1d1db;
+            --shadow-glow: 0 0 40px rgba(74, 144, 226, 0.12);
+            --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-smooth: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated background */
+        .bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            background:
+                radial-gradient(circle at 20% 20%, rgba(74, 144, 226, 0.06) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(123, 104, 238, 0.04) 0%, transparent 50%),
+                linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            padding: 40px 0 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .logo {
+            font-size: 3.5rem;
+            margin-bottom: 8px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        h1 {
+            font-family: 'Space Mono', monospace;
+            font-size: clamp(2.2rem, 6vw, 3.2rem);
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+            text-shadow: 0 4px 30px rgba(74, 144, 226, 0.2);
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.15rem;
+            max-width: 650px;
+            margin: 0 auto 12px;
+        }
+
+        .github-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color var(--transition-fast);
+        }
+
+        .github-link:hover {
+            color: var(--accent-blue-dim);
+        }
+
+        .github-link i {
+            font-size: 1.1rem;
+        }
+
+        /* Main content */
+        main {
+            padding: 20px 0 60px;
+        }
+
+        /* Input zone */
+        .input-zone {
+            background: var(--bg-secondary);
+            border: 2px dashed var(--border-color);
+            border-radius: 20px;
+            padding: 32px;
+            transition: all var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .input-zone::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(74, 144, 226, 0.05) 0%, rgba(123, 104, 238, 0.02) 100%);
+            opacity: 0;
+            transition: opacity var(--transition-smooth);
+            pointer-events: none;
+        }
+
+        .input-zone:focus-within {
+            border-color: var(--accent-blue);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .input-zone:focus-within::before {
+            opacity: 1;
+        }
+
+        .input-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.15rem;
+            font-weight: 400;
+            margin-bottom: 12px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .input-label span:first-child {
+            font-size: 1.2em;
+        }
+
+        .input-label span:last-child {
+            font-weight: 700;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 300px;
+            padding: 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: 'Space Mono', monospace;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            resize: vertical;
+            transition: border-color var(--transition-fast);
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--border-color);
+        }
+
+        .input-hint {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .input-hint kbd {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        /* Action buttons */
+        .action-btn {
+            padding: 10px 14px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-tertiary);
+            color: var(--accent-blue);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 1;
+            transition: all var(--transition-fast);
+        }
+
+        .action-btn i {
+            font-size: 14px;
+            line-height: 1;
+        }
+
+        .action-btn:hover {
+            border-color: var(--accent-blue);
+            color: var(--accent-blue);
+            background: var(--bg-secondary);
+        }
+
+        .action-btn-primary {
+            background: var(--accent-blue);
+            border-color: var(--accent-blue);
+            color: #fff;
+        }
+
+        .action-btn-primary:hover {
+            background: var(--accent-blue-dim);
+            border-color: var(--accent-blue-dim);
+            color: #fff;
+        }
+
+        .action-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .action-btn:disabled:hover {
+            border-color: var(--border-color);
+            color: var(--text-secondary);
+            background: var(--bg-tertiary);
+        }
+
+        .action-btn-primary:disabled:hover {
+            background: var(--accent-blue);
+            border-color: var(--accent-blue);
+            color: #fff;
+        }
+
+        /* Settings panel */
+        .settings-panel {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 32px;
+            margin-top: 24px;
+            display: none;
+        }
+
+        .settings-panel.visible {
+            display: block;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .settings-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .settings-title {
+            font-family: 'Space Mono', monospace;
+            font-size: 1rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .settings-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 16px;
+        }
+
+        .setting-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .setting-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: var(--accent-blue);
+            border-radius: 4px;
+            -webkit-appearance: none;
+            appearance: none;
+            border: 2px solid var(--border-color);
+            background: var(--bg-primary);
+            position: relative;
+        }
+
+        .setting-item input[type="checkbox"]:checked {
+            background: var(--accent-blue);
+            border-color: var(--accent-blue);
+        }
+
+        .setting-item input[type="checkbox"]:checked::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .setting-item input[type="checkbox"]:hover {
+            border-color: var(--accent-blue);
+        }
+
+        .setting-item label {
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .setting-item label code {
+            background: var(--bg-tertiary);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        /* Preview section */
+        .preview-section {
+            margin-top: 32px;
+            display: none;
+        }
+
+        .preview-section.visible {
+            display: block;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .preview-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .preview-card-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .preview-card-title {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .preview-card-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .preview-card-body {
+            padding: 20px;
+            min-height: 200px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .preview-text {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
+            line-height: 1.8;
+            color: var(--text-primary);
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .stats {
+            display: flex;
+            gap: 16px;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-color);
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .stat-value {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--accent-blue);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 24px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        footer a {
+            color: var(--accent-blue-dim);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: var(--accent-blue);
+            text-decoration: underline;
+        }
+
+        /* Toast notifications */
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all var(--transition-smooth);
+            z-index: 1001;
+        }
+
+        .toast.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .toast-icon {
+            font-size: 1.2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 24px 0 16px;
+            }
+
+            .logo {
+                font-size: 2.5rem;
+            }
+
+            .input-zone {
+                padding: 24px;
+            }
+
+            .preview-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .settings-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-pattern"></div>
+
+    <div class="container">
+        <header>
+            <div class="logo">🔬</div>
+            <h1>TexPurify</h1>
+            <p class="subtitle">Clean LaTeX text by removing formatting commands for academic writing</p>
+        </header>
+
+        <main>
+            <!-- Input Zone -->
+            <div class="input-zone">
+                <div class="input-label">
+                    <span>📝</span>
+                    <span>LaTeX Text Input</span>
+                </div>
+                <textarea id="input-text"
+                    placeholder="Paste your LaTeX text here...&#10;&#10;Example:&#10;This is \textbf{bold text} and this is \textit{italic text}.&#10;We also have \textsc{small caps} and \texttt{monospace}."></textarea>
+            </div>
+
+            <!-- Settings Panel -->
+            <div class="settings-panel" id="settings-panel">
+                <div class="settings-header">
+                    <span class="settings-title">⚙️ Settings</span>
+                </div>
+                <div class="settings-grid" id="settings-grid">
+                    <!-- Settings will be dynamically generated -->
+                </div>
+            </div>
+
+            <!-- Preview Section -->
+            <div class="preview-section" id="preview-section">
+                <div class="preview-grid">
+                    <div class="preview-card">
+                        <div class="preview-card-header">
+                            <span class="preview-card-title">Original</span>
+                            <div class="preview-card-actions">
+                                <button class="action-btn" id="btn-purify" title="Purify text">
+                                    <i class="fas fa-magic"></i>
+                                    <span>Purify</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="preview-card-body">
+                            <div class="preview-text" id="original-text"></div>
+                        </div>
+                    </div>
+                    <div class="preview-card">
+                        <div class="preview-card-header">
+                            <span class="preview-card-title">Purified</span>
+                            <div class="preview-card-actions">
+                                <button class="action-btn action-btn-primary" id="btn-copy" title="Copy to clipboard">
+                                    <i class="fas fa-copy"></i>
+                                    <span>Copy</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="preview-card-body">
+                            <div class="preview-text" id="purified-text"></div>
+                            <div class="stats">
+                                <div class="stat-item">
+                                    <span class="stat-label">Removed Commands</span>
+                                    <span class="stat-value" id="removed-count">0</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-label">Characters Saved</span>
+                                    <span class="stat-value" id="saved-count">0</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>🔬 TeXPurify made by <a href="https://melmaphother.github.io" target="_blank">Daoyu Wang</a></p>
+            <p style="margin-top: 8px;">All processing happens locally in your browser. Your text never leaves your
+                device.</p>
+        </footer>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <span class="toast-icon">✅</span>
+        <span class="toast-message">Text purified successfully!</span>
+    </div>
+
+    <script>
+        // Formatting commands configuration
+        const formattingCommands = {
+            'textbf': { label: 'Bold', desc: '\\textbf' },
+            'textit': { label: 'Italic', desc: '\\textit' },
+            'textsc': { label: 'Small Caps', desc: '\\textsc' },
+            'texttt': { label: 'Monospace', desc: '\\texttt' },
+            'textsf': { label: 'Sans Serif', desc: '\\textsf' },
+            'textmd': { label: 'Medium Weight', desc: '\\textmd' },
+            'textup': { label: 'Upright', desc: '\\textup' },
+            'textsl': { label: 'Slanted', desc: '\\textsl' },
+            'emph': { label: 'Emphasis', desc: '\\emph' },
+            'underline': { label: 'Underline', desc: '\\underline' },
+            'textnormal': { label: 'Normal Text', desc: '\\textnormal' }
+        };
+
+        // DOM Elements
+        const inputText = document.getElementById('input-text');
+        const btnPurify = document.getElementById('btn-purify');
+        const btnCopy = document.getElementById('btn-copy');
+        const settingsPanel = document.getElementById('settings-panel');
+        const settingsGrid = document.getElementById('settings-grid');
+        const previewSection = document.getElementById('preview-section');
+        const originalText = document.getElementById('original-text');
+        const purifiedText = document.getElementById('purified-text');
+        const removedCount = document.getElementById('removed-count');
+        const savedCount = document.getElementById('saved-count');
+        const toast = document.getElementById('toast');
+
+        // State: selected commands (default: all selected)
+        let selectedCommands = new Set(Object.keys(formattingCommands));
+
+        // === Initialize Settings Panel ===
+        function initSettingsPanel() {
+            // Add "All" checkbox
+            const allItem = document.createElement('div');
+            allItem.className = 'setting-item';
+            allItem.innerHTML = `
+                <input type="checkbox" id="setting-all" checked>
+                <label for="setting-all"><strong>All</strong></label>
+            `;
+            settingsGrid.appendChild(allItem);
+
+            const allCheckbox = document.getElementById('setting-all');
+            allCheckbox.addEventListener('change', (e) => {
+                const isChecked = e.target.checked;
+                // Update all individual checkboxes
+                Object.keys(formattingCommands).forEach(cmd => {
+                    const checkbox = document.getElementById(`setting-${cmd}`);
+                    if (checkbox) {
+                        checkbox.checked = isChecked;
+                        if (isChecked) {
+                            selectedCommands.add(cmd);
+                        } else {
+                            selectedCommands.delete(cmd);
+                        }
+                    }
+                });
+            });
+
+            // Add individual command checkboxes
+            Object.entries(formattingCommands).forEach(([cmd, config]) => {
+                const item = document.createElement('div');
+                item.className = 'setting-item';
+                item.innerHTML = `
+                    <input type="checkbox" id="setting-${cmd}" checked>
+                    <label for="setting-${cmd}"><code>${config.desc}</code></label>
+                `;
+                settingsGrid.appendChild(item);
+
+                const checkbox = document.getElementById(`setting-${cmd}`);
+                checkbox.addEventListener('change', (e) => {
+                    if (e.target.checked) {
+                        selectedCommands.add(cmd);
+                    } else {
+                        selectedCommands.delete(cmd);
+                        // Uncheck "All" if any individual is unchecked
+                        allCheckbox.checked = false;
+                    }
+                });
+            });
+
+            // Show settings panel
+            settingsPanel.classList.add('visible');
+        }
+
+        // Initialize on load
+        initSettingsPanel();
+
+        // === Event Listeners ===
+
+        // Purify button
+        btnPurify.addEventListener('click', purifyText);
+
+        // Copy button
+        btnCopy.addEventListener('click', copyToClipboard);
+
+        // Auto-purify on input (typing or pasting)
+        let autoPurifyTimeout;
+        inputText.addEventListener('input', () => {
+            const text = inputText.value.trim();
+            if (text) {
+                originalText.textContent = text;
+                if (!previewSection.classList.contains('visible')) {
+                    previewSection.classList.add('visible');
+                }
+
+                // Auto-purify after a short delay (debounce)
+                clearTimeout(autoPurifyTimeout);
+                autoPurifyTimeout = setTimeout(() => {
+                    if (selectedCommands.size > 0) {
+                        purifyText();
+                    }
+                }, 300);
+            } else {
+                previewSection.classList.remove('visible');
+            }
+        });
+
+        // === Functions ===
+
+        /**
+         * Find matching closing brace for a command, handling nested braces
+         * @param {string} text - The text to search in
+         * @param {number} startPos - Starting position after the opening brace
+         * @returns {number} - Position of matching closing brace, or -1 if not found
+         */
+        function findMatchingBrace(text, startPos) {
+            let depth = 1;
+            let pos = startPos;
+            while (pos < text.length && depth > 0) {
+                if (text[pos] === '{') depth++;
+                else if (text[pos] === '}') depth--;
+                pos++;
+            }
+            return depth === 0 ? pos - 1 : -1;
+        }
+
+        /**
+         * Purify LaTeX text by removing formatting commands
+         * @param {string} text - The input LaTeX text
+         * @param {Set} commandsToRemove - Set of command names to remove
+         * @returns {Object} - Object containing purified text and statistics
+         */
+        function purifyLaTeX(text, commandsToRemove) {
+            if (!text || text.trim() === '') {
+                return { purified: '', removed: 0, saved: 0 };
+            }
+
+            if (commandsToRemove.size === 0) {
+                return { purified: text, removed: 0, saved: 0 };
+            }
+
+            let purified = text;
+            let removedCommands = 0;
+            const originalLength = text.length;
+
+            // Build regex pattern to find command start (only for selected commands)
+            // Escape special regex characters in command names
+            const commandList = Array.from(commandsToRemove).map(cmd => cmd.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
+            const commandPattern = new RegExp(
+                `\\\\(${commandList.join('|')})\\{`,
+                'g'
+            );
+
+            // Handle nested commands by iterating until no more matches
+            let previousPurified = '';
+            let iterations = 0;
+            const maxIterations = 20; // Increased to handle deeply nested commands
+
+            while (iterations < maxIterations) {
+                previousPurified = purified;
+
+                // Find all matches
+                const matches = [];
+                commandPattern.lastIndex = 0; // Reset regex
+                let match;
+                while ((match = commandPattern.exec(purified)) !== null) {
+                    matches.push({
+                        start: match.index,
+                        command: match[1],
+                        braceStart: match.index + match[0].length
+                    });
+                }
+
+                // If no matches found, we're done
+                if (matches.length === 0) {
+                    break;
+                }
+
+                // Process matches in reverse order to maintain correct positions
+                for (let i = matches.length - 1; i >= 0; i--) {
+                    const m = matches[i];
+                    const braceEnd = findMatchingBrace(purified, m.braceStart);
+
+                    if (braceEnd !== -1) {
+                        // Normal case: found matching closing brace
+                        // Extract content between braces
+                        const content = purified.substring(m.braceStart, braceEnd);
+                        // Replace the entire command with just the content
+                        const before = purified.substring(0, m.start);
+                        const after = purified.substring(braceEnd + 1);
+                        purified = before + content + after;
+                        removedCommands++;
+                    } else {
+                        // Error case: no matching closing brace found
+                        // Remove the command and the opening brace, keep the rest
+                        const before = purified.substring(0, m.start);
+                        const after = purified.substring(m.braceStart);
+                        purified = before + after;
+                        removedCommands++;
+                    }
+                }
+
+                // If no changes were made, we're done
+                if (purified === previousPurified) {
+                    break;
+                }
+
+                iterations++;
+            }
+
+            const saved = originalLength - purified.length;
+
+            return {
+                purified: purified.trim(),
+                removed: removedCommands,
+                saved: saved
+            };
+        }
+
+        function purifyText() {
+            const text = inputText.value.trim();
+
+            if (!text) {
+                showToast('Please enter some text', '⚠️');
+                return;
+            }
+
+            if (selectedCommands.size === 0) {
+                showToast('Please select at least one command type to remove', '⚠️');
+                return;
+            }
+
+            const result = purifyLaTeX(text, selectedCommands);
+
+            // Display results
+            originalText.textContent = text;
+            purifiedText.textContent = result.purified;
+            removedCount.textContent = result.removed;
+            savedCount.textContent = result.saved;
+
+            // Show preview section
+            previewSection.classList.add('visible');
+
+            // Scroll to preview
+            previewSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+            showToast('Text purified successfully!', '✅');
+        }
+
+        async function copyToClipboard() {
+            const text = purifiedText.textContent;
+
+            if (!text) {
+                showToast('No text to copy', '⚠️');
+                return;
+            }
+
+            try {
+                await navigator.clipboard.writeText(text);
+                showToast('Copied to clipboard!', '📋');
+            } catch (err) {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                textArea.style.position = 'fixed';
+                textArea.style.opacity = '0';
+                document.body.appendChild(textArea);
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    showToast('Copied to clipboard!', '📋');
+                } catch (err) {
+                    showToast('Failed to copy', '❌');
+                }
+                document.body.removeChild(textArea);
+            }
+        }
+
+        function showToast(message, icon = '✅') {
+            const toastEl = document.getElementById('toast');
+            toastEl.querySelector('.toast-icon').textContent = icon;
+            toastEl.querySelector('.toast-message').textContent = message;
+            toastEl.classList.add('visible');
+
+            setTimeout(() => {
+                toastEl.classList.remove('visible');
+            }, 3000);
+        }
+    </script>
+</body>
+
+</html>
