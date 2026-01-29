@@ -337,12 +337,14 @@
             display: grid;
             grid-template-columns: repeat(6, 1fr);
             gap: 16px;
+            justify-items: start;
         }
 
         .setting-item {
             display: flex;
             align-items: center;
             gap: 10px;
+            justify-content: flex-start;
         }
 
         .setting-item input[type="checkbox"] {
@@ -554,7 +556,23 @@
             }
 
             .settings-grid {
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .settings-panel {
+                padding: 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .settings-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .settings-panel {
+                padding: 20px;
             }
         }
     </style>
