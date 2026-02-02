@@ -18,6 +18,9 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500;600;700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
     <style>
         :root {
             --bg-primary: #fefefe;
@@ -305,6 +308,48 @@
             animation: slideDown 0.3s ease-out;
         }
 
+        .settings-panel.collapsed .settings-grid {
+            display: none;
+        }
+
+        .settings-panel.collapsed {
+            padding: 8px 14px;
+            margin-top: 16px;
+        }
+
+        .settings-panel.collapsed .settings-header {
+            margin-bottom: 0;
+        }
+
+        .settings-toggle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            padding: 0;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            background: var(--bg-tertiary);
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+        }
+
+        .settings-toggle:hover {
+            color: var(--accent-blue);
+            border-color: var(--accent-blue);
+        }
+
+        .settings-toggle i {
+            transition: transform var(--transition-smooth);
+        }
+
+        .settings-panel:not(.collapsed) .settings-toggle i {
+            transform: rotate(180deg);
+        }
+
         @keyframes slideDown {
             from {
                 opacity: 0;
@@ -326,11 +371,15 @@
 
         .settings-title {
             font-family: 'Space Mono', monospace;
-            font-size: 1rem;
+            font-size: 0.9rem;
             color: var(--text-secondary);
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
+        }
+
+        .settings-panel.collapsed .settings-title {
+            font-size: 0.85rem;
         }
 
         .settings-grid {
@@ -435,14 +484,18 @@
             border: 1px solid var(--border-color);
             border-radius: 16px;
             overflow: hidden;
+            max-height: 240px;
+            display: flex;
+            flex-direction: column;
         }
 
         .preview-card-header {
-            padding: 16px 20px;
+            padding: 8px 14px;
             border-bottom: 1px solid var(--border-color);
             display: flex;
             align-items: center;
             justify-content: space-between;
+            flex-shrink: 0;
         }
 
         .preview-card-title {
@@ -456,10 +509,11 @@
         }
 
         .preview-card-body {
-            padding: 20px;
-            min-height: 200px;
-            max-height: 500px;
+            padding: 10px 14px;
+            min-height: 56px;
+            max-height: 180px;
             overflow-y: auto;
+            flex: 0 1 auto;
         }
 
         .preview-text {
@@ -608,9 +662,12 @@
             </div>
 
             <!-- Settings Panel -->
-            <div class="settings-panel" id="settings-panel">
+            <div class="settings-panel collapsed visible" id="settings-panel">
                 <div class="settings-header">
                     <span class="settings-title">⚙️ Settings</span>
+                    <button type="button" class="settings-toggle" id="settings-toggle" aria-label="Toggle settings">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
                 </div>
                 <div class="settings-grid" id="settings-grid">
                     <!-- Settings will be dynamically generated -->
@@ -757,9 +814,13 @@
                 });
             });
 
-            // Show settings panel
-            settingsPanel.classList.add('visible');
+            // Panel is visible by default with class in HTML; default state is collapsed (class "collapsed" in HTML)
         }
+
+        // Settings panel toggle (collapse/expand)
+        document.getElementById('settings-toggle').addEventListener('click', () => {
+            settingsPanel.classList.toggle('collapsed');
+        });
 
         // Initialize on load
         initSettingsPanel();
