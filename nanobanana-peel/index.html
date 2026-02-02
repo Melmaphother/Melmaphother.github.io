@@ -83,9 +83,18 @@
             position: relative;
         }
 
+        .brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
         .logo {
             font-size: 3.5rem;
-            margin-bottom: 8px;
+            margin-bottom: 0;
             animation: float 3s ease-in-out infinite;
         }
 
@@ -105,11 +114,11 @@
             font-family: 'Space Mono', monospace;
             font-size: clamp(2.2rem, 6vw, 3.2rem);
             font-weight: 700;
-            background: linear-gradient(135deg, var(--accent-yellow) 0%, #e85d04 100%);
+            background: linear-gradient(135deg, #eb9603 0%, #e85d04 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 16px;
+            margin-bottom: 0;
             letter-spacing: -0.02em;
             text-shadow: 0 4px 30px rgba(245, 166, 35, 0.2);
         }
@@ -623,8 +632,10 @@
 
     <div class="container">
         <header>
-            <div class="logo">🍌</div>
-            <h1>Nanobanana Peel</h1>
+            <div class="brand">
+                <div class="logo">🍌</div>
+                <h1>Nanobanana Peel</h1>
+            </div>
             <p class="subtitle">Remove backgrounds from AI-generated images instantly in your browser</p>
             <a href="https://github.com/Melmaphother/Nanobanana-Peel" target="_blank" class="github-link">
                 <i class="fab fa-github"></i>

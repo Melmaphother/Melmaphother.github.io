@@ -86,9 +86,18 @@
             position: relative;
         }
 
+        .brand {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
         .logo {
             font-size: 3.5rem;
-            margin-bottom: 8px;
+            margin-bottom: 0;
             animation: float 3s ease-in-out infinite;
         }
 
@@ -112,7 +121,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 16px;
+            margin-bottom: 0;
             letter-spacing: -0.02em;
             text-shadow: 0 4px 30px rgba(74, 144, 226, 0.2);
         }
@@ -645,8 +654,10 @@
 
     <div class="container">
         <header>
-            <div class="logo">🔬</div>
-            <h1>TexPurify</h1>
+            <div class="brand">
+                <div class="logo">🔬</div>
+                <h1>TexPurify</h1>
+            </div>
             <p class="subtitle">Clean LaTeX text by removing formatting commands for academic writing</p>
         </header>
 
