@@ -353,6 +353,13 @@ function createProjectElement(project) {
       codeLink.textContent = '[Code]';
       links.appendChild(codeLink);
     }
+
+    if (project.links.website) {
+      const websiteLink = document.createElement('a');
+      websiteLink.href = project.links.website;
+      websiteLink.textContent = '[Project Page]';
+      links.appendChild(websiteLink);
+    }
     
     content.appendChild(links);
   }
