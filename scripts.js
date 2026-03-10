@@ -26,27 +26,22 @@ function updateLanguage() {
         btnZh.classList.toggle('active', currentLang === 'zh');
     }
 
-    // Update dynamic text
-    const togglePubBtn = document.getElementById('toggle-publications');
+    // Update publication header text
     const togglePubHeader = document.getElementById('toggle-header');
-    if (togglePubBtn && togglePubHeader) {
+    if (togglePubHeader) {
         if (currentLang === 'zh') {
-            togglePubBtn.textContent = showingSelectedPublications ? '显示全部' : '只显示精选';
             togglePubHeader.textContent = showingSelectedPublications ? '精选论文' : '所有论文';
         } else {
-            togglePubBtn.textContent = showingSelectedPublications ? 'Show All' : 'Show Selected';
             togglePubHeader.textContent = showingSelectedPublications ? 'Selected Publications' : 'All Publications';
         }
     }
 
-    const toggleProjBtn = document.getElementById('toggle-projects');
+    // Update project header text
     const toggleProjHeader = document.getElementById('projects-toggle-header');
-    if (toggleProjBtn && toggleProjHeader) {
+    if (toggleProjHeader) {
         if (currentLang === 'zh') {
-            toggleProjBtn.textContent = showingSelectedProjects ? '显示全部' : '只显示精选';
             toggleProjHeader.textContent = showingSelectedProjects ? '精选项目与竞赛' : '所有项目与竞赛';
         } else {
-            toggleProjBtn.textContent = showingSelectedProjects ? 'Show All' : 'Show Selected';
             toggleProjHeader.textContent = showingSelectedProjects ? 'Selected Projects and Competitions' : 'All Projects and Competitions';
         }
     }
@@ -69,16 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
         section.style.animationDelay = `${index * 0.1}s`;
     });
 
-    // Add event listener for toggle buttons
-    const togglePublicationsButton = document.getElementById('toggle-publications');
-    if (togglePublicationsButton) {
-        togglePublicationsButton.addEventListener('click', togglePublications);
-    }
-
-    const toggleProjectsButton = document.getElementById('toggle-projects');
-    if (toggleProjectsButton) {
-        toggleProjectsButton.addEventListener('click', toggleProjects);
-    }
+    // Filter toggles are handled via onclick in HTML
 });
 
 // Load publications from JSON file
@@ -108,9 +94,17 @@ function displayFallbackPublications() {
     container.innerHTML = `Error loading publications.`;
 }
 
-// Toggle between showing all or selected publications
-function togglePublications() {
+// Toggle publication filter (called from HTML onclick on container)
+function togglePublicationFilter() {
     showingSelectedPublications = !showingSelectedPublications;
+    const filter = showingSelectedPublications ? 'selected' : 'all';
+    // Update active button
+    const container = document.getElementById('toggle-publications');
+    if (container) {
+        container.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.filter === filter);
+        });
+    }
     updateLanguage();
 }
 
@@ -290,9 +284,17 @@ function displayFallbackProjects() {
     container.innerHTML = `Error loading projects.`;
 }
 
-// Toggle between showing all or selected projects
-function toggleProjects() {
+// Toggle project filter (called from HTML onclick on container)
+function toggleProjectFilter() {
     showingSelectedProjects = !showingSelectedProjects;
+    const filter = showingSelectedProjects ? 'selected' : 'all';
+    // Update active button
+    const container = document.getElementById('toggle-projects');
+    if (container) {
+        container.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.filter === filter);
+        });
+    }
     updateLanguage();
 }
 

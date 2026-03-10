@@ -4,6 +4,7 @@
     --text-secondary: #4a5568;
     --accent-color: #cc785c;
     --accent-hover: #a55d4b;
+    --btn-active-bg: #d28970;
     --border-color: #e2e8f0;
     --shadow-color: rgba(0, 0, 0, 0.05);
     --animation-offset: 3px;
@@ -37,7 +38,7 @@ body.lang-zh {
 }
 
 body.lang-zh .pub-links a,
-body.lang-zh .toggle-publications {
+body.lang-zh .filter-btn {
     font-weight: 500;
 }
 
@@ -52,13 +53,13 @@ body.lang-zh .toggle-publications {
     background: var(--bg-color);
     border: 1px solid var(--border-color);
     border-radius: 20px;
-    padding: 2px 5px;
+    padding: 4px;
     display: flex;
     align-items: center;
     cursor: pointer;
     box-shadow: 0 4px 12px var(--shadow-color);
     transition: all var(--transition-time) ease;
-    height: 36px;
+    height: 38px;
     box-sizing: border-box;
 }
 
@@ -69,12 +70,16 @@ body.lang-zh .toggle-publications {
 }
 
 .lang-text-btn {
-    padding: 4px 14px;
-    border-radius: 20px;
+    padding: 0 15px;
+    height: 30px;
+    border-radius: 15px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     font-size: 0.85rem;
     font-weight: 600;
     color: var(--text-secondary);
-    transition: all var(--transition-time) ease;
+    transition: all 0.15s ease;
     position: relative;
     z-index: 1;
 }
@@ -84,7 +89,7 @@ body.lang-zh .toggle-publications {
 }
 
 .lang-text-btn.active {
-    background: var(--accent-color);
+    background: var(--btn-active-bg);
     color: #fff;
     z-index: 2;
 }
@@ -92,12 +97,22 @@ body.lang-zh .toggle-publications {
 /* GitHub corner icon */
 .github-corner {
     position: fixed;
-    top: 19px;
+    top: 16px;
     right: 20px;
     z-index: 1000;
     color: var(--accent-color);
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    height: 38px;
+    width: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px var(--shadow-color);
     text-decoration: none;
     transition: all var(--transition-time) ease;
+    box-sizing: border-box;
 }
 
 .github-corner i {
@@ -106,8 +121,10 @@ body.lang-zh .toggle-publications {
 }
 
 .github-corner:hover {
-    transform: scale(1.15);
+    border-color: var(--accent-color);
     color: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(204, 120, 92, 0.15);
 }
 
 header {
@@ -275,20 +292,50 @@ section {
     margin-bottom: 1.5rem;
 }
 
-.toggle-publications {
-    background-color: rgba(204, 120, 92, 0.08);
-    color: var(--accent-color);
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: 500;
+.filter-toggle {
+    display: inline-flex;
+    align-items: center;
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 4px;
+    box-shadow: 0 4px 12px var(--shadow-color);
     transition: all var(--transition-time) ease;
+    height: 38px;
+    box-sizing: border-box;
+    cursor: pointer;
 }
 
-.toggle-publications:hover {
-    background-color: var(--accent-color);
-    color: white;
+.filter-toggle:hover {
+    border-color: var(--accent-color);
+    box-shadow: 0 6px 15px rgba(204, 120, 92, 0.15);
+    transform: translateY(-2px);
+}
+
+.filter-btn {
+    padding: 0 15px;
+    height: 30px;
+    border-radius: 15px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    transition: all 0.15s ease;
+    user-select: none;
+    position: relative;
+    z-index: 1;
+}
+
+.filter-btn+.filter-btn {
+    margin-left: -8px;
+}
+
+.filter-btn.active {
+    background: var(--btn-active-bg);
+    color: #fff;
+    z-index: 2;
 }
 
 .publication-item {
@@ -584,7 +631,7 @@ strong {
 .tools-dropdown {
     position: fixed;
     top: 16px;
-    right: 55px;
+    right: 65px;
     z-index: 1000;
 }
 
@@ -592,8 +639,8 @@ strong {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0 0.9rem;
-    height: 36px;
+    padding: 0 1.05rem;
+    height: 38px;
     box-sizing: border-box;
     background: var(--bg-color);
     border: 1px solid var(--border-color);

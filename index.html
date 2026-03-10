@@ -116,7 +116,14 @@
         <section id="publications">
             <div class="publications-header">
                 <h2 id="toggle-header">Selected Publications</h2>
-                <button id="toggle-publications" class="toggle-publications">Show All</button>
+                <div class="filter-toggle" id="toggle-publications" onclick="togglePublicationFilter()">
+                    <span class="filter-btn active" data-filter="selected">
+                        <span class="en-text">Selected</span><span class="zh-text">精选</span>
+                    </span>
+                    <span class="filter-btn" data-filter="all">
+                        <span class="en-text">All</span><span class="zh-text">全部</span>
+                    </span>
+                </div>
             </div>
             <div id="publications-container">
                 <!-- Publications will be dynamically loaded here -->
@@ -126,7 +133,14 @@
         <section id="projects">
             <div class="publications-header">
                 <h2 id="projects-toggle-header">Selected Projects and Competitions</h2>
-                <button id="toggle-projects" class="toggle-publications">Show All</button>
+                <div class="filter-toggle" id="toggle-projects" onclick="toggleProjectFilter()">
+                    <span class="filter-btn active" data-filter="selected">
+                        <span class="en-text">Selected</span><span class="zh-text">精选</span>
+                    </span>
+                    <span class="filter-btn" data-filter="all">
+                        <span class="en-text">All</span><span class="zh-text">全部</span>
+                    </span>
+                </div>
             </div>
             <div id="projects-container">
                 <!-- Projects will be dynamically loaded here -->
