@@ -11,7 +11,7 @@
 }
 
 body {
-    font-family: 'Merriweather', Georgia, 'Times New Roman', serif;
+    font-family: 'Merriweather', -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', 'Source Han Sans SC', 'Noto Sans CJK SC', sans-serif;
     line-height: 1.6;
     max-width: 800px;
     margin: 0 auto;
@@ -22,10 +22,77 @@ body {
     position: relative;
 }
 
+/* Language Switcher */
+body.lang-en .zh-text {
+    display: none !important;
+}
+
+body.lang-zh .en-text {
+    display: none !important;
+}
+
+body.lang-zh {
+    font-weight: 400;
+    /* Use 400 as base weight for Chinese to prevent it from looking too thin */
+}
+
+body.lang-zh .pub-links a,
+body.lang-zh .toggle-publications {
+    font-weight: 500;
+}
+
+.lang-toggle-container {
+    position: fixed;
+    top: 16px;
+    left: 20px;
+    z-index: 1000;
+}
+
+.lang-toggle {
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 2px 5px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px var(--shadow-color);
+    transition: all var(--transition-time) ease;
+    height: 36px;
+    box-sizing: border-box;
+}
+
+.lang-toggle:hover {
+    border-color: var(--accent-color);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(204, 120, 92, 0.15);
+}
+
+.lang-text-btn {
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    transition: all var(--transition-time) ease;
+    position: relative;
+    z-index: 1;
+}
+
+#btn-zh {
+    margin-left: -8px;
+}
+
+.lang-text-btn.active {
+    background: var(--accent-color);
+    color: #fff;
+    z-index: 2;
+}
+
 /* GitHub corner icon */
 .github-corner {
     position: fixed;
-    top: 20px;
+    top: 19px;
     right: 20px;
     z-index: 1000;
     color: var(--accent-color);
@@ -525,7 +592,9 @@ strong {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.4rem 0.9rem;
+    padding: 0 0.9rem;
+    height: 36px;
+    box-sizing: border-box;
     background: var(--bg-color);
     border: 1px solid var(--border-color);
     border-radius: 20px;
@@ -667,8 +736,13 @@ strong {
 
     /* Make GitHub corner smaller on mobile */
     .github-corner {
-        top: 15px;
+        top: 17px;
         right: 15px;
+    }
+
+    .lang-toggle-container {
+        top: 12px;
+        left: 15px;
     }
 
     .github-corner i {

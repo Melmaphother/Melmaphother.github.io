@@ -29,26 +29,47 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 
-<body id="top">
+<body id="top" class="lang-en">
     <a href="https://github.com/Melmaphother/Melmaphother.github.io" class="github-corner"
         aria-label="View source on GitHub" target="_blank">
         <i class="fab fa-github"></i>
     </a>
 
+    <!-- Language Toggle -->
+    <div class="lang-toggle-container">
+        <button id="lang-toggle" class="lang-toggle" aria-label="Toggle Language" onclick="toggleLanguage()">
+            <span class="lang-text-btn active" id="btn-en">A</span>
+            <span class="lang-text-btn" id="btn-zh">文</span>
+        </button>
+    </div>
+
     <header>
         <div class="header-content">
-            <h1>Daoyu Wang (王道宇)</h1>
-            <p class="info-line"><i class="fas fa-user-graduate"></i> CS Master Student • University of Science and
-                Technology of China</p>
+            <h1>
+                <span class="en-text">Daoyu Wang (王道宇)</span>
+                <span class="zh-text">王道宇 (Daoyu Wang)</span>
+            </h1>
+            <p class="info-line"><i class="fas fa-user-graduate"></i>
+                <span class="en-text">CS Master Student • University of Science and Technology of China</span>
+                <span class="zh-text">计算机科学与技术硕士在读 • 中国科学技术大学</span>
+            </p>
             <p class="info-line"><i class="fas fa-envelope"></i> <a
                     href="mailto:daoyu.wang@mail.ustc.edu.cn">daoyu.wang@mail.ustc.edu.cn</a></p>
             <div class="social-links-header">
                 <a href="https://scholar.google.com/citations?user=uM4iaOUAAAAJ&hl=zh-CN"><i
-                        class="ai ai-google-scholar"></i><span>Google Scholar</span></a>
+                        class="ai ai-google-scholar"></i>
+                    <span class="en-text">Google Scholar</span>
+                    <span class="zh-text">谷歌学术</span>
+                </a>
                 <a href="https://github.com/melmaphother"><i class="fab fa-github"></i><span>GitHub</span></a>
-                <a href="https://www.zhihu.com/people/melmaphother/posts"><i
-                        class="fab fa-zhihu"></i><span>Zhihu</span></a>
-                <a href="CV_DaoyuWang.pdf" target="_blank"><i class="ai ai-cv"></i><span>Resume</span></a>
+                <a href="https://www.zhihu.com/people/melmaphother/posts"><i class="fab fa-zhihu"></i>
+                    <span class="en-text">Zhihu</span>
+                    <span class="zh-text">知乎</span>
+                </a>
+                <a href="CV_DaoyuWang.pdf" target="_blank"><i class="ai ai-cv"></i>
+                    <span class="en-text">Resume</span>
+                    <span class="zh-text">简历</span>
+                </a>
             </div>
         </div>
         <div class="header-image">
@@ -58,22 +79,37 @@
 
     <main>
         <section id="about">
-            <p>Hi! This is Daoyu Wang, a Master student in Computer Science at State Key Laboratory of Cognitive
+            <p class="en-text">Hi! This is Daoyu Wang, a Master student in Computer Science at State Key Laboratory of
+                Cognitive
                 Intelligence, University of Science and Technology of China (USTC). I am advised by Prof. <a
                     href="http://staff.ustc.edu.cn/~qiliuql/">Qi Liu</a> and Associate Researcher <a
                     href="https://mingyue-cheng.github.io/">Mingyue Cheng</a>.</p>
+            <p class="zh-text">你好！我是王道宇，目前在中国科学技术大学认知智能全国重点实验室攻读计算机科学与技术硕士学位。我的导师是<a
+                    href="http://staff.ustc.edu.cn/~qiliuql/">刘淇</a>教授和<a
+                    href="https://mingyue-cheng.github.io/">程明月</a>副研究员。</p>
         </section>
 
         <section id="research-interest">
-            <h2>Research Interest</h2>
-            <p>My research focuses on <strong>large language models and agents</strong>, with broader interests in
-                <strong>machine learning</strong>, <strong>reinforcement learning</strong>, <strong>multimodal
+            <h2>
+                <span class="en-text">Research Interest</span>
+                <span class="zh-text">研究兴趣</span>
+            </h2>
+            <p class="en-text">My research focuses on <strong>LLM agents</strong>, with broader interests in
+                <strong>machine learning</strong>, <strong>agentic reinforcement learning</strong>, <strong>multimodal
                     understanding and generation</strong>. My recent works explore:
             </p>
-            <ul>
+            <p class="zh-text">
+                我的研究主要集中在<strong>大模型智能体</strong>，同时对<strong>机器学习</strong>、<strong>智能体强化学习</strong>和<strong>多模态理解与生成</strong>也有着广泛兴趣。我近期主要探索：
+            </p>
+            <ul class="en-text">
                 <li>Agentic reasoning on scientific literature</li>
+                <li>Agentic reinforcement learning with LLMs</li>
                 <li>Retrieval-augmented generation with LLMs</li>
-                <li>Generative models for time series analysis</li>
+            </ul>
+            <ul class="zh-text">
+                <li>科技文献领域的智能体推理</li>
+                <li>大语言模型的智能体强化学习</li>
+                <li>大语言模型的检索增强生成</li>
             </ul>
         </section>
 
@@ -98,57 +134,110 @@
         </section>
 
         <section id="awards">
-            <h2>Awards</h2>
+            <h2>
+                <span class="en-text">Awards</span>
+                <span class="zh-text">荣誉奖项</span>
+            </h2>
             <div class="award-item">
                 <span class="award-year">2025</span>
-                <div class="award-desc">Outstanding Graduate, USTC</div>
+                <div class="award-desc">
+                    <span class="en-text">Outstanding Graduate, USTC</span>
+                    <span class="zh-text">中国科学技术大学 优秀毕业生</span>
+                </div>
             </div>
             <div class="award-item">
                 <span class="award-year">2025</span>
-                <div class="award-desc">Outstanding Student Scholarship Gold Award, USTC</div>
+                <div class="award-desc">
+                    <span class="en-text">Outstanding Student Scholarship Gold Award, USTC</span>
+                    <span class="zh-text">中国科学技术大学 优秀学生金奖奖学金</span>
+                </div>
             </div>
             <div class="award-item">
                 <span class="award-year">2024</span>
-                <div class="award-desc">Meta KDD Cup 2024 CRAG Benchmark Silver Medal (Task 2 & 3)</div>
+                <div class="award-desc">
+                    <span class="en-text">Meta KDD Cup 2024 CRAG Benchmark Silver Medal (Task 2 & 3)</span>
+                    <span class="zh-text">Meta KDD Cup 2024 CRAG 挑战赛 银牌 (Task 2 & 3)</span>
+                </div>
             </div>
         </section>
 
         <section id="experiences">
-            <h2>Experiences</h2>
+            <h2>
+                <span class="en-text">Experiences</span>
+                <span class="zh-text">经历与教育</span>
+            </h2>
             <div class="award-item">
-                <span class="award-year">Sep. 2025 ~ Present</span>
+                <span class="en-text award-year">Sep. 2025 ~ Present</span>
+                <span class="zh-text award-year">2025年9月 ~ 至今</span>
                 <div class="award-desc">
-                    <strong>Master in Computer Science</strong><br>
-                    <a href="https://cogskl.iflytek.com/">State Key Laboratory of Cognitive Intelligence</a>, <a
-                        href="https://www.ustc.edu.cn/">University of Science and Technology of China</a><br>
-                    <small>Advisors: Prof. <a href="http://staff.ustc.edu.cn/~qiliuql/">Qi Liu</a>, Associate Researcher
-                        <a href="https://mingyue-cheng.github.io/">Mingyue Cheng</a></small>
+                    <div class="en-text">
+                        <strong>Master in Computer Science</strong><br>
+                        <a href="https://cogskl.iflytek.com/">State Key Laboratory of Cognitive Intelligence</a>, <a
+                            href="https://www.ustc.edu.cn/">University of Science and Technology of China</a><br>
+                        <small>Advisors: Prof. <a href="http://staff.ustc.edu.cn/~qiliuql/">Qi Liu</a>, Associate
+                            Researcher
+                            <a href="https://mingyue-cheng.github.io/">Mingyue Cheng</a></small>
+                    </div>
+                    <div class="zh-text">
+                        <strong>计算机科学与技术 硕士</strong><br>
+                        <a href="https://cogskl.iflytek.com/">认知智能全国重点实验室</a>, <a
+                            href="https://www.ustc.edu.cn/">中国科学技术大学</a><br>
+                        <small>导师: <a href="http://staff.ustc.edu.cn/~qiliuql/">刘淇</a> 教授, <a
+                                href="https://mingyue-cheng.github.io/">程明月</a> 副研究员</small>
+                    </div>
                 </div>
             </div>
             <div class="award-item">
-                <span class="award-year">Nov. 2024 ~ Mar. 2025</span>
+                <span class="en-text award-year">Nov. 2024 ~ Mar. 2025</span>
+                <span class="zh-text award-year">2024年11月 ~ 2025年3月</span>
                 <div class="award-desc">
-                    <strong>Algorithm Engineer Intern</strong><br>
-                    <a href="https://www.meituan.com/">Meituan</a>, AIGC Team, Fulfillment Platform, Local Commerce<br>
-                    <small>Optimized the RAG system on the Rider Assistant APP</small>
+                    <div class="en-text">
+                        <strong>Algorithm Engineer Intern</strong><br>
+                        <a href="https://www.meituan.com/">Meituan</a>, AIGC Team, Fulfillment Platform, Local
+                        Commerce<br>
+                        <small>Optimized the RAG system on the Rider Assistant APP</small>
+                    </div>
+                    <div class="zh-text">
+                        <strong>算法工程师 实习生</strong><br>
+                        <a href="https://www.meituan.com/">美团</a>, 到家事业群, 履约平台, AIGC团队<br>
+                        <small>优化骑手助手网页版的RAG系统</small>
+                    </div>
                 </div>
             </div>
             <div class="award-item">
-                <span class="award-year">Sep. 2021 ~ Jun. 2025</span>
+                <span class="en-text award-year">Sep. 2021 ~ Jun. 2025</span>
+                <span class="zh-text award-year">2021年9月 ~ 2025年6月</span>
                 <div class="award-desc">
-                    <strong>Bachelor in Computer Science</strong><br>
-                    <a href="https://cs.ustc.edu.cn/main.htm">School of Computer Science and Technology</a>, <a
-                        href="https://www.ustc.edu.cn/">University of Science and Technology of China</a>
+                    <div class="en-text">
+                        <strong>Bachelor in Computer Science</strong><br>
+                        <a href="https://cs.ustc.edu.cn/main.htm">School of Computer Science and Technology</a>, <a
+                            href="https://www.ustc.edu.cn/">University of Science and Technology of China</a>
+                    </div>
+                    <div class="zh-text">
+                        <strong>计算机科学与技术 学士</strong><br>
+                        <a href="https://cs.ustc.edu.cn/main.htm">计算机科学与技术学院</a>, <a
+                            href="https://www.ustc.edu.cn/">中国科学技术大学</a>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
     <footer>
-        <p>Last updated: January 2026. Design and source code from <a
-                href="https://github.com/yuhui-zh15/Minimal-Academic-Website">Minimal-Academic-Website</a>.</p>
-        <p><strong>Acknowledgments:</strong> Special thanks to my labmate <a href="https://fishsure.github.io/">Shuo
-                Yu</a> for his valuable assistance and support.</p>
+        <p>
+            <span class="en-text">Last updated: March 2026. Design and source code from <a
+                    href="https://github.com/yuhui-zh15/Minimal-Academic-Website">Minimal-Academic-Website</a>.</span>
+            <span class="zh-text">最后更新：2026年3月。设计与源码来自 <a
+                    href="https://github.com/yuhui-zh15/Minimal-Academic-Website">Minimal-Academic-Website</a>。</span>
+        </p>
+        <p>
+            <span class="en-text"><strong>Acknowledgments:</strong> Special thanks to my labmates <a
+                    href="https://fishsure.github.io/">Shuo Yu</a> and <a href="https://xiaoyu-tao.github.io/">Xiaoyu
+                    Tao</a> for their valuable assistance and support.</span>
+            <span class="zh-text"><strong>致谢：</strong> 特别感谢我的实验室同门 <a href="https://fishsure.github.io/">于硕</a> 和 <a
+                    href="https://xiaoyu-tao.github.io/">陶小玉</a>
+                提供的宝贵帮助与支持。</span>
+        </p>
     </footer>
 
     <div id="imageModal" class="modal">
@@ -160,7 +249,8 @@
     <div class="tools-dropdown" id="tools-dropdown">
         <button class="tools-trigger" id="tools-trigger">
             <i class="fas fa-flask"></i>
-            <span>More Works</span>
+            <span class="en-text">More Works</span>
+            <span class="zh-text">更多工具</span>
             <i class="fas fa-chevron-down tools-chevron"></i>
         </button>
         <div class="tools-panel" id="tools-panel">
@@ -169,7 +259,8 @@
                     <span class="tool-icon">🍌</span>
                     <div class="tool-info">
                         <span class="tool-name">Nanobanana Peel</span>
-                        <span class="tool-desc">Remove background from AI images</span>
+                        <span class="en-text tool-desc">Remove background from AI images</span>
+                        <span class="zh-text tool-desc">AI 图像去背景工具</span>
                     </div>
                     <i class="fas fa-external-link-alt tool-arrow"></i>
                 </a>
@@ -177,7 +268,8 @@
                     <span class="tool-icon">🔬</span>
                     <div class="tool-info">
                         <span class="tool-name">TexPurify</span>
-                        <span class="tool-desc">Clean LaTeX text by removing formatting commands</span>
+                        <span class="en-text tool-desc">Clean LaTeX text by removing formatting commands</span>
+                        <span class="zh-text tool-desc">清除 LaTeX 文本中的格式命令</span>
                     </div>
                     <i class="fas fa-external-link-alt tool-arrow"></i>
                 </a>
