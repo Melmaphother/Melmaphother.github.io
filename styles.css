@@ -109,7 +109,8 @@ body.lang-zh .filter-btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 12px var(--shadow-color);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    /* slightly darker than --shadow-color due to smaller element area */
     text-decoration: none;
     transition: all var(--transition-time) ease;
     box-sizing: border-box;
@@ -651,7 +652,7 @@ strong {
     font-weight: 500;
     color: var(--text-secondary);
     transition: all var(--transition-time) ease;
-    box-shadow: 0 2px 8px var(--shadow-color);
+    box-shadow: 0 4px 12px var(--shadow-color);
 }
 
 .tools-trigger:hover {
@@ -781,9 +782,9 @@ strong {
         transform: none !important;
     }
 
-    /* Make GitHub corner smaller on mobile */
+    /* Make GitHub corner alignment match others on mobile */
     .github-corner {
-        top: 17px;
+        top: 12px;
         right: 15px;
     }
 
@@ -798,7 +799,7 @@ strong {
 
     /* Tools dropdown on mobile */
     .tools-dropdown {
-        right: 45px;
+        right: 65px;
         top: 12px;
     }
 
