@@ -439,6 +439,8 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
         }
 
         .preview-card-title {
@@ -449,6 +451,8 @@
         .preview-card-actions {
             display: flex;
             gap: 8px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
         }
 
         .action-btn {
@@ -689,7 +693,7 @@
                             <span class="preview-card-title">Original</span>
                             <button class="action-btn" id="btn-process" title="Re-process image">
                                 <i class="fas fa-sync-alt"></i>
-                                <span>Process</span>
+                                <span>Reprocess</span>
                             </button>
                         </div>
                         <div class="preview-card-body">
@@ -699,11 +703,17 @@
                     <div class="preview-card">
                         <div class="preview-card-header">
                             <span class="preview-card-title">Processed</span>
-                            <button class="action-btn action-btn-primary" id="btn-download" disabled
-                                title="Download PNG">
-                                <i class="fas fa-download"></i>
-                                <span>Download</span>
-                            </button>
+                            <div class="preview-card-actions">
+                                <button class="action-btn" id="btn-copy" disabled title="Copy PNG to clipboard">
+                                    <i class="fas fa-copy"></i>
+                                    <span>Copy</span>
+                                </button>
+                                <button class="action-btn action-btn-primary" id="btn-download" disabled
+                                    title="Download PNG">
+                                    <i class="fas fa-download"></i>
+                                    <span>Download</span>
+                                </button>
+                            </div>
                         </div>
                         <div class="preview-card-body">
                             <img id="processed-preview" alt="Processed image">
@@ -739,6 +749,7 @@
         const bgColorPicker = document.getElementById('bg-color-picker');
         const bgColorInput = document.getElementById('bg-color-input');
         const btnProcess = document.getElementById('btn-process');
+        const btnCopy = document.getElementById('btn-copy');
         const btnDownload = document.getElementById('btn-download');
         const toast = document.getElementById('toast');
 
@@ -811,6 +822,9 @@
         // Process button
         btnProcess.addEventListener('click', processImage);
 
+        // Copy button
+        btnCopy.addEventListener('click', copyImage);
+
         // Download button
         btnDownload.addEventListener('click', downloadImage);
 
@@ -831,6 +845,7 @@
                     originalPreview.src = e.target.result;
                     processedPreview.src = '';
                     processedDataURL = null;
+                    btnCopy.disabled = true;
                     btnDownload.disabled = true;
 
                     settingsPanel.classList.add('visible');
@@ -901,6 +916,7 @@
                     // Get result
                     processedDataURL = canvas.toDataURL('image/png');
                     processedPreview.src = processedDataURL;
+                    btnCopy.disabled = false;
                     btnDownload.disabled = false;
 
                     showToast('Processed!', '✅');
@@ -922,6 +938,31 @@
             link.click();
 
             showToast('Image downloaded!', '⬇️');
+        }
+
+        async function copyImage() {
+            if (!processedDataURL) return;
+
+            if (!navigator.clipboard || !window.ClipboardItem) {
+                showToast('Image copy is not supported in this browser', '⚠️');
+                return;
+            }
+
+            try {
+                const response = await fetch(processedDataURL);
+                const blob = await response.blob();
+
+                await navigator.clipboard.write([
+                    new ClipboardItem({
+                        [blob.type]: blob
+                    })
+                ]);
+
+                showToast('Image copied!', '📋');
+            } catch (error) {
+                console.error('Copy error:', error);
+                showToast('Could not copy image', '❌');
+            }
         }
 
         function showToast(message, icon = '✅') {
