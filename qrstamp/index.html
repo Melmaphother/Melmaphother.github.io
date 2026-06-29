@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="QRStamp — Create custom QR codes locally in your browser">
+    <meta name="author" content="Daoyu Wang">
+    <meta property="og:title" content="QRStamp — Link to QR Code">
+    <meta property="og:description" content="Stamp your Link to QR Code.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://melmaphother.github.io/qrstamp/">
+    <meta property="og:image" content="https://melmaphother.github.io/qrstamp/assets/qrstamp-logo.png">
+    <meta name="theme-color" content="#6657d8">
+    <title>QRStamp — Link to QR Code</title>
+    <link rel="icon" href="assets/favicon/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+    <link rel="manifest" href="assets/favicon/site.webmanifest">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="paper-grid" aria-hidden="true"></div>
+
+    <header class="site-header">
+        <a class="brand" href="./" aria-label="QRStamp home">
+            <span class="brand-mark" aria-hidden="true">
+                <img src="assets/qrstamp-logo.png" alt="">
+            </span>
+            <span>QRStamp</span>
+        </a>
+        <div class="header-actions">
+            <a class="icon-link" href="../" aria-label="Back to homepage" title="Back to homepage">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 11 9-8 9 8v9a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg>
+            </a>
+            <a class="icon-link" href="https://github.com/Melmaphother/Melmaphother.github.io" target="_blank"
+                rel="noreferrer" aria-label="View source on GitHub" title="View source">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.87c-2.78.6-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.35 1.09 2.92.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.6 9.6 0 0 1 12 6.82a9.6 9.6 0 0 1 2.5.34c1.91-1.3 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.86V21c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
+            </a>
+        </div>
+    </header>
+
+    <main class="shell">
+        <section class="hero">
+            <h1><span class="stamp-line">Stamp your Link to QR Code.</span></h1>
+        </section>
+
+        <div class="workspace">
+            <form class="config-panel" id="config-form" novalidate>
+                <section class="config-section">
+                    <div class="section-heading">
+                        <span class="step">01</span>
+                        <div>
+                            <h2>Content</h2>
+                            <p>Your link and file name</p>
+                        </div>
+                    </div>
+
+                    <label class="field-label" for="url-input">URL <b>required</b></label>
+                    <div class="text-field url-field">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.7-1.7"/></svg>
+                        <input id="url-input" name="url" type="url" inputmode="url" autocomplete="url"
+                            placeholder="https://example.com" aria-describedby="url-message">
+                    </div>
+                    <p class="field-message" id="url-message">Enter a complete link or URI, such as https://example.com</p>
+
+                    <label class="field-label" for="name-input">Name <span>optional, used for the file name</span></label>
+                    <div class="text-field">
+                        <input id="name-input" name="name" type="text" maxlength="80" placeholder="qrcode">
+                        <span class="file-suffix">.png / .svg</span>
+                    </div>
+                </section>
+
+                <section class="config-section">
+                    <div class="section-heading">
+                        <span class="step">02</span>
+                        <div>
+                            <h2>Shape</h2>
+                            <p>Choose the QR body first, then the finder corners</p>
+                        </div>
+                    </div>
+
+                    <span class="field-label">Body Type</span>
+                    <div class="body-options" role="radiogroup" aria-label="QR body type">
+                        <button class="shape-card active" type="button" data-dot-style="square" role="radio" aria-checked="true" aria-label="Solid square body"><span class="shape-demo square-demo"></span></button>
+                        <button class="shape-card" type="button" data-dot-style="dots" role="radio" aria-checked="false" aria-label="Circle body"><span class="shape-demo dot-demo"></span></button>
+                        <button class="shape-card" type="button" data-dot-style="rounded" role="radio" aria-checked="false" aria-label="Rounded square body"><span class="shape-demo round-demo"></span></button>
+                        <button class="shape-card" type="button" data-dot-style="gap-square" role="radio" aria-checked="false" aria-label="Gapped square body"><span class="shape-demo gap-square-demo"></span></button>
+                        <button class="shape-card" type="button" data-dot-style="diamond" role="radio" aria-checked="false" aria-label="Diamond body"><span class="shape-demo diamond-demo"></span></button>
+                        <button class="shape-card" type="button" data-dot-style="star" role="radio" aria-checked="false" aria-label="Star body"><span class="shape-demo star-demo"></span></button>
+                        <button class="shape-card" type="button" data-dot-style="heart" role="radio" aria-checked="false" aria-label="Heart body"><span class="shape-demo heart-demo"></span></button>
+                        <button class="shape-card" type="button" data-dot-style="hexagon" role="radio" aria-checked="false" aria-label="Hexagon body"><span class="shape-demo hexagon-demo"></span></button>
+                        <button class="shape-card" type="button" data-dot-style="sparkle" role="radio" aria-checked="false" aria-label="Four point star body"><span class="shape-demo sparkle-demo"></span></button>
+                        <button class="shape-card" type="button" data-dot-style="clover" role="radio" aria-checked="false" aria-label="Clover body"><span class="shape-demo clover-demo"></span></button>
+                    </div>
+
+                    <span class="field-label">Edges</span>
+                    <div class="edge-tabs" role="tablist" aria-label="Finder corner mode">
+                        <button type="button" class="active" data-edge-mode="all" role="tab" aria-selected="true">All</button>
+                        <button type="button" data-edge-mode="custom" role="tab" aria-selected="false">Custom</button>
+                    </div>
+                    <div class="edge-options" id="edge-all-panel" role="radiogroup" aria-label="All finder corners">
+                        <button class="edge-card active" type="button" data-edge-preset="square" role="radio" aria-checked="true" aria-label="Square corners"><span class="edge-demo edge-square"></span></button>
+                        <button class="edge-card" type="button" data-edge-preset="rounded" role="radio" aria-checked="false" aria-label="Rounded corners"><span class="edge-demo edge-rounded"></span></button>
+                        <button class="edge-card" type="button" data-edge-preset="circle" role="radio" aria-checked="false" aria-label="Circle corners"><span class="edge-demo edge-circle"></span></button>
+                        <button class="edge-card" type="button" data-edge-preset="leaf-tl" role="radio" aria-checked="false" aria-label="Top left leaf corners"><span class="edge-demo edge-leaf-tl"></span></button>
+                        <button class="edge-card" type="button" data-edge-preset="leaf-tr" role="radio" aria-checked="false" aria-label="Top right leaf corners"><span class="edge-demo edge-leaf-tr"></span></button>
+                        <button class="edge-card" type="button" data-edge-preset="leaf-br" role="radio" aria-checked="false" aria-label="Bottom right leaf corners"><span class="edge-demo edge-leaf-br"></span></button>
+                        <button class="edge-card" type="button" data-edge-preset="leaf-bl" role="radio" aria-checked="false" aria-label="Bottom left leaf corners"><span class="edge-demo edge-leaf-bl"></span></button>
+                        <button class="edge-card" type="button" data-edge-preset="notch-tl" role="radio" aria-checked="false" aria-label="Top left notch corners"><span class="edge-demo edge-notch-tl"></span></button>
+                        <button class="edge-card" type="button" data-edge-preset="notch-tr" role="radio" aria-checked="false" aria-label="Top right notch corners"><span class="edge-demo edge-notch-tr"></span></button>
+                        <button class="edge-card" type="button" data-edge-preset="notch-br" role="radio" aria-checked="false" aria-label="Bottom right notch corners"><span class="edge-demo edge-notch-br"></span></button>
+                        <button class="edge-card" type="button" data-edge-preset="notch-bl" role="radio" aria-checked="false" aria-label="Bottom left notch corners"><span class="edge-demo edge-notch-bl"></span></button>
+                        <button class="edge-card" type="button" data-edge-preset="diagonal-a" role="radio" aria-checked="false" aria-label="Diagonal leaf corners"><span class="edge-demo edge-diagonal-a"></span></button>
+                        <button class="edge-card" type="button" data-edge-preset="diagonal-b" role="radio" aria-checked="false" aria-label="Alternate diagonal leaf corners"><span class="edge-demo edge-diagonal-b"></span></button>
+                        <button class="edge-card" type="button" data-edge-preset="mix-a" role="radio" aria-checked="false" aria-label="Mixed corner set A"><span class="edge-demo edge-mix-a"></span></button>
+                        <button class="edge-card" type="button" data-edge-preset="mix-b" role="radio" aria-checked="false" aria-label="Mixed corner set B"><span class="edge-demo edge-mix-b"></span></button>
+                        <button class="edge-card" type="button" data-edge-preset="mix-c" role="radio" aria-checked="false" aria-label="Mixed corner set C"><span class="edge-demo edge-mix-c"></span></button>
+                        <button class="edge-card" type="button" data-edge-preset="dot-square" role="radio" aria-checked="false" aria-label="Dotted square corners"><span class="edge-demo edge-dot-square"></span></button>
+                        <button class="edge-card" type="button" data-edge-preset="dot-rounded" role="radio" aria-checked="false" aria-label="Dotted rounded corners"><span class="edge-demo edge-dot-rounded"></span></button>
+                        <button class="edge-card" type="button" data-edge-preset="dot-dense" role="radio" aria-checked="false" aria-label="Dense dotted corners"><span class="edge-demo edge-dot-dense"></span></button>
+                    </div>
+                    <div class="edge-custom-panel hidden" id="edge-custom-panel" aria-label="Custom finder corners">
+                        <div class="corner-picker" data-custom-corner="0">
+                            <span class="corner-title">Top left</span>
+                            <button class="corner-trigger" type="button" aria-label="Choose top-left corner style">
+                                <span class="edge-demo edge-square"></span><i>⌄</i>
+                            </button>
+                            <div class="corner-menu">
+                                <button type="button" data-corner-style="square" class="active"><span class="edge-demo edge-square"></span></button>
+                                <button type="button" data-corner-style="rounded"><span class="edge-demo edge-rounded"></span></button>
+                                <button type="button" data-corner-style="circle"><span class="edge-demo edge-circle"></span></button>
+                                <button type="button" data-corner-style="leaf-tl"><span class="edge-demo edge-leaf-tl"></span></button>
+                                <button type="button" data-corner-style="leaf-tr"><span class="edge-demo edge-leaf-tr"></span></button>
+                                <button type="button" data-corner-style="leaf-br"><span class="edge-demo edge-leaf-br"></span></button>
+                                <button type="button" data-corner-style="leaf-bl"><span class="edge-demo edge-leaf-bl"></span></button>
+                                <button type="button" data-corner-style="notch-tl"><span class="edge-demo edge-notch-tl"></span></button>
+                                <button type="button" data-corner-style="notch-tr"><span class="edge-demo edge-notch-tr"></span></button>
+                                <button type="button" data-corner-style="notch-br"><span class="edge-demo edge-notch-br"></span></button>
+                                <button type="button" data-corner-style="notch-bl"><span class="edge-demo edge-notch-bl"></span></button>
+                                <button type="button" data-corner-style="dot-square"><span class="edge-demo edge-dot-square"></span></button>
+                                <button type="button" data-corner-style="dot-rounded"><span class="edge-demo edge-dot-rounded"></span></button>
+                                <button type="button" data-corner-style="dot-dense"><span class="edge-demo edge-dot-dense"></span></button>
+                            </div>
+                        </div>
+                        <div class="corner-picker" data-custom-corner="1">
+                            <span class="corner-title">Top right</span>
+                            <button class="corner-trigger" type="button" aria-label="Choose top-right corner style">
+                                <span class="edge-demo edge-square"></span><i>⌄</i>
+                            </button>
+                            <div class="corner-menu">
+                                <button type="button" data-corner-style="square" class="active"><span class="edge-demo edge-square"></span></button>
+                                <button type="button" data-corner-style="rounded"><span class="edge-demo edge-rounded"></span></button>
+                                <button type="button" data-corner-style="circle"><span class="edge-demo edge-circle"></span></button>
+                                <button type="button" data-corner-style="leaf-tl"><span class="edge-demo edge-leaf-tl"></span></button>
+                                <button type="button" data-corner-style="leaf-tr"><span class="edge-demo edge-leaf-tr"></span></button>
+                                <button type="button" data-corner-style="leaf-br"><span class="edge-demo edge-leaf-br"></span></button>
+                                <button type="button" data-corner-style="leaf-bl"><span class="edge-demo edge-leaf-bl"></span></button>
+                                <button type="button" data-corner-style="notch-tl"><span class="edge-demo edge-notch-tl"></span></button>
+                                <button type="button" data-corner-style="notch-tr"><span class="edge-demo edge-notch-tr"></span></button>
+                                <button type="button" data-corner-style="notch-br"><span class="edge-demo edge-notch-br"></span></button>
+                                <button type="button" data-corner-style="notch-bl"><span class="edge-demo edge-notch-bl"></span></button>
+                                <button type="button" data-corner-style="dot-square"><span class="edge-demo edge-dot-square"></span></button>
+                                <button type="button" data-corner-style="dot-rounded"><span class="edge-demo edge-dot-rounded"></span></button>
+                                <button type="button" data-corner-style="dot-dense"><span class="edge-demo edge-dot-dense"></span></button>
+                            </div>
+                        </div>
+                        <div class="corner-picker" data-custom-corner="2">
+                            <span class="corner-title">Bottom left</span>
+                            <button class="corner-trigger" type="button" aria-label="Choose bottom-left corner style">
+                                <span class="edge-demo edge-square"></span><i>⌄</i>
+                            </button>
+                            <div class="corner-menu">
+                                <button type="button" data-corner-style="square" class="active"><span class="edge-demo edge-square"></span></button>
+                                <button type="button" data-corner-style="rounded"><span class="edge-demo edge-rounded"></span></button>
+                                <button type="button" data-corner-style="circle"><span class="edge-demo edge-circle"></span></button>
+                                <button type="button" data-corner-style="leaf-tl"><span class="edge-demo edge-leaf-tl"></span></button>
+                                <button type="button" data-corner-style="leaf-tr"><span class="edge-demo edge-leaf-tr"></span></button>
+                                <button type="button" data-corner-style="leaf-br"><span class="edge-demo edge-leaf-br"></span></button>
+                                <button type="button" data-corner-style="leaf-bl"><span class="edge-demo edge-leaf-bl"></span></button>
+                                <button type="button" data-corner-style="notch-tl"><span class="edge-demo edge-notch-tl"></span></button>
+                                <button type="button" data-corner-style="notch-tr"><span class="edge-demo edge-notch-tr"></span></button>
+                                <button type="button" data-corner-style="notch-br"><span class="edge-demo edge-notch-br"></span></button>
+                                <button type="button" data-corner-style="notch-bl"><span class="edge-demo edge-notch-bl"></span></button>
+                                <button type="button" data-corner-style="dot-square"><span class="edge-demo edge-dot-square"></span></button>
+                                <button type="button" data-corner-style="dot-rounded"><span class="edge-demo edge-dot-rounded"></span></button>
+                                <button type="button" data-corner-style="dot-dense"><span class="edge-demo edge-dot-dense"></span></button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="config-section">
+                    <div class="section-heading">
+                        <span class="step">03</span>
+                        <div>
+                            <h2>Color</h2>
+                            <p>Solid colors or curated gradients</p>
+                        </div>
+                    </div>
+
+                    <div class="segmented" role="tablist" aria-label="Color mode">
+                        <button type="button" class="active" data-color-mode="solid" role="tab" aria-selected="true">Solid</button>
+                        <button type="button" data-color-mode="gradient" role="tab" aria-selected="false">Gradient</button>
+                    </div>
+
+                    <div id="solid-panel" class="color-panel">
+                        <div class="swatches" aria-label="Solid color presets">
+                            <button type="button" class="swatch active" style="--swatch:#17161a" data-color="#17161a" aria-label="Ink black"></button>
+                            <button type="button" class="swatch" style="--swatch:#3478f6" data-color="#3478f6" aria-label="Blue"></button>
+                            <button type="button" class="swatch" style="--swatch:#34c759" data-color="#34c759" aria-label="Green"></button>
+                            <button type="button" class="swatch" style="--swatch:#af52de" data-color="#af52de" aria-label="Purple"></button>
+                            <button type="button" class="swatch" style="--swatch:#ff3b30" data-color="#ff3b30" aria-label="Red"></button>
+                            <button type="button" class="swatch" style="--swatch:#ff9500" data-color="#ff9500" aria-label="Orange"></button>
+                            <button type="button" class="swatch" style="--swatch:#ffcc00" data-color="#ffcc00" aria-label="Yellow"></button>
+                            <button type="button" class="swatch" style="--swatch:#00a1d6" data-color="#00a1d6" aria-label="Cyan"></button>
+                            <button type="button" class="swatch" style="--swatch:#ff2d55" data-color="#ff2d55" aria-label="Pink"></button>
+                            <label class="custom-swatch" aria-label="Custom solid color">
+                                <input type="color" id="solid-picker" value="#17161a">
+                            </label>
+                        </div>
+                    </div>
+
+                    <div id="gradient-panel" class="color-panel hidden">
+                        <div class="gradient-presets" aria-label="Gradient presets">
+                            <button type="button" class="active" style="--gradient:linear-gradient(135deg,#7c3aed,#ec4899)" data-start="#7c3aed" data-end="#ec4899" data-angle="135" aria-label="Purple pink"></button>
+                            <button type="button" style="--gradient:linear-gradient(135deg,#3478f6,#af52de)" data-start="#3478f6" data-end="#af52de" data-angle="135" aria-label="Blue purple"></button>
+                            <button type="button" style="--gradient:linear-gradient(135deg,#0a84ff,#30d158)" data-start="#0a84ff" data-end="#30d158" data-angle="135" aria-label="Blue green"></button>
+                            <button type="button" style="--gradient:linear-gradient(135deg,#ff9f0a,#ff375f)" data-start="#ff9f0a" data-end="#ff375f" data-angle="135" aria-label="Orange red"></button>
+                            <button type="button" style="--gradient:radial-gradient(circle,#5e5ce6,#bf5af2,#ff9f0a)" data-start="#5e5ce6" data-mid="#bf5af2" data-end="#ff9f0a" data-type="radial" aria-label="Aurora"></button>
+                        </div>
+                    </div>
+                    <p class="contrast-warning hidden" id="contrast-warning">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2 21h20zm0 6v5m0 3v.01"/></svg>
+                        This color may be too light for reliable scanning on white.
+                    </p>
+                </section>
+
+                <section class="config-section">
+                    <div class="section-heading">
+                        <span class="step">04</span>
+                        <div>
+                            <h2>Logo</h2>
+                            <p>Pick a simple mark or upload your own</p>
+                        </div>
+                    </div>
+
+                    <div class="logo-grid" id="logo-grid">
+                        <button type="button" class="logo-option active" data-logo="" aria-pressed="true"><span>—</span>None</button>
+                        <button type="button" class="logo-option" data-logo="github"><img src="assets/logos/github.svg" alt="" aria-hidden="true">GitHub</button>
+                        <button type="button" class="logo-option" data-logo="arxiv"><img src="assets/logos/arxiv.svg" alt="" aria-hidden="true">arXiv</button>
+                        <button type="button" class="logo-option" data-logo="huggingface"><img src="assets/logos/huggingface.svg" alt="" aria-hidden="true">Hugging Face</button>
+                        <button type="button" class="logo-option" data-logo="x"><img src="assets/logos/x.svg" alt="" aria-hidden="true">X</button>
+                        <button type="button" class="logo-option" data-logo="linkedin"><img src="assets/logos/linkedin.svg" alt="" aria-hidden="true">LinkedIn</button>
+                        <button type="button" class="logo-option" data-logo="youtube"><img src="assets/logos/youtube.svg" alt="" aria-hidden="true">YouTube</button>
+                        <button type="button" class="logo-option" data-logo="discord"><img src="assets/logos/discord.svg" alt="" aria-hidden="true">Discord</button>
+                        <button type="button" class="logo-option" data-logo="wechat"><img src="assets/logos/wechat.svg" alt="" aria-hidden="true">WeChat</button>
+                        <button type="button" class="logo-option" data-logo="sinaweibo"><img src="assets/logos/sinaweibo.svg" alt="" aria-hidden="true">Weibo</button>
+                        <button type="button" class="logo-option" data-logo="zhihu"><img src="assets/logos/zhihu.svg" alt="" aria-hidden="true">Zhihu</button>
+                        <button type="button" class="logo-option" data-logo="bilibili"><img src="assets/logos/bilibili.svg" alt="" aria-hidden="true">Bilibili</button>
+                        <button type="button" class="logo-option" data-logo="tiktok"><img src="assets/logos/tiktok.svg" alt="" aria-hidden="true">TikTok</button>
+                        <button type="button" class="logo-option" data-logo="xiaohongshu"><img src="assets/logos/xiaohongshu.svg" alt="" aria-hidden="true">RED</button>
+                    </div>
+
+                    <div class="logo-color-controls" id="logo-color-controls">
+                        <div class="logo-color-mode" role="tablist" aria-label="Logo color mode">
+                            <button type="button" class="active" data-logo-color-mode="brand" role="tab" aria-selected="true">Brand color</button>
+                            <button type="button" data-logo-color-mode="custom" role="tab" aria-selected="false">Custom color</button>
+                        </div>
+                        <div class="logo-color-picker hidden" id="logo-color-picker-label" aria-label="Logo custom colors">
+                            <button type="button" class="logo-swatch active" style="--swatch:#18171b" data-logo-color="#18171b" aria-label="Ink black"></button>
+                            <button type="button" class="logo-swatch" style="--swatch:#3478f6" data-logo-color="#3478f6" aria-label="Blue"></button>
+                            <button type="button" class="logo-swatch" style="--swatch:#34c759" data-logo-color="#34c759" aria-label="Green"></button>
+                            <button type="button" class="logo-swatch" style="--swatch:#af52de" data-logo-color="#af52de" aria-label="Purple"></button>
+                            <button type="button" class="logo-swatch" style="--swatch:#ff3b30" data-logo-color="#ff3b30" aria-label="Red"></button>
+                            <button type="button" class="logo-swatch" style="--swatch:#ff9500" data-logo-color="#ff9500" aria-label="Orange"></button>
+                            <button type="button" class="logo-swatch" style="--swatch:#ffcc00" data-logo-color="#ffcc00" aria-label="Yellow"></button>
+                            <button type="button" class="logo-swatch" style="--swatch:#00a1d6" data-logo-color="#00a1d6" aria-label="Cyan"></button>
+                            <button type="button" class="logo-swatch" style="--swatch:#ff2d55" data-logo-color="#ff2d55" aria-label="Pink"></button>
+                            <label class="logo-custom-swatch" aria-label="Custom logo color">
+                                <input type="color" id="logo-color-picker" value="#18171b">
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="upload-zone" id="upload-zone" tabindex="0" role="button" aria-label="Paste, click, or drop a custom logo">
+                        <input id="logo-upload" type="file" accept=".png,.jpg,.jpeg,.webp,image/png,image/jpeg,image/webp">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4m-5 5 5-5 5 5M4 15v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4"/></svg>
+                        <div><b>Upload a custom logo</b><span>Paste, click, or drop PNG / JPG / WebP</span></div>
+                    </div>
+                    <p class="field-message" id="upload-message"></p>
+
+                    <div class="logo-settings hidden" id="logo-settings">
+                        <label>Logo size <output id="logo-size-output">20%</output>
+                            <input id="logo-size" type="range" min="14" max="28" value="20">
+                        </label>
+                        <label>Background padding <output id="logo-padding-output">8%</output>
+                            <input id="logo-padding" type="range" min="3" max="14" value="8">
+                        </label>
+                        <button type="button" class="text-button" id="remove-logo">Remove logo</button>
+                    </div>
+                </section>
+
+                <button type="button" class="reset-button" id="reset-all">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8m0-5v5h5"/></svg>
+                    Reset all settings
+                </button>
+            </form>
+
+            <aside class="preview-column">
+                <div class="preview-card">
+                    <div class="preview-heading">
+                        <div>
+                            <span>LIVE PREVIEW</span>
+                            <h2>Your QR Code</h2>
+                        </div>
+                    </div>
+
+                    <div class="qr-stage" id="qr-stage">
+                        <div class="placeholder" id="placeholder">
+                            <span class="placeholder-qr" aria-hidden="true">
+                                <img src="assets/qrstamp-logo.png" alt="">
+                            </span>
+                            <b>Enter a URL to start</b>
+                            <p>Your preview appears here in real time</p>
+                        </div>
+                        <div id="qr-preview" role="img" aria-label="QR code preview"></div>
+                    </div>
+
+                    <p class="preview-note">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10zm-3-10 2 2 4-5"/></svg>
+                        Your URL and logo stay in your browser
+                    </p>
+
+                    <div class="format-row">
+                        <span>Format</span>
+                        <div class="format-switch">
+                            <button type="button" class="active" data-format="png">PNG</button>
+                            <button type="button" data-format="svg">SVG</button>
+                        </div>
+                    </div>
+
+                    <button type="button" class="download-button" id="download-button" disabled>
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 20h16"/></svg>
+                        <span>Download PNG</span>
+                    </button>
+                    <p class="download-meta" id="download-meta">2048 × 2048 px · Good for web and social</p>
+                </div>
+
+                <div class="scan-tip">
+                    <span>TIP</span>
+                    <p><b>Scan it once before printing.</b><br>Material, size, and lighting can affect recognition.</p>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer>
+        <span class="footer-brand"><img src="assets/qrstamp-logo.png" alt="">QRStamp made by <a href="https://melmaphother.github.io/">Daoyu Wang</a></span>
+        <span>All processing happens locally in your browser. Your links and images never leave your device.</span>
+    </footer>
+
+    <script src="vendor/qrcode-generator.min.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>

@@ -721,6 +721,13 @@ strong {
     flex-shrink: 0;
 }
 
+.tool-icon img {
+    width: 1.75rem;
+    height: 1.75rem;
+    display: block;
+    object-fit: contain;
+}
+
 .tool-info {
     flex: 1;
     display: flex;
