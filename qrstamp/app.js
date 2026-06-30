@@ -453,10 +453,12 @@
         </svg>`;
     }
 
+    function centerStyleForCorner(style) {
+        return style.startsWith('notch') ? 'circle' : style;
+    }
+
     function createSingleEdgePreviewSvg(style) {
-        const centerStyle = style === 'dot-square' || style === 'dot-rounded'
-            ? style
-            : 'circle';
+        const centerStyle = centerStyleForCorner(style);
         return `<svg viewBox="0 0 38 38" aria-hidden="true">
             ${finderPreviewElement(5, 5, 4, style, centerStyle)}
         </svg>`;
@@ -644,7 +646,7 @@
     function setCustomCorner(index, style) {
         state.customCorners[index] = [
             style,
-            style === 'dot-square' || style === 'dot-rounded' ? style : 'circle'
+            centerStyleForCorner(style)
         ];
         queueRender();
     }
