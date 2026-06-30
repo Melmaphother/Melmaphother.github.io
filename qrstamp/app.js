@@ -180,8 +180,9 @@
     }
 
     function updateFilenameMessage() {
+        const base = sanitizeFilename(state.name);
         el.filenameMessage.textContent =
-            `Your file will be saved as ${sanitizeFilename(state.name)}.${state.format}.`;
+            `Your file will be saved as ${base}.png or ${base}.svg.`;
     }
 
     function hexToRgb(hex) {
@@ -296,7 +297,7 @@
         } else if (!valid) {
             el.urlMessage.textContent = 'This URL or email is not valid. Check the address and try again.';
         } else if (email) {
-            el.urlMessage.textContent = 'Email recognized. Scanning the QR code will start a new message.';
+            el.urlMessage.textContent = `Email recognized. The QR code will encode ${content}.`;
         } else {
             el.urlMessage.textContent = 'Looks good. The QR code is updating in real time.';
         }
