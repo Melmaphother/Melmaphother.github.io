@@ -18,7 +18,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
     <link rel="manifest" href="assets/favicon/site.webmanifest">
-    <link rel="stylesheet" href="styles.css?v=6">
+    <link rel="stylesheet" href="styles.css?v=8">
 </head>
 
 <body>
@@ -356,6 +356,26 @@
                         </div>
                     </div>
 
+                    <div class="export-options">
+                        <div class="export-option" id="png-size-row">
+                            <span>Image size</span>
+                            <div class="size-switch" aria-label="PNG image size">
+                                <button type="button" data-png-size="1024" aria-pressed="false">1024</button>
+                                <button type="button" class="active" data-png-size="2048" aria-pressed="true">2048</button>
+                                <button type="button" data-png-size="4096" aria-pressed="false">4096</button>
+                            </div>
+                        </div>
+                        <div class="export-option">
+                            <span>Background</span>
+                            <div class="background-switch" aria-label="Export background">
+                                <button type="button" class="active" data-export-background="white"
+                                    aria-pressed="true">White</button>
+                                <button type="button" data-export-background="transparent"
+                                    aria-pressed="false">Transparent</button>
+                            </div>
+                        </div>
+                    </div>
+
                     <button type="button" class="download-button" id="download-button" disabled>
                         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 20h16"/></svg>
                         <span>Download PNG</span>
@@ -377,7 +397,7 @@
     </footer>
 
     <script src="vendor/qrcode-generator.min.js"></script>
-    <script src="app.js?v=8"></script>
+    <script src="app.js?v=11"></script>
 </body>
 
 </html>

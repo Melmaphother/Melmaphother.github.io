@@ -29,7 +29,9 @@
         logoColor: '#18171b',
         logoSize: 20,
         logoPadding: 5,
-        format: 'png'
+        format: 'png',
+        pngSize: 2048,
+        transparentBackground: false
     };
 
     const state = {
@@ -38,6 +40,7 @@
     };
     let currentSvg = '';
     let renderTimer = null;
+    const QUIET_ZONE = 2;
 
     const el = {
         form: $('#config-form'),
@@ -51,6 +54,7 @@
         download: $('#download-button'),
         downloadText: $('#download-button span'),
         downloadMeta: $('#download-meta'),
+        pngSizeRow: $('#png-size-row'),
         contrastWarning: $('#contrast-warning'),
         solidPanel: $('#solid-panel'),
         gradientPanel: $('#gradient-panel'),
@@ -342,8 +346,8 @@
     }
 
     function dotElement(row, col, style, fill) {
-        const x = col + 4;
-        const y = row + 4;
+        const x = col + QUIET_ZONE;
+        const y = row + QUIET_ZONE;
         const polygon = (points) => `<path d="${points.map(([px, py], index) => `${index ? 'L' : 'M'}${x + px} ${y + py}`).join('')}Z" fill="${fill}"/>`;
         if (style === 'dots') {
             return `<circle cx="${x + .5}" cy="${y + .5}" r=".43" fill="${fill}"/>`;
@@ -460,7 +464,13 @@
     }
 
     function finderElement(row, col, outerStyle, centerStyle, fill) {
-        return finderShapeElement(col + 4, row + 4, outerStyle, centerStyle, fill);
+        return finderShapeElement(
+            col + QUIET_ZONE,
+            row + QUIET_ZONE,
+            outerStyle,
+            centerStyle,
+            fill
+        );
     }
 
     function finderPreviewElement(x, y, scale, outerStyle, centerStyle) {
@@ -582,7 +592,7 @@
         qr.make();
 
         const count = qr.getModuleCount();
-        const total = count + 8;
+        const total = count + QUIET_ZONE * 2;
         const fill = state.colorMode === 'gradient' ? 'url(#qrFill)' : state.solidColor;
         const modules = [];
 
@@ -604,7 +614,9 @@
         ].join('');
 
         return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${total} ${total}" shape-rendering="geometricPrecision" aria-hidden="true">
-            <rect width="${total}" height="${total}" fill="#ffffff"/>
+            ${state.transparentBackground
+                ? ''
+                : `<rect id="qr-background" width="${total}" height="${total}" fill="#ffffff"/>`}
             <defs>${gradientDefinition(total)}</defs>
             ${modules.join('')}
             ${finders}
@@ -762,14 +774,52 @@
         $$('[data-format]').forEach((button) => {
             button.classList.toggle('active', button.dataset.format === format);
         });
+        el.pngSizeRow.classList.toggle('hidden', format !== 'png');
         if (format === 'png') {
             el.downloadText.textContent = 'Download PNG';
-            el.downloadMeta.textContent = '2048 × 2048 px · Good for web and social';
         } else {
             el.downloadText.textContent = 'Download SVG';
-            el.downloadMeta.textContent = 'Vector format · Good for print and editing';
         }
+        updateDownloadMeta();
         updateFilenameMessage();
+    }
+
+    function setPngSize(size) {
+        state.pngSize = Number(size);
+        $$('[data-png-size]').forEach((button) => {
+            const active = Number(button.dataset.pngSize) === state.pngSize;
+            button.classList.toggle('active', active);
+            button.setAttribute('aria-pressed', String(active));
+        });
+        updateDownloadMeta();
+    }
+
+    function setExportBackground(background) {
+        state.transparentBackground = background === 'transparent';
+        $$('[data-export-background]').forEach((button) => {
+            const active = button.dataset.exportBackground === background;
+            button.classList.toggle('active', active);
+            button.setAttribute('aria-pressed', String(active));
+        });
+        updateDownloadMeta();
+        queueRender();
+    }
+
+    function updateDownloadMeta() {
+        const background = state.transparentBackground
+            ? 'Transparent background'
+            : 'White background';
+        el.downloadMeta.textContent = state.format === 'png'
+            ? `${state.pngSize} × ${state.pngSize} px · ${background}`
+            : `Vector format · ${background}`;
+    }
+
+    function svgForExport() {
+        if (!state.transparentBackground) return currentSvg;
+        return currentSvg.replace(
+            /\s*<rect id="qr-background"[^>]*\/>/,
+            ''
+        );
     }
 
     function triggerDownload(blob, extension) {
@@ -784,21 +834,23 @@
     }
 
     function downloadSvg() {
-        const content = `<?xml version="1.0" encoding="UTF-8"?>\n${currentSvg}`;
+        const content = `<?xml version="1.0" encoding="UTF-8"?>\n${svgForExport()}`;
         triggerDownload(new Blob([content], { type: 'image/svg+xml;charset=utf-8' }), 'svg');
     }
 
     function downloadPng() {
-        const blob = new Blob([currentSvg], { type: 'image/svg+xml;charset=utf-8' });
+        const blob = new Blob([svgForExport()], { type: 'image/svg+xml;charset=utf-8' });
         const objectUrl = URL.createObjectURL(blob);
         const image = new Image();
         image.onload = () => {
             const canvas = document.createElement('canvas');
-            canvas.width = 2048;
-            canvas.height = 2048;
+            canvas.width = state.pngSize;
+            canvas.height = state.pngSize;
             const context = canvas.getContext('2d');
-            context.fillStyle = '#ffffff';
-            context.fillRect(0, 0, canvas.width, canvas.height);
+            if (!state.transparentBackground) {
+                context.fillStyle = '#ffffff';
+                context.fillRect(0, 0, canvas.width, canvas.height);
+            }
             context.drawImage(image, 0, 0, canvas.width, canvas.height);
             URL.revokeObjectURL(objectUrl);
             canvas.toBlob((pngBlob) => {
@@ -840,7 +892,9 @@
         setColorMode('solid');
         setLogoColorMode('brand');
         setLogo('');
-        setFormat('png');
+        setPngSize(defaults.pngSize);
+        setExportBackground(defaults.transparentBackground ? 'transparent' : 'white');
+        setFormat(defaults.format);
         validateAndRender(false);
         el.url.focus();
     }
@@ -997,6 +1051,14 @@
     $$('[data-format]').forEach((button) => {
         button.addEventListener('click', () => setFormat(button.dataset.format));
     });
+    $$('[data-png-size]').forEach((button) => {
+        button.addEventListener('click', () => setPngSize(button.dataset.pngSize));
+    });
+    $$('[data-export-background]').forEach((button) => {
+        button.addEventListener('click', () => {
+            setExportBackground(button.dataset.exportBackground);
+        });
+    });
 
     el.download.addEventListener('click', () => {
         if (!isValidUri(normalizeQrContent(state.url)) || !currentSvg) {
@@ -1011,5 +1073,8 @@
     renderShapeDemos();
     renderEdgeDemos();
     updateAllLogoOptionIcons();
+    setPngSize(defaults.pngSize);
+    setExportBackground(defaults.transparentBackground ? 'transparent' : 'white');
+    setFormat(defaults.format);
     validateAndRender(false);
 })();
