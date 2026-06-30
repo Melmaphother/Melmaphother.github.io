@@ -12,3 +12,6 @@ Brand SVG icons in `assets/logos/` are sourced from:
 - [SuperTinyIcons](https://github.com/edent/SuperTinyIcons), used for the
   LinkedIn fallback icon. SuperTinyIcons is licensed under MIT. Brand names and
   trademarks remain the property of their respective owners.
+- [Material Design Icons](https://github.com/Templarian/MaterialDesign-SVG),
+  used for the generic Mail icon. Material Design Icons are licensed under
+  Apache-2.0.

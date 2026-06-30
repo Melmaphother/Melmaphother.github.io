@@ -411,84 +411,17 @@ button {
 
 .edge-demo {
     position: relative;
-    width: 38px;
-    height: 38px;
+    width: 72px;
+    max-width: 100%;
+    height: 48px;
     display: block;
+    color: #3c3b40;
 }
 
-.edge-demo::before,
-.edge-demo::after {
-    content: '';
-    position: absolute;
-    inset: 3px;
-    border: 6px solid #3c3b40;
-}
-
-.edge-demo::after {
-    inset: 14px;
-    border: 0;
-    background: #3c3b40;
-}
-
-.edge-rounded::before,
-.edge-rounded::after {
-    border-radius: 10px;
-}
-
-.edge-circle::before,
-.edge-circle::after {
-    border-radius: 50%;
-}
-
-.edge-leaf-tl::before,
-.edge-leaf-tl::after {
-    border-radius: 14px 14px 14px 2px;
-}
-
-.edge-leaf-tr::before,
-.edge-leaf-tr::after { border-radius: 14px 14px 2px 14px; }
-.edge-leaf-br::before,
-.edge-leaf-br::after { border-radius: 14px 2px 14px 14px; }
-.edge-leaf-bl::before,
-.edge-leaf-bl::after { border-radius: 2px 14px 14px 14px; }
-.edge-notch-tl::before { border-radius: 2px 14px 14px 14px; }
-.edge-notch-tl::after { border-radius: 2px 50% 50% 50%; }
-.edge-notch-tr::before { border-radius: 14px 2px 14px 14px; }
-.edge-notch-tr::after { border-radius: 50% 2px 50% 50%; }
-.edge-notch-br::before { border-radius: 14px 14px 2px 14px; }
-.edge-notch-br::after { border-radius: 50% 50% 2px 50%; }
-.edge-notch-bl::before { border-radius: 14px 14px 14px 2px; }
-.edge-notch-bl::after { border-radius: 50% 50% 50% 2px; }
-.edge-diagonal-a::before { border-radius: 14px 2px 14px 2px; }
-.edge-diagonal-a::after { border-radius: 50%; }
-.edge-diagonal-b::before { border-radius: 2px 14px 2px 14px; }
-.edge-diagonal-b::after { border-radius: 4px; }
-.edge-mix-a::before { border-radius: 14px 2px 14px 14px; }
-.edge-mix-a::after { border-radius: 2px 50% 50% 50%; }
-.edge-mix-b::before { border-radius: 0 13px 0 13px; }
-.edge-mix-b::after { border-radius: 3px; }
-.edge-mix-c::before { border-radius: 50%; }
-.edge-mix-c::after { border-radius: 4px 13px 13px 13px; }
-.edge-dot-square::before,
-.edge-dot-rounded::before,
-.edge-dot-dense::before {
-    border: 0;
-    background: radial-gradient(circle, #3c3b40 42%, transparent 45%) 0 0 / 6px 6px;
-}
-.edge-dot-square::after,
-.edge-dot-dense::after {
-    inset: 13px;
-    background: radial-gradient(circle, #3c3b40 42%, transparent 45%) 0 0 / 5px 5px;
-}
-.edge-dot-dense::before {
-    background-size: 5px 5px;
-}
-.edge-dot-dense::after {
-    background-size: 4px 4px;
-}
-.edge-dot-rounded::before,
-.edge-dot-rounded::after {
-    border-radius: 9px;
+.edge-demo svg {
+    width: 100%;
+    height: 100%;
+    display: block;
 }
 
 .edge-custom-panel {
@@ -626,6 +559,10 @@ select {
 }
 
 .segmented [data-color-mode="gradient"] {
+    color: inherit;
+}
+
+.segmented [data-color-mode="gradient"] span {
     color: transparent;
     background: linear-gradient(135deg, #6657d8, #d95fb5);
     -webkit-background-clip: text;
@@ -776,6 +713,12 @@ select {
     object-fit: contain;
     display: block;
     font-weight: 700;
+}
+
+.logo-option > span:first-child {
+    font-size: 1.35rem;
+    line-height: 25px;
+    text-align: center;
 }
 
 .logo-option > img:first-child {

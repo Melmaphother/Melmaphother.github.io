@@ -18,7 +18,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
     <link rel="manifest" href="assets/favicon/site.webmanifest">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=5">
 </head>
 
 <body>
@@ -113,11 +113,10 @@
                         <button class="edge-card" type="button" data-edge-preset="notch-tr" role="radio" aria-checked="false" aria-label="Top right notch corners"><span class="edge-demo edge-notch-tr"></span></button>
                         <button class="edge-card" type="button" data-edge-preset="notch-br" role="radio" aria-checked="false" aria-label="Bottom right notch corners"><span class="edge-demo edge-notch-br"></span></button>
                         <button class="edge-card" type="button" data-edge-preset="notch-bl" role="radio" aria-checked="false" aria-label="Bottom left notch corners"><span class="edge-demo edge-notch-bl"></span></button>
-                        <button class="edge-card" type="button" data-edge-preset="diagonal-a" role="radio" aria-checked="false" aria-label="Diagonal leaf corners"><span class="edge-demo edge-diagonal-a"></span></button>
-                        <button class="edge-card" type="button" data-edge-preset="diagonal-b" role="radio" aria-checked="false" aria-label="Alternate diagonal leaf corners"><span class="edge-demo edge-diagonal-b"></span></button>
-                        <button class="edge-card" type="button" data-edge-preset="mix-a" role="radio" aria-checked="false" aria-label="Mixed corner set A"><span class="edge-demo edge-mix-a"></span></button>
-                        <button class="edge-card" type="button" data-edge-preset="mix-b" role="radio" aria-checked="false" aria-label="Mixed corner set B"><span class="edge-demo edge-mix-b"></span></button>
-                        <button class="edge-card" type="button" data-edge-preset="mix-c" role="radio" aria-checked="false" aria-label="Mixed corner set C"><span class="edge-demo edge-mix-c"></span></button>
+                        <button class="edge-card" type="button" data-edge-preset="arc-tl" role="radio" aria-checked="false" aria-label="Circular arc waterdrop pointing top left"><span class="edge-demo edge-arc-tl"></span></button>
+                        <button class="edge-card" type="button" data-edge-preset="arc-tr" role="radio" aria-checked="false" aria-label="Circular arc waterdrop pointing top right"><span class="edge-demo edge-arc-tr"></span></button>
+                        <button class="edge-card" type="button" data-edge-preset="arc-br" role="radio" aria-checked="false" aria-label="Circular arc waterdrop pointing bottom right"><span class="edge-demo edge-arc-br"></span></button>
+                        <button class="edge-card" type="button" data-edge-preset="arc-bl" role="radio" aria-checked="false" aria-label="Circular arc waterdrop pointing bottom left"><span class="edge-demo edge-arc-bl"></span></button>
                         <button class="edge-card" type="button" data-edge-preset="dot-square" role="radio" aria-checked="false" aria-label="Dotted square corners"><span class="edge-demo edge-dot-square"></span></button>
                         <button class="edge-card" type="button" data-edge-preset="dot-rounded" role="radio" aria-checked="false" aria-label="Dotted rounded corners"><span class="edge-demo edge-dot-rounded"></span></button>
                         <button class="edge-card" type="button" data-edge-preset="dot-dense" role="radio" aria-checked="false" aria-label="Dense dotted corners"><span class="edge-demo edge-dot-dense"></span></button>
@@ -203,7 +202,7 @@
 
                     <div class="segmented" role="tablist" aria-label="Color mode">
                         <button type="button" class="active" data-color-mode="solid" role="tab" aria-selected="true">Solid</button>
-                        <button type="button" data-color-mode="gradient" role="tab" aria-selected="false">Gradient</button>
+                        <button type="button" data-color-mode="gradient" role="tab" aria-selected="false"><span>Gradient</span></button>
                     </div>
 
                     <div id="solid-panel" class="color-panel">
@@ -248,9 +247,11 @@
                     </div>
 
                     <div class="logo-grid" id="logo-grid">
-                        <button type="button" class="logo-option active" data-logo="" aria-pressed="true"><span>—</span>None</button>
+                        <button type="button" class="logo-option active" data-logo="" aria-pressed="true"><span>∅</span>None</button>
                         <button type="button" class="logo-option" data-logo="github"><img src="assets/logos/github.svg" alt="" aria-hidden="true">GitHub</button>
                         <button type="button" class="logo-option" data-logo="arxiv"><img src="assets/logos/arxiv.svg" alt="" aria-hidden="true">arXiv</button>
+                        <button type="button" class="logo-option" data-logo="gmail"><img src="assets/logos/gmail.svg" alt="" aria-hidden="true">Gmail</button>
+                        <button type="button" class="logo-option" data-logo="mail"><img src="assets/logos/mail.svg" alt="" aria-hidden="true">Mail</button>
                         <button type="button" class="logo-option" data-logo="huggingface"><img src="assets/logos/huggingface.svg" alt="" aria-hidden="true">Hugging Face</button>
                         <button type="button" class="logo-option" data-logo="x"><img src="assets/logos/x.svg" alt="" aria-hidden="true">X</button>
                         <button type="button" class="logo-option" data-logo="linkedin"><img src="assets/logos/linkedin.svg" alt="" aria-hidden="true">LinkedIn</button>
@@ -296,8 +297,8 @@
                         <label>Logo size <output id="logo-size-output">20%</output>
                             <input id="logo-size" type="range" min="14" max="28" value="20">
                         </label>
-                        <label>Background padding <output id="logo-padding-output">8%</output>
-                            <input id="logo-padding" type="range" min="3" max="14" value="8">
+                        <label>Background padding <output id="logo-padding-output">5%</output>
+                            <input id="logo-padding" type="range" min="3" max="14" value="5">
                         </label>
                         <button type="button" class="text-button" id="remove-logo">Remove logo</button>
                     </div>
@@ -363,7 +364,7 @@
     </footer>
 
     <script src="vendor/qrcode-generator.min.js"></script>
-    <script src="app.js"></script>
+    <script src="app.js?v=5"></script>
 </body>
 
 </html>

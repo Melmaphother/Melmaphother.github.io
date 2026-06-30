@@ -28,7 +28,7 @@
         logoColorMode: 'brand',
         logoColor: '#18171b',
         logoSize: 20,
-        logoPadding: 8,
+        logoPadding: 5,
         format: 'png'
     };
 
@@ -75,6 +75,8 @@
     const brandMap = {
         github: 'assets/logos/github.svg',
         arxiv: 'assets/logos/arxiv.svg',
+        gmail: 'assets/logos/gmail.svg',
+        mail: 'assets/logos/mail.svg',
         huggingface: 'assets/logos/huggingface.svg',
         x: 'assets/logos/x.svg',
         linkedin: 'assets/logos/linkedin.svg',
@@ -90,7 +92,9 @@
     const brandColors = {
         github: '#181717',
         arxiv: '#b31b1b',
-        huggingface: '#ffcc4d',
+        gmail: '#ea4335',
+        mail: '#18171b',
+        huggingface: '#fbd21e',
         x: '#000000',
         linkedin: '#0a66c2',
         youtube: '#ff0000',
@@ -124,11 +128,10 @@
         'notch-tr': sameCorners('notch-tr', 'circle'),
         'notch-br': sameCorners('notch-br', 'circle'),
         'notch-bl': sameCorners('notch-bl', 'circle'),
-        'diagonal-a': { corners: [['leaf-tl', 'circle'], ['leaf-br', 'circle'], ['leaf-tl', 'circle']] },
-        'diagonal-b': { corners: [['leaf-tr', 'square'], ['leaf-bl', 'square'], ['leaf-tr', 'square']] },
-        'mix-a': { corners: [['rounded', 'circle'], ['circle', 'rounded'], ['leaf-bl', 'square']] },
-        'mix-b': { corners: [['square', 'square'], ['leaf-tr', 'circle'], ['rounded', 'square']] },
-        'mix-c': { corners: [['circle', 'rounded'], ['notch-br', 'circle'], ['leaf-tl', 'notch-tl']] },
+        'arc-tl': sameCorners('arc-tl'),
+        'arc-tr': sameCorners('arc-tr'),
+        'arc-br': sameCorners('arc-br'),
+        'arc-bl': sameCorners('arc-bl'),
         'dot-square': sameCorners('dot-square', 'dot-square'),
         'dot-rounded': sameCorners('dot-rounded', 'dot-rounded'),
         'dot-dense': sameCorners('dot-dense', 'dot-dense')
@@ -350,60 +353,127 @@
         return `<rect x="${x}" y="${y}" width="1" height="1" fill="${fill}"/>`;
     }
 
+    function selectiveRoundedRectPath(x, y, size, radii) {
+        const [topLeft, topRight, bottomRight, bottomLeft] = radii;
+        const right = x + size;
+        const bottom = y + size;
+        return [
+            `M${x + topLeft} ${y}`,
+            `H${right - topRight}`,
+            topRight ? `Q${right} ${y} ${right} ${y + topRight}` : `H${right}`,
+            `V${bottom - bottomRight}`,
+            bottomRight ? `Q${right} ${bottom} ${right - bottomRight} ${bottom}` : `V${bottom}`,
+            `H${x + bottomLeft}`,
+            bottomLeft ? `Q${x} ${bottom} ${x} ${bottom - bottomLeft}` : `H${x}`,
+            `V${y + topLeft}`,
+            topLeft ? `Q${x} ${y} ${x + topLeft} ${y}` : `V${y}`,
+            'Z'
+        ].join('');
+    }
+
     function shapeRect(x, y, size, style, fill) {
         if (style === 'circle') {
             return `<circle cx="${x + size / 2}" cy="${y + size / 2}" r="${size / 2}" fill="${fill}"/>`;
+        }
+        if (style.startsWith('arc')) {
+            const right = x + size;
+            const bottom = y + size;
+            const centerX = x + size / 2;
+            const centerY = y + size / 2;
+            const radius = size / 2;
+            const paths = {
+                'arc-tl': `M${centerX} ${y}A${radius} ${radius} 0 1 1 ${x} ${centerY}L${x} ${y}Z`,
+                'arc-tr': `M${right} ${centerY}A${radius} ${radius} 0 1 1 ${centerX} ${y}L${right} ${y}Z`,
+                'arc-br': `M${centerX} ${bottom}A${radius} ${radius} 0 1 1 ${right} ${centerY}L${right} ${bottom}Z`,
+                'arc-bl': `M${x} ${centerY}A${radius} ${radius} 0 1 1 ${centerX} ${bottom}L${x} ${bottom}Z`
+            };
+            return `<path d="${paths[style]}" fill="${fill}"/>`;
         }
         if (style.startsWith('notch')) {
             const mapped = style.replace('notch', 'leaf');
             return shapeRect(x, y, size, mapped, fill);
         }
         if (style.startsWith('leaf')) {
-            const leafRadius = Math.max(.45, size * .38);
-            const right = x + size;
-            const bottom = y + size;
-            const r = leafRadius;
-            if (style === 'leaf-tl') {
-                return `<path d="M${x} ${y}H${right - r}Q${right} ${y} ${right} ${y + r}V${bottom - r}Q${right} ${bottom} ${right - r} ${bottom}H${x}Z" fill="${fill}"/>`;
-            }
-            if (style === 'leaf-tr') {
-                return `<path d="M${x + r} ${y}H${right}V${bottom - r}Q${right} ${bottom} ${right - r} ${bottom}H${x + r}Q${x} ${bottom} ${x} ${bottom - r}V${y + r}Q${x} ${y} ${x + r} ${y}Z" fill="${fill}"/>`;
-            }
-            if (style === 'leaf-br') {
-                return `<path d="M${x} ${y}H${right}V${bottom}H${x + r}Q${x} ${bottom} ${x} ${bottom - r}Z" fill="${fill}"/>`;
-            }
-            return `<path d="M${x} ${y + r}Q${x} ${y} ${x + r} ${y}H${right - r}Q${right} ${y} ${right} ${y + r}V${bottom}H${x}Z" fill="${fill}"/>`;
+            const r = Math.max(.45, size * .34);
+            const radiiByStyle = {
+                'leaf-tl': [0, r, r, r],
+                'leaf-tr': [r, 0, r, r],
+                'leaf-br': [r, r, 0, r],
+                'leaf-bl': [r, r, r, 0]
+            };
+            return `<path d="${selectiveRoundedRectPath(x, y, size, radiiByStyle[style])}" fill="${fill}"/>`;
         }
         const radius = style === 'rounded' ? Math.max(.45, size * .2) : 0;
         return `<rect x="${x}" y="${y}" width="${size}" height="${size}" rx="${radius}" fill="${fill}"/>`;
     }
 
-    function dottedFinderElement(x, y, rounded, fill) {
-        const radius = rounded ? '.18' : '0';
+    function dottedFinderElement(x, y, style, fill) {
+        const dense = style === 'dot-dense';
+        const rounded = style === 'dot-rounded';
+        const size = dense ? .9 : .72;
+        const offset = (1 - size) / 2;
+        const radius = rounded ? size / 2 : dense ? .2 : 0;
         const dots = [];
         for (let i = 0; i < 7; i += 1) {
             for (let j = 0; j < 7; j += 1) {
                 const border = i === 0 || i === 6 || j === 0 || j === 6;
                 const center = i >= 2 && i <= 4 && j >= 2 && j <= 4;
                 if (border || center) {
-                    dots.push(`<rect x="${x + j + .14}" y="${y + i + .14}" width=".72" height=".72" rx="${radius}" fill="${fill}"/>`);
+                    dots.push(`<rect x="${x + j + offset}" y="${y + i + offset}" width="${size}" height="${size}" rx="${radius}" fill="${fill}"/>`);
                 }
             }
         }
         return dots.join('');
     }
 
-    function finderElement(row, col, outerStyle, centerStyle, fill) {
-        const x = col + 4;
-        const y = row + 4;
+    function finderShapeElement(x, y, outerStyle, centerStyle, fill) {
         if (outerStyle === 'dot-square' || outerStyle === 'dot-rounded' || outerStyle === 'dot-dense') {
-            return dottedFinderElement(x, y, outerStyle !== 'dot-square', fill);
+            return dottedFinderElement(x, y, outerStyle, fill);
         }
         return [
             shapeRect(x, y, 7, outerStyle, fill),
             shapeRect(x + 1, y + 1, 5, outerStyle, '#ffffff'),
             shapeRect(x + 2, y + 2, 3, centerStyle, fill)
         ].join('');
+    }
+
+    function finderElement(row, col, outerStyle, centerStyle, fill) {
+        return finderShapeElement(col + 4, row + 4, outerStyle, centerStyle, fill);
+    }
+
+    function finderPreviewElement(x, y, scale, outerStyle, centerStyle) {
+        const finder = finderShapeElement(0, 0, outerStyle, centerStyle, 'currentColor');
+        return `<g transform="translate(${x} ${y}) scale(${scale})">${finder}</g>`;
+    }
+
+    function createEdgePresetPreviewSvg(preset) {
+        const corners = edgePresets[preset].corners;
+        return `<svg viewBox="0 0 58 48" aria-hidden="true">
+            ${finderPreviewElement(11.5, 6.5, 5, corners[0][0], corners[0][1])}
+        </svg>`;
+    }
+
+    function createSingleEdgePreviewSvg(style) {
+        const centerStyle = style === 'dot-square' || style === 'dot-rounded'
+            ? style
+            : 'circle';
+        return `<svg viewBox="0 0 38 38" aria-hidden="true">
+            ${finderPreviewElement(5, 5, 4, style, centerStyle)}
+        </svg>`;
+    }
+
+    function renderEdgeDemos() {
+        $$('.edge-card[data-edge-preset]').forEach((button) => {
+            const demo = $('.edge-demo', button);
+            if (demo) demo.innerHTML = createEdgePresetPreviewSvg(button.dataset.edgePreset);
+        });
+        $$('.corner-menu button[data-corner-style]').forEach((button) => {
+            const demo = $('.edge-demo', button);
+            if (demo) demo.innerHTML = createSingleEdgePreviewSvg(button.dataset.cornerStyle);
+        });
+        $$('.corner-trigger .edge-demo').forEach((demo) => {
+            demo.innerHTML = createSingleEdgePreviewSvg('square');
+        });
     }
 
     function gradientDefinition(total) {
@@ -586,7 +656,9 @@
             button.classList.toggle('active', button.dataset.cornerStyle === style);
         });
         if (selectedButton && triggerDemo) {
-            triggerDemo.className = $('.edge-demo', selectedButton).className;
+            const selectedDemo = $('.edge-demo', selectedButton);
+            triggerDemo.className = selectedDemo.className;
+            triggerDemo.innerHTML = selectedDemo.innerHTML;
         }
     }
 
@@ -909,6 +981,7 @@
 
     $('#reset-all').addEventListener('click', resetAll);
     renderShapeDemos();
+    renderEdgeDemos();
     updateAllLogoOptionIcons();
     validateAndRender(false);
 })();
