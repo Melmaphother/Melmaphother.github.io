@@ -43,6 +43,7 @@
         form: $('#config-form'),
         url: $('#url-input'),
         name: $('#name-input'),
+        filenameMessage: $('#filename-message'),
         urlField: $('.url-field'),
         urlMessage: $('#url-message'),
         preview: $('#qr-preview'),
@@ -158,6 +159,17 @@
         }
     }
 
+    function isEmailAddress(value) {
+        const text = value.trim();
+        return !/^[a-z][a-z0-9+.-]*:/i.test(text)
+            && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(text);
+    }
+
+    function normalizeQrContent(value) {
+        const text = value.trim();
+        return isEmailAddress(text) ? `mailto:${text}` : text;
+    }
+
     function sanitizeFilename(value) {
         const cleaned = value
             .trim()
@@ -165,6 +177,11 @@
             .replace(/[.\s]+$/g, '')
             .slice(0, 80);
         return cleaned || 'qrcode';
+    }
+
+    function updateFilenameMessage() {
+        el.filenameMessage.textContent =
+            `Your file will be saved as ${sanitizeFilename(state.name)}.${state.format}.`;
     }
 
     function hexToRgb(hex) {
@@ -264,7 +281,9 @@
 
     function validateAndRender(showEmptyError = false) {
         const value = state.url.trim();
-        const valid = isValidUri(value);
+        const content = normalizeQrContent(value);
+        const email = isEmailAddress(value);
+        const valid = isValidUri(content);
         const empty = !value;
 
         el.urlField.classList.toggle('invalid', (!empty || showEmptyError) && !valid);
@@ -272,10 +291,12 @@
 
         if (empty) {
             el.urlMessage.textContent = showEmptyError
-                ? 'URL is required. Enter a complete link.'
-                : 'Enter a complete link or URI, such as https://example.com';
+                ? 'A URL or email is required.'
+                : 'Enter a complete link, URI, or email address.';
         } else if (!valid) {
-            el.urlMessage.textContent = 'This link is not valid. Check the protocol and content.';
+            el.urlMessage.textContent = 'This URL or email is not valid. Check the address and try again.';
+        } else if (email) {
+            el.urlMessage.textContent = 'Email recognized. Scanning the QR code will start a new message.';
         } else {
             el.urlMessage.textContent = 'Looks good. The QR code is updating in real time.';
         }
@@ -290,7 +311,7 @@
         }
 
         try {
-            currentSvg = createQrSvg(value);
+            currentSvg = createQrSvg(content);
             el.preview.innerHTML = currentSvg;
             el.preview.classList.add('visible');
             el.placeholder.classList.add('hidden');
@@ -747,6 +768,7 @@
             el.downloadText.textContent = 'Download SVG';
             el.downloadMeta.textContent = 'Vector format · Good for print and editing';
         }
+        updateFilenameMessage();
     }
 
     function triggerDownload(blob, extension) {
@@ -828,7 +850,10 @@
     });
 
     el.url.addEventListener('blur', () => validateAndRender(Boolean(state.url.trim())));
-    el.name.addEventListener('input', () => { state.name = el.name.value; });
+    el.name.addEventListener('input', () => {
+        state.name = el.name.value;
+        updateFilenameMessage();
+    });
 
     $$('.shape-card').forEach((button) => {
         button.addEventListener('click', () => setDotStyle(button.dataset.dotStyle));
@@ -973,7 +998,7 @@
     });
 
     el.download.addEventListener('click', () => {
-        if (!isValidUri(state.url) || !currentSvg) {
+        if (!isValidUri(normalizeQrContent(state.url)) || !currentSvg) {
             validateAndRender(true);
             return;
         }

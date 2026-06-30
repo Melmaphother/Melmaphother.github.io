@@ -54,23 +54,24 @@
                         <span class="step">01</span>
                         <div>
                             <h2>Content</h2>
-                            <p>Your link and file name</p>
+                            <p>Your link or email and file name</p>
                         </div>
                     </div>
 
-                    <label class="field-label" for="url-input">URL <b>required</b></label>
+                    <label class="field-label" for="url-input">URL or Email <b>required</b></label>
                     <div class="text-field url-field">
                         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.7-1.7"/></svg>
-                        <input id="url-input" name="url" type="url" inputmode="url" autocomplete="url"
-                            placeholder="https://example.com" aria-describedby="url-message">
+                        <input id="url-input" name="url" type="text" autocomplete="off"
+                            placeholder="https://example.com or hello@example.com" aria-describedby="url-message">
                     </div>
-                    <p class="field-message" id="url-message">Enter a complete link or URI, such as https://example.com</p>
+                    <p class="field-message" id="url-message">Enter a complete link, URI, or email address.</p>
 
                     <label class="field-label" for="name-input">Name <span>optional, used for the file name</span></label>
                     <div class="text-field">
                         <input id="name-input" name="name" type="text" maxlength="80" placeholder="qrcode">
                         <span class="file-suffix">.png / .svg</span>
                     </div>
+                    <p class="field-message" id="filename-message">Your file will be saved as qrcode.png.</p>
                 </section>
 
                 <section class="config-section">
@@ -336,7 +337,7 @@
                             <span class="placeholder-qr" aria-hidden="true">
                                 <img src="assets/qrstamp-logo.png" alt="">
                             </span>
-                            <b>Enter a URL to start</b>
+                            <b>Enter a URL or email to start</b>
                             <p>Your preview appears here in real time</p>
                         </div>
                         <div id="qr-preview" role="img" aria-label="QR code preview"></div>
@@ -344,7 +345,7 @@
 
                     <p class="preview-note">
                         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10zm-3-10 2 2 4-5"/></svg>
-                        Your URL and logo stay in your browser
+                        Your URL, email, and logo stay in your browser
                     </p>
 
                     <div class="format-row">
@@ -376,7 +377,7 @@
     </footer>
 
     <script src="vendor/qrcode-generator.min.js"></script>
-    <script src="app.js?v=6"></script>
+    <script src="app.js?v=8"></script>
 </body>
 
 </html>
