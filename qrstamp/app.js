@@ -25,6 +25,7 @@
         gradientAngle: 135,
         logo: '',
         customLogo: '',
+        customLogoName: '',
         logoColorMode: 'brand',
         logoColor: '#18171b',
         logoSize: 20,
@@ -40,6 +41,7 @@
     };
     let currentSvg = '';
     let renderTimer = null;
+    let actionMessageTimer = null;
     const QUIET_ZONE = 2;
 
     const el = {
@@ -51,9 +53,15 @@
         urlMessage: $('#url-message'),
         preview: $('#qr-preview'),
         placeholder: $('#placeholder'),
+        targetLinkCard: $('#target-link-card'),
+        targetLink: $('#target-link'),
         download: $('#download-button'),
         downloadText: $('#download-button span'),
         downloadMeta: $('#download-meta'),
+        copyQr: $('#copy-qr-button'),
+        copyLink: $('#copy-link-button'),
+        share: $('#share-button'),
+        actionMessage: $('#action-message'),
         pngSizeRow: $('#png-size-row'),
         contrastWarning: $('#contrast-warning'),
         solidPanel: $('#solid-panel'),
@@ -66,6 +74,10 @@
         uploadZone: $('#upload-zone'),
         logoUpload: $('#logo-upload'),
         uploadMessage: $('#upload-message'),
+        uploadEmptyState: $('#upload-empty-state'),
+        uploadSelectedState: $('#upload-selected-state'),
+        customLogoThumbnail: $('#custom-logo-thumbnail'),
+        customLogoDetail: $('#custom-logo-detail'),
         logoSettings: $('#logo-settings'),
         logoColorControls: $('#logo-color-controls'),
         logoColorPickerLabel: $('#logo-color-picker-label'),
@@ -172,6 +184,28 @@
     function normalizeQrContent(value) {
         const text = value.trim();
         return isEmailAddress(text) ? `mailto:${text}` : text;
+    }
+
+    function setTargetLink(content, valid) {
+        [el.copyQr, el.copyLink, el.share].forEach((button) => {
+            button.disabled = !valid;
+        });
+        if (!valid) {
+            setActionMessage('');
+            el.targetLink.removeAttribute('href');
+            el.targetLink.removeAttribute('target');
+            el.targetLink.removeAttribute('title');
+            el.targetLink.textContent = '—';
+            return;
+        }
+        el.targetLink.href = content;
+        el.targetLink.textContent = content;
+        el.targetLink.title = content;
+        if (/^https?:\/\//i.test(content)) {
+            el.targetLink.target = '_blank';
+        } else {
+            el.targetLink.removeAttribute('target');
+        }
     }
 
     function sanitizeFilename(value) {
@@ -307,6 +341,7 @@
         }
 
         el.download.disabled = !valid;
+        setTargetLink(content, valid);
         if (!valid) {
             currentSvg = '';
             el.preview.innerHTML = '';
@@ -323,6 +358,7 @@
         } catch (error) {
             currentSvg = '';
             el.download.disabled = true;
+            setTargetLink('', false);
             el.preview.classList.remove('visible');
             el.placeholder.classList.remove('hidden');
             el.urlField.classList.add('invalid');
@@ -571,16 +607,35 @@
         });
     }
 
-    function logoElement(total) {
-        const source = state.customLogo || brandLogoDataUri(state.logo);
-        if (!source) return '';
+    function logoLayout(total) {
         const imageSize = total * (state.logoSize / 100);
         const pad = total * (state.logoPadding / 100);
         const boxSize = imageSize + pad;
         const boxX = (total - boxSize) / 2;
         const imageX = (total - imageSize) / 2;
+        return { imageSize, boxSize, boxX, imageX };
+    }
+
+    function moduleOverlapsLogo(row, col, layout) {
+        if (!layout) return false;
+        const x = col + QUIET_ZONE;
+        const y = row + QUIET_ZONE;
+        const boxRight = layout.boxX + layout.boxSize;
+        return x + 1 > layout.boxX
+            && x < boxRight
+            && y + 1 > layout.boxX
+            && y < boxRight;
+    }
+
+    function logoElement(total) {
+        const source = state.customLogo || brandLogoDataUri(state.logo);
+        if (!source) return '';
+        const { imageSize, boxSize, boxX, imageX } = logoLayout(total);
+        const background = state.transparentBackground
+            ? ''
+            : `<rect x="${boxX}" y="${boxX}" width="${boxSize}" height="${boxSize}" rx="${boxSize * .18}" fill="#ffffff"/>`;
         return `<g>
-            <rect x="${boxX}" y="${boxX}" width="${boxSize}" height="${boxSize}" rx="${boxSize * .18}" fill="#ffffff"/>
+            ${background}
             <image href="${escapeXml(source)}" x="${imageX}" y="${imageX}" width="${imageSize}" height="${imageSize}" preserveAspectRatio="xMidYMid meet"/>
         </g>`;
     }
@@ -593,12 +648,17 @@
 
         const count = qr.getModuleCount();
         const total = count + QUIET_ZONE * 2;
+        const logoBounds = hasLogo ? logoLayout(total) : null;
         const fill = state.colorMode === 'gradient' ? 'url(#qrFill)' : state.solidColor;
         const modules = [];
 
         for (let row = 0; row < count; row += 1) {
             for (let col = 0; col < count; col += 1) {
-                if (qr.isDark(row, col) && !isFinderCell(row, col, count)) {
+                if (
+                    qr.isDark(row, col)
+                    && !isFinderCell(row, col, count)
+                    && !moduleOverlapsLogo(row, col, logoBounds)
+                ) {
                     modules.push(dotElement(row, col, state.dotStyle, fill));
                 }
             }
@@ -698,9 +758,10 @@
         }
     }
 
-    function setLogo(name, customSource = '') {
+    function setLogo(name, customSource = '', customName = '') {
         state.logo = name;
         state.customLogo = customSource;
+        state.customLogoName = customSource ? customName || 'Custom image' : '';
         if (name && !customSource) preloadBrandLogo(name);
         $$('.logo-option').forEach((button) => {
             const active = !customSource && button.dataset.logo === name;
@@ -709,6 +770,25 @@
         });
         el.logoSettings.classList.toggle('hidden', !(name || customSource));
         el.logoColorControls.classList.toggle('hidden', Boolean(customSource));
+        el.uploadZone.classList.toggle('has-logo', Boolean(customSource));
+        el.uploadEmptyState.classList.toggle('hidden', Boolean(customSource));
+        el.uploadSelectedState.classList.toggle('hidden', !customSource);
+        if (customSource) {
+            el.customLogoThumbnail.src = customSource;
+            el.customLogoDetail.textContent =
+                `${state.customLogoName} · Click or drop to replace`;
+            el.uploadZone.setAttribute(
+                'aria-label',
+                `Custom logo selected: ${state.customLogoName}. Click, paste, or drop to replace.`
+            );
+        } else {
+            el.customLogoThumbnail.removeAttribute('src');
+            el.customLogoDetail.textContent = 'Click or drop to replace';
+            el.uploadZone.setAttribute(
+                'aria-label',
+                'Paste, click, or drop a custom logo'
+            );
+        }
         if (name && !customSource) {
             const color = brandColors[name] || defaults.logoColor;
             if (state.logoColorMode === 'brand') el.logoColorPicker.value = color;
@@ -747,7 +827,7 @@
             return;
         }
         const reader = new FileReader();
-        reader.onload = () => setLogo('custom', reader.result);
+        reader.onload = () => setLogo('custom', reader.result, file.name || 'Pasted image');
         reader.onerror = () => {
             el.uploadMessage.textContent = 'Could not read this image. Please try again.';
             el.uploadMessage.classList.add('error');
@@ -838,30 +918,144 @@
         triggerDownload(new Blob([content], { type: 'image/svg+xml;charset=utf-8' }), 'svg');
     }
 
-    function downloadPng() {
-        const blob = new Blob([svgForExport()], { type: 'image/svg+xml;charset=utf-8' });
-        const objectUrl = URL.createObjectURL(blob);
-        const image = new Image();
-        image.onload = () => {
-            const canvas = document.createElement('canvas');
-            canvas.width = state.pngSize;
-            canvas.height = state.pngSize;
-            const context = canvas.getContext('2d');
-            if (!state.transparentBackground) {
-                context.fillStyle = '#ffffff';
-                context.fillRect(0, 0, canvas.width, canvas.height);
-            }
-            context.drawImage(image, 0, 0, canvas.width, canvas.height);
-            URL.revokeObjectURL(objectUrl);
-            canvas.toBlob((pngBlob) => {
-                if (pngBlob) triggerDownload(pngBlob, 'png');
-            }, 'image/png');
-        };
-        image.onerror = () => {
-            URL.revokeObjectURL(objectUrl);
+    function createPngBlob() {
+        return new Promise((resolve, reject) => {
+            const blob = new Blob([svgForExport()], { type: 'image/svg+xml;charset=utf-8' });
+            const objectUrl = URL.createObjectURL(blob);
+            const image = new Image();
+            image.onload = () => {
+                const canvas = document.createElement('canvas');
+                canvas.width = state.pngSize;
+                canvas.height = state.pngSize;
+                const context = canvas.getContext('2d');
+                if (!state.transparentBackground) {
+                    context.fillStyle = '#ffffff';
+                    context.fillRect(0, 0, canvas.width, canvas.height);
+                }
+                context.drawImage(image, 0, 0, canvas.width, canvas.height);
+                URL.revokeObjectURL(objectUrl);
+                canvas.toBlob((pngBlob) => {
+                    if (pngBlob) resolve(pngBlob);
+                    else reject(new Error('PNG conversion returned no image data.'));
+                }, 'image/png');
+            };
+            image.onerror = () => {
+                URL.revokeObjectURL(objectUrl);
+                reject(new Error('PNG conversion failed.'));
+            };
+            image.src = objectUrl;
+        });
+    }
+
+    async function downloadPng() {
+        try {
+            triggerDownload(await createPngBlob(), 'png');
+        } catch (error) {
+            console.error(error);
             alert('PNG export failed. Try SVG or export again.');
-        };
-        image.src = objectUrl;
+        }
+    }
+
+    function setActionMessage(message) {
+        clearTimeout(actionMessageTimer);
+        el.actionMessage.textContent = message;
+        if (message) {
+            actionMessageTimer = setTimeout(() => {
+                el.actionMessage.textContent = '';
+            }, 2800);
+        }
+    }
+
+    async function copyText(text) {
+        if (navigator.clipboard?.writeText) {
+            await navigator.clipboard.writeText(text);
+            return;
+        }
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        const copied = document.execCommand('copy');
+        textarea.remove();
+        if (!copied) throw new Error('Clipboard access is unavailable.');
+    }
+
+    async function copyQrCode() {
+        if (!navigator.clipboard?.write || typeof ClipboardItem === 'undefined') {
+            setActionMessage('Image copying is not supported in this browser.');
+            return;
+        }
+        try {
+            const pngBlob = await createPngBlob();
+            await navigator.clipboard.write([
+                new ClipboardItem({ 'image/png': pngBlob })
+            ]);
+            setActionMessage('QR code copied.');
+        } catch (error) {
+            console.error(error);
+            setActionMessage('Could not copy the QR code.');
+        }
+    }
+
+    async function copyTargetLink() {
+        const content = normalizeQrContent(state.url);
+        if (!isValidUri(content)) return false;
+        try {
+            await copyText(content);
+            setActionMessage('Link copied.');
+            return true;
+        } catch (error) {
+            console.error(error);
+            setActionMessage('Could not copy the link.');
+            return false;
+        }
+    }
+
+    async function shareTarget() {
+        const content = normalizeQrContent(state.url);
+        if (!isValidUri(content)) return;
+        if (!navigator.share) {
+            if (await copyTargetLink()) {
+                setActionMessage('Sharing is unavailable, so the link was copied.');
+            }
+            return;
+        }
+        try {
+            const shareData = {
+                title: 'QRStamp QR Code',
+                text: `QR code points to ${content}`
+            };
+            if (navigator.canShare && typeof File !== 'undefined') {
+                try {
+                    const pngBlob = await createPngBlob();
+                    const fileData = {
+                        ...shareData,
+                        files: [
+                            new File(
+                                [pngBlob],
+                                `${sanitizeFilename(state.name)}.png`,
+                                { type: 'image/png' }
+                            )
+                        ]
+                    };
+                    if (navigator.canShare(fileData)) Object.assign(shareData, fileData);
+                } catch (error) {
+                    console.warn(error);
+                }
+            }
+            if (!shareData.files && /^https?:\/\//i.test(content)) {
+                shareData.url = content;
+            }
+            await navigator.share(shareData);
+            setActionMessage('Shared.');
+        } catch (error) {
+            if (error.name !== 'AbortError') {
+                console.error(error);
+                setActionMessage('Could not share this link.');
+            }
+        }
     }
 
     function resetAll() {
@@ -1068,6 +1262,9 @@
         if (state.format === 'svg') downloadSvg();
         else downloadPng();
     });
+    el.copyQr.addEventListener('click', copyQrCode);
+    el.copyLink.addEventListener('click', copyTargetLink);
+    el.share.addEventListener('click', shareTarget);
 
     $('#reset-all').addEventListener('click', resetAll);
     renderShapeDemos();

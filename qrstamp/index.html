@@ -18,7 +18,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
     <link rel="manifest" href="assets/favicon/site.webmanifest">
-    <link rel="stylesheet" href="styles.css?v=8">
+    <link rel="stylesheet" href="styles.css?v=11">
 </head>
 
 <body>
@@ -33,11 +33,15 @@
         </a>
         <div class="header-actions">
             <a class="icon-link" href="../" aria-label="Back to homepage" title="Back to homepage">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 11 9-8 9 8v9a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg>
+                <!-- Lucide: house -->
+                <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/>
+                    <path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                </svg>
             </a>
             <a class="icon-link" href="https://github.com/Melmaphother/Melmaphother.github.io" target="_blank"
                 rel="noreferrer" aria-label="View source on GitHub" title="View source">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.87c-2.78.6-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.35 1.09 2.92.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.6 9.6 0 0 1 12 6.82a9.6 9.6 0 0 1 2.5.34c1.91-1.3 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.86V21c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
+                <svg class="brand-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.87c-2.78.6-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.35 1.09 2.92.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.6 9.6 0 0 1 12 6.82a9.6 9.6 0 0 1 2.5.34c1.91-1.3 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.86V21c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
             </a>
         </div>
     </header>
@@ -60,7 +64,11 @@
 
                     <label class="field-label" for="url-input">URL <b>required</b></label>
                     <div class="text-field url-field">
-                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.7-1.7"/></svg>
+                        <!-- Lucide: link -->
+                        <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                        </svg>
                         <input id="url-input" name="url" type="text" autocomplete="off"
                             placeholder="https://example.com or hello@example.com" aria-describedby="url-message">
                     </div>
@@ -245,7 +253,12 @@
                         </div>
                     </div>
                     <p class="contrast-warning hidden" id="contrast-warning">
-                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2 21h20zm0 6v5m0 3v.01"/></svg>
+                        <!-- Lucide: triangle-alert -->
+                        <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/>
+                            <path d="M12 9v4"/>
+                            <path d="M12 17h.01"/>
+                        </svg>
                         This color may be too light for reliable scanning on white.
                     </p>
                 </section>
@@ -301,8 +314,32 @@
 
                     <div class="upload-zone" id="upload-zone" tabindex="0" role="button" aria-label="Paste, click, or drop a custom logo">
                         <input id="logo-upload" type="file" accept=".png,.jpg,.jpeg,.webp,image/png,image/jpeg,image/webp">
-                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4m-5 5 5-5 5 5M4 15v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4"/></svg>
-                        <div><b>Upload a custom logo</b><span>Paste, click, or drop PNG / JPG / WebP</span></div>
+                        <div class="upload-empty-state" id="upload-empty-state">
+                            <!-- Lucide: upload -->
+                            <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M12 3v12"/>
+                                <path d="m17 8-5-5-5 5"/>
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            </svg>
+                            <div class="upload-copy">
+                                <b>Upload a custom logo</b>
+                                <span>Paste, click, or drop PNG / JPG / WebP</span>
+                            </div>
+                        </div>
+                        <div class="upload-selected-state hidden" id="upload-selected-state">
+                            <span class="custom-logo-thumbnail"><img id="custom-logo-thumbnail" alt=""></span>
+                            <div class="upload-copy">
+                                <b>Custom logo selected</b>
+                                <span id="custom-logo-detail">Click or drop to replace</span>
+                            </div>
+                            <!-- Lucide: refresh-cw -->
+                            <svg class="ui-icon upload-replace-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+                                <path d="M21 3v5h-5"/>
+                                <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+                                <path d="M8 16H3v5"/>
+                            </svg>
+                        </div>
                     </div>
                     <p class="field-message" id="upload-message"></p>
 
@@ -318,7 +355,11 @@
                 </section>
 
                 <button type="button" class="reset-button" id="reset-all">
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8m0-5v5h5"/></svg>
+                    <!-- Lucide: rotate-ccw -->
+                    <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                        <path d="M3 3v5h5"/>
+                    </svg>
                     Reset all settings
                 </button>
             </form>
@@ -344,43 +385,90 @@
                     </div>
 
                     <p class="preview-note">
-                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10zm-3-10 2 2 4-5"/></svg>
+                        <!-- Lucide: shield-check -->
+                        <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>
+                            <path d="m9 12 2 2 4-4"/>
+                        </svg>
                         Your URL, email, and logo stay in your browser
                     </p>
 
-                    <div class="format-row">
-                        <span>Format</span>
-                        <div class="format-switch">
-                            <button type="button" class="active" data-format="png">PNG</button>
-                            <button type="button" data-format="svg">SVG</button>
+                    <div class="export-settings">
+                        <div class="export-option target-link-row" id="target-link-card">
+                            <span>Points to</span>
+                            <a id="target-link" rel="noopener noreferrer">—</a>
                         </div>
-                    </div>
 
-                    <div class="export-options">
-                        <div class="export-option" id="png-size-row">
-                            <span>Image size</span>
-                            <div class="size-switch" aria-label="PNG image size">
-                                <button type="button" data-png-size="1024" aria-pressed="false">1024</button>
-                                <button type="button" class="active" data-png-size="2048" aria-pressed="true">2048</button>
-                                <button type="button" data-png-size="4096" aria-pressed="false">4096</button>
+                        <div class="format-row">
+                            <span>Format</span>
+                            <div class="format-switch">
+                                <button type="button" class="active" data-format="png">PNG</button>
+                                <button type="button" data-format="svg">SVG</button>
                             </div>
                         </div>
-                        <div class="export-option">
-                            <span>Background</span>
-                            <div class="background-switch" aria-label="Export background">
-                                <button type="button" class="active" data-export-background="white"
-                                    aria-pressed="true">White</button>
-                                <button type="button" data-export-background="transparent"
-                                    aria-pressed="false">Transparent</button>
+
+                        <div class="export-options">
+                            <div class="export-option" id="png-size-row">
+                                <span>Image size</span>
+                                <div class="size-switch" aria-label="PNG image size">
+                                    <button type="button" data-png-size="1024" aria-pressed="false">1024</button>
+                                    <button type="button" class="active" data-png-size="2048" aria-pressed="true">2048</button>
+                                    <button type="button" data-png-size="4096" aria-pressed="false">4096</button>
+                                </div>
+                            </div>
+                            <div class="export-option">
+                                <span>Background</span>
+                                <div class="background-switch" aria-label="Export background">
+                                    <button type="button" class="active" data-export-background="white"
+                                        aria-pressed="true">White</button>
+                                    <button type="button" data-export-background="transparent"
+                                        aria-pressed="false">Transparent</button>
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <button type="button" class="download-button" id="download-button" disabled>
-                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M4 20h16"/></svg>
+                        <!-- Lucide: download -->
+                        <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M12 15V3"/>
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <path d="m7 10 5 5 5-5"/>
+                        </svg>
                         <span>Download PNG</span>
                     </button>
+
+                    <div class="secondary-actions">
+                        <button type="button" id="copy-qr-button" disabled>
+                            <!-- Lucide: copy -->
+                            <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                <rect width="14" height="14" x="8" y="8" rx="2" ry="2"/>
+                                <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
+                            </svg>
+                            <span>Copy QR</span>
+                        </button>
+                        <button type="button" id="copy-link-button" disabled>
+                            <!-- Lucide: link -->
+                            <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                            </svg>
+                            <span>Copy link</span>
+                        </button>
+                        <button type="button" id="share-button" disabled>
+                            <!-- Lucide: share-2 -->
+                            <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                <circle cx="18" cy="5" r="3"/>
+                                <circle cx="6" cy="12" r="3"/>
+                                <circle cx="18" cy="19" r="3"/>
+                                <line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/>
+                                <line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/>
+                            </svg>
+                            <span>Share</span>
+                        </button>
+                    </div>
                     <p class="download-meta" id="download-meta">2048 × 2048 px · Good for web and social</p>
+                    <p class="action-message" id="action-message" aria-live="polite"></p>
                 </div>
 
                 <div class="scan-tip">
@@ -397,7 +485,7 @@
     </footer>
 
     <script src="vendor/qrcode-generator.min.js"></script>
-    <script src="app.js?v=11"></script>
+    <script src="app.js?v=14"></script>
 </body>
 
 </html>

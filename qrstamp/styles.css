@@ -131,13 +131,16 @@ button {
     width: 18px;
     fill: none;
     stroke: currentColor;
-    stroke-width: 1.8;
+    stroke-width: 2;
     stroke-linecap: round;
     stroke-linejoin: round;
 }
 
 .icon-link svg {
     width: 17px;
+}
+
+.icon-link .brand-icon {
     fill: currentColor;
     stroke: none;
 }
@@ -826,6 +829,14 @@ select {
     transition: border-color .2s ease, background .2s ease;
 }
 
+.upload-zone.has-logo {
+    justify-content: stretch;
+    padding: 9px 12px;
+    border-style: solid;
+    border-color: #9e94df;
+    background: rgba(237, 233, 255, .58);
+}
+
 .upload-zone:hover,
 .upload-zone.dragging,
 .upload-zone:focus-visible {
@@ -838,23 +849,78 @@ select {
     display: none;
 }
 
-.upload-zone svg {
+.upload-empty-state,
+.upload-selected-state {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.upload-empty-state {
+    justify-content: center;
+}
+
+.upload-zone .upload-empty-state > svg {
     width: 21px;
 }
 
-.upload-zone div {
+.upload-copy {
+    min-width: 0;
     display: flex;
     flex-direction: column;
     gap: 2px;
 }
 
-.upload-zone b {
+.upload-copy b {
+    overflow: hidden;
     color: #48444d;
     font-size: .82rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
-.upload-zone span {
+.upload-copy span {
+    overflow: hidden;
+    color: #77737c;
     font-size: .7rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.custom-logo-thumbnail {
+    width: 44px;
+    height: 44px;
+    flex: 0 0 auto;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    border: 1px solid #d7d2dc;
+    border-radius: 9px;
+    background:
+        linear-gradient(45deg, #edeaf0 25%, transparent 25%, transparent 75%, #edeaf0 75%),
+        linear-gradient(45deg, #edeaf0 25%, #fff 25%, #fff 75%, #edeaf0 75%);
+    background-position: 0 0, 6px 6px;
+    background-size: 12px 12px;
+}
+
+.custom-logo-thumbnail img {
+    width: 34px;
+    height: 34px;
+    display: block;
+    object-fit: contain;
+}
+
+.upload-selected-state .upload-copy {
+    flex: 1;
+}
+
+.upload-replace-icon {
+    width: 20px;
+    height: 20px;
+    flex: 0 0 auto;
+    color: var(--purple);
+    opacity: .72;
 }
 
 .logo-settings {
@@ -958,6 +1024,32 @@ select {
     background-size: 16px 16px;
 }
 
+.export-settings {
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+}
+
+.target-link-row {
+    margin-bottom: 14px;
+}
+
+.target-link-row a {
+    width: 196px;
+    overflow: hidden;
+    color: var(--purple);
+    font-size: .76rem;
+    font-weight: 600;
+    line-height: 1.4;
+    text-align: right;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.target-link-row a[href]:hover {
+    text-decoration: underline;
+}
+
 #qr-preview {
     width: 88%;
     height: 88%;
@@ -1029,8 +1121,6 @@ select {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-top: 20px;
-    border-top: 1px solid var(--line);
     color: #5c5861;
     font-size: .8rem;
     font-weight: 700;
@@ -1136,6 +1226,66 @@ select {
     color: #9c98a0;
     text-align: center;
     font-size: .7rem;
+}
+
+.secondary-actions {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-top: 14px;
+}
+
+.secondary-actions button {
+    min-width: 0;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 0 6px;
+    border: 1px solid #dfdbe2;
+    border-radius: 8px;
+    color: #6f6a74;
+    background: rgba(255, 255, 255, .58);
+    font-size: .65rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: border-color .18s ease, color .18s ease, background .18s ease;
+}
+
+.secondary-actions button:hover:not(:disabled) {
+    border-color: #b8afe9;
+    color: var(--purple);
+    background: #fff;
+}
+
+.secondary-actions button:disabled {
+    opacity: .42;
+    cursor: not-allowed;
+}
+
+.secondary-actions svg {
+    width: 15px;
+    flex: 0 0 auto;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.secondary-actions span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.action-message {
+    min-height: 16px;
+    margin: 6px 0 0;
+    color: var(--green);
+    text-align: center;
+    font-size: .66rem;
 }
 
 .scan-tip {
@@ -1292,7 +1442,8 @@ footer a {
     }
 
     .size-switch,
-    .background-switch {
+    .background-switch,
+    .target-link-row a {
         width: 178px;
     }
 
