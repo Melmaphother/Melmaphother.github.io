@@ -37,23 +37,26 @@
             }
         },
         {
-            "title": "Agent-R1: Training Powerful LLM Agents with End-to-End Reinforcement Learning",
+            "title": "Agent-R1: A Unified and Modular Framework for Agentic Reinforcement Learning",
             "authors": [
-                "Jie Ouyang",
-                "Ruiran Yan",
-                "Yucong Luo",
                 "Mingyue Cheng",
-                "Qi Liu",
-                "Zirui Liu",
                 "Shuo Yu",
-                "Daoyu Wang"
+                "Daoyu Wang",
+                "Qingchuan Li",
+                "Xiaoyu Tao",
+                "Jie Ouyang",
+                "Yucong Luo",
+                "Yitong Zhou",
+                "Qi Liu",
+                "Enhong Chen"
             ],
             "venue": "Committer (May 2025)",
             "thumbnail": "images/projects/3.png",
             "selected": 1,
             "award": "Stars 1300+",
             "links": {
-                "code": "https://github.com/AgentR1/Agent-R1"
+                "code": "https://github.com/AgentR1/Agent-R1",
+                "pdf": "https://arxiv.org/abs/2511.14460"
             }
         },
         {

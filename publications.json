@@ -1,24 +1,68 @@
 {
   "publications": [
     {
-        "title": "Mind2Report: A Cognitive Deep Research Agent for Expert-Level Commercial Report Synthesis",
-        "authors": [
-          "Mingyue Cheng",
-          "Daoyu Wang",
-          "Qi Liu",
-          "Shuo Yu",
-          "Xiaoyu Tao",
-          "...",
-          "Enhong Chen"
-        ],
-        "venue": "Preprint (2025)",
-        "thumbnail": "images/publications/5.png",
-        "selected": 1,
-        "award": "",
-        "links": {
-          "pdf": "https://www.arxiv.org/abs/2601.04879",
-          "code": "https://github.com/Melmaphother/Mind2Report"
-        }
+      "title": "Claw-R1: A Step-Level Data Middleware System for Agentic Reinforcement Learning",
+      "authors": [
+        "Daoyu Wang",
+        "Mingyue Cheng",
+        "Qingchuan Li",
+        "Shuo Yu",
+        "Jie Ouyang",
+        "Qi Liu"
+      ],
+      "venue": "IEEE International Conference on Data Mining (Demo Track)",
+      "thumbnail": "images/publications/claw-r1.png",
+      "selected": 1,
+      "award": "ICDM 2026 Demo",
+      "links": {
+        "pdf": "https://arxiv.org/abs/2606.09138",
+        "code": "https://github.com/AgentR1/Claw-R1"
+      }
+    },
+    {
+      "title": "CAPO: Critic-Guided Action-Aligned Policy Optimization for Advancing LLM Agent Capabilities",
+      "authors": [
+        "Daoyu Wang",
+        "Qingchuan Li",
+        "Mingyue Cheng",
+        "Jie Ouyang",
+        "Shuo Yu",
+        "Chunli Liu",
+        "Shijin Wang",
+        "Qi Liu",
+        "Enhong Chen"
+      ],
+      "venue": "Preprint (2026)",
+      "thumbnail": "images/publications/capo.png",
+      "selected": 1,
+      "award": "",
+      "links": {
+        "pdf": "https://arxiv.org/abs/2604.18401",
+        "code": "https://github.com/AgentR1/CAPO"
+      }
+    },
+    {
+      "title": "Mind2Report: A Cognitive Deep Research Agent for Expert-Level Commercial Report Synthesis",
+      "authors": [
+        "Mingyue Cheng",
+        "Daoyu Wang",
+        "Qi Liu",
+        "Shuo Yu",
+        "Xiaoyu Tao",
+        "Yuqian Wang",
+        "Chengzhong Chu",
+        "Yu Duan",
+        "Mingkang Long",
+        "Enhong Chen"
+      ],
+      "venue": "ACM International Conference on Information and Knowledge Management",
+      "thumbnail": "images/publications/5.png",
+      "selected": 1,
+      "award": "CIKM 2026",
+      "links": {
+        "pdf": "https://www.arxiv.org/abs/2601.04879",
+        "code": "https://github.com/Melmaphother/Mind2Report"
+      }
     },
     {
       "title": "PaperArena: An Evaluation Benchmark for Tool-Augmented Agentic Reasoning on Scientific Literature",
@@ -42,24 +86,24 @@
       }
     },
     {
-        "title": "MemWeaver: A Hierarchical Memory from Textual Interactive Behaviors for Personalized Generation",
-        "authors": [
-          "Shuo Yu",
-          "Mingyue Cheng",
-          "Daoyu Wang",
-          "Qi Liu",
-          "Zirui Liu",
-          "Ze Guo",
-          "Xiaoyu Tao"
-        ],
-        "venue": "ACM The Web Conference",
-        "thumbnail": "images/publications/4.png",
-        "selected": 1,
-        "award": "WWW 2026",
-        "links": {
-          "pdf": "https://arxiv.org/abs/2510.07713",
-          "code": "https://github.com/fishsure/MemWeaver"
-        }
+      "title": "MemWeaver: A Hierarchical Memory from Textual Interactive Behaviors for Personalized Generation",
+      "authors": [
+        "Shuo Yu",
+        "Mingyue Cheng",
+        "Daoyu Wang",
+        "Qi Liu",
+        "Zirui Liu",
+        "Ze Guo",
+        "Xiaoyu Tao"
+      ],
+      "venue": "ACM The Web Conference",
+      "thumbnail": "images/publications/4.png",
+      "selected": 0,
+      "award": "WWW 2026",
+      "links": {
+        "pdf": "https://arxiv.org/abs/2510.07713",
+        "code": "https://github.com/fishsure/MemWeaver"
+      }
     },
     {
       "title": "Multi-Source Knowledge Pruning for Retrieval-Augmented Generation: A Benchmark and Empirical Study",
