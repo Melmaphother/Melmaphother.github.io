@@ -120,7 +120,7 @@ h3 { font-size: 16px; line-height: 1.55; font-weight: 600; margin: 0 0 7px; }
 [data-theme='dark'] .desktop-nav a.active, [data-theme='dark'] .desktop-nav a:hover, [data-theme='dark'] .icon-button:hover { background: rgba(180,200,235,.08); }
 [data-theme='dark'] .segment-indicator { background: linear-gradient(150deg,rgba(146,167,209,.18),rgba(82,108,159,.12)); box-shadow: inset 0 1px 0 rgba(183,204,246,.15),0 1px 4px rgba(0,0,0,.08); }
 [data-theme='dark'] .work-image { background: rgba(255,255,255,.95); border-color: transparent; }
-@media (max-width: 850px) { .desktop-nav a { padding: 8px; font-size: 12px; } .topbar > .liqui-glass__content { gap: 10px; } }
+@media (max-width: 850px) { .desktop-nav { display: none; } .topbar > .liqui-glass__content { gap: 10px; } }
 @media (max-width: 680px) {
   .page { padding: 0 24px; } .topbar-wrap { top: 12px; padding: 0 16px; }
   .topbar > .liqui-glass__content { min-height: 50px; padding: 6px 8px 6px 18px; }
