@@ -181,15 +181,15 @@ a:hover { color: var(--accent-hover); }
 @media (max-width: 760px) {
   .page { display: block; padding: 108px 24px 0; }
   .profile-sidebar { position: static; margin-bottom: 32px; padding-bottom: 27px; border-bottom: 1px solid var(--line); }
-  .hero { display: flex; flex-direction: column; gap: 24px; align-items: flex-start; }
-  .academic-portrait { order: -1; width: 148px; height: 148px; }
+  .hero { display: grid; grid-template-columns: minmax(0, 1fr) clamp(112px, 22vw, 148px); gap: 18px; align-items: center; }
+  .academic-portrait { order: 0; width: 100%; height: auto; aspect-ratio: 1; }
   h1 { font-size: 29px; } .name-secondary { font-size: 16px; margin-top: 6px; }
   .academic-role { font-size: 13px; } .email-link { font-size: 12px; margin-bottom: 15px; }
   .social-links { flex-direction: row; flex-wrap: wrap; gap: 11px 14px; }
   .image-dialog > .liqui-glass__content { padding: 7px; }
   .preview-image { max-width: calc(100vw - 46px); max-height: calc(100dvh - 170px); }
 }
-@media (max-width: 370px) { .page { padding-left: 20px; padding-right: 20px; } .academic-portrait { width: 140px; height: 140px; } h1 { font-size: 27px; } .email-link { font-size: 11px; } }
+@media (max-width: 370px) { .page { padding-left: 20px; padding-right: 20px; } .hero { grid-template-columns: minmax(0, 1fr) 104px; gap: 12px; } h1 { font-size: 27px; } .email-link { font-size: 11px; } }
 
 .chinese-name { font-family: "Songti SC", "STSong", "Noto Serif CJK SC", serif; font-weight: 500; }
 .name-secondary.chinese-name { font-size: 19px; }
