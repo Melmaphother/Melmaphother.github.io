@@ -141,11 +141,11 @@ function App() {
         <Panel className="section-surface awards-surface"><div id="awards" className="section-anchor" /><SectionHeading t={t} number="05" title="Awards" zh="荣誉奖项" subtitle="RECOGNITION" subtitleZh="成长印记" /><Legacy name="awards" /></Panel>
         <Panel className="section-surface experiences-surface"><div id="experiences" className="section-anchor" /><SectionHeading t={t} number="06" title="Experience & Education" zh="经历与教育" subtitle="EXPERIENCE & EDUCATION" subtitleZh="我的旅程" /><Legacy name="experiences" /></Panel>
       </div>
-      <div className="footer-content"><Legacy name="footer" /><div className="footer-colophon"><span>© {new Date().getFullYear()} Daoyu Wang</span><span><a href="https://liqui.design" target="_blank" rel="noreferrer">Liqui Design</a> · <a href="https://github.com/Melmaphother/Melmaphother.github.io" target="_blank" rel="noreferrer">{t('View source', '查看源码')}<Github size={13} aria-hidden="true" /></a></span></div></div>
+      <div className="footer-content"><Legacy name="footer" /><div className="footer-colophon"><span>© {new Date().getFullYear()} Daoyu Wang</span><span><a href="https://github.com/Melmaphother/Melmaphother.github.io" target="_blank" rel="noreferrer">{t('View source', '查看源码')}<Github size={13} aria-hidden="true" /></a></span></div></div>
       </div>
     </main>
     <Popover.Root>
-      <Surface className="tools-trigger-surface" radius={100} bezel={12} refraction={48}><Popover.Trigger className="tools-trigger"><FlaskConical size={18} /><span>{t('More works', '更多工具')}</span><span className="tools-plus">+</span></Popover.Trigger></Surface>
+      <Surface className="tools-trigger-surface" radius={100} bezel={12} refraction={48}><Popover.Trigger className="tools-trigger"><FlaskConical size={20} /><span>{t('More works', '更多工具')}</span><span className="tools-plus">+</span></Popover.Trigger></Surface>
       <Popover.Portal><Popover.Positioner side="top" align="end" sideOffset={14} collisionPadding={18} className="tools-positioner"><Popover.Popup render={<Surface className="tools-panel" radius={26} bezel={20} refraction={55} frost={0.2} />}><Popover.Title className="tools-title">{t('More Works', '更多工具')}</Popover.Title><p className="tools-subtitle">{t('A few things I have built.', '我构建的一些小作品。')}</p>{tools.map(([title, en, zh, href, Icon]) => <a key={title} href={href} className="tool-link" target="_blank" rel="noreferrer"><span className="tool-icon"><Icon size={22} aria-hidden="true" /></span><div><strong>{title}</strong><span>{t(en, zh)}</span></div><ArrowUpRight size={17} /></a>)}</Popover.Popup></Popover.Positioner></Popover.Portal>
     </Popover.Root>
     <Dialog.Root open={!!preview} onOpenChange={open => { if (!open) setPreview(null); }}>

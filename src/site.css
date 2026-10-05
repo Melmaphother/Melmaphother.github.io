@@ -91,7 +91,7 @@ h3 { font-size: 16px; line-height: 1.55; font-weight: 600; margin: 0 0 7px; }
 .footer-colophon { display: flex; justify-content: space-between; gap: 15px; padding-top: 13px; color: var(--muted); font-size: 11px; }
 .footer-colophon a { display: inline-flex; align-items: center; gap: 5px; }
 .tools-trigger-surface { position: fixed; bottom: 22px; right: 24px; z-index: 35; }
-.tools-trigger { display: flex; gap: 8px; align-items: center; border: 0; background: none; color: var(--ink); padding: 12px 16px; font-size: 12px; }
+.tools-trigger { display: flex; gap: 8px; align-items: center; border: 0; background: none; color: var(--ink); padding: 15px 22px; font-size: 14px; font-weight: 500; }
 .tools-trigger > svg { color: var(--accent); }
 .tools-plus { display: none; }
 .tools-positioner { z-index: 45; }
@@ -141,7 +141,7 @@ h3 { font-size: 16px; line-height: 1.55; font-weight: 600; margin: 0 0 7px; }
   .experiences-surface .award-item { grid-template-columns: 1fr; gap: 4px; padding: 13px 0; }
   .award-year { font-size: 12px; } .award-desc small { font-size: 12px; }
   .footer-colophon { flex-wrap: wrap; gap: 12px; }
-  .tools-trigger-surface { bottom: 17px; right: 17px; } .tools-trigger { padding: 11px 14px; }
+  .tools-trigger-surface { bottom: 17px; right: 17px; } .tools-trigger { padding: 14px 20px; }
   .image-dialog { width: calc(100vw - 24px); } .image-dialog > .liqui-glass__content { padding: 17px; }
   .dialog-header h2 { font-size: 14px; } .dialog-description { font-size: 11px; }
 }
