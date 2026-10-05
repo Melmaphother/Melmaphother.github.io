@@ -2,32 +2,32 @@
   "name": "QRStamp",
   "short_name": "QRStamp",
   "description": "Create custom QR codes locally in your browser.",
-  "start_url": "../../",
-  "scope": "../../",
+  "start_url": "/qrstamp/",
+  "scope": "/qrstamp/",
   "display": "standalone",
-  "background_color": "#f7f4ee",
+  "background_color": "#fbfcfe",
   "theme_color": "#6657d8",
   "icons": [
     {
-      "src": "android-chrome-192x192.png",
+      "src": "/qrstamp/assets/favicon/android-chrome-192x192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "android-chrome-512x512.png",
+      "src": "/qrstamp/assets/favicon/android-chrome-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "maskable-192x192.png",
+      "src": "/qrstamp/assets/favicon/maskable-192x192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "maskable"
     },
     {
-      "src": "maskable-512x512.png",
+      "src": "/qrstamp/assets/favicon/maskable-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"

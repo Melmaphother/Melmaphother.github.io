@@ -1,10 +1,11 @@
+import { getGlassTheme } from './glass-theme.js';
 import React, { useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { LiquiGlass, LiquiThemeProvider } from '@liqui-design/glass';
 import { Tabs } from '@base-ui/react/tabs';
 import { Dialog } from '@base-ui/react/dialog';
 import { Popover } from '@base-ui/react/popover';
-import { ArrowUpRight, Sun, Moon, Github, Mail, GraduationCap, University, BookOpen, Layers, Compass, BriefcaseBusiness, FlaskConical, X, ImagePlus, MessageCircleQuestion, NotebookPen, ImageMinus, FileText, QrCode, Code2, Globe, Presentation } from 'lucide-react';
+import { ArrowUpRight, Sun, Moon, Github, Mail, GraduationCap, University, BookOpen, Layers, Compass, BriefcaseBusiness, FlaskConical, X, ImagePlus, MessageCircleQuestion, BookHeart, ImageMinus, FileText, QrCode, Code2, Globe, Presentation } from 'lucide-react';
 import { Button } from './components/button';
 import content from './content.json';
 import publicationsData from '../publications.json';
@@ -15,7 +16,7 @@ const socialLinks = [
   ['Google Scholar', '谷歌学术', 'https://scholar.google.com/citations?user=uM4iaOUAAAAJ&hl=zh-CN', GraduationCap],
   ['GitHub', 'GitHub', 'https://github.com/melmaphother', Github],
   ['Zhihu', '知乎', 'https://www.zhihu.com/people/melmaphother/posts', MessageCircleQuestion],
-  ['Xiaohongshu', '小红书', 'https://www.xiaohongshu.com/user/profile/6126f8a100000000010058b0?m_source=pwa', NotebookPen],
+  ['Xiaohongshu', '小红书', 'https://www.xiaohongshu.com/user/profile/6126f8a100000000010058b0?m_source=pwa', BookHeart],
 ];
 const tools = [
   ['Nanobanana Peel', 'AI image background removal', 'AI 图像去背景', 'nanobanana-peel/', ImageMinus],
@@ -30,7 +31,6 @@ const sections = [
 ];
 const linkLabels = { pdf: ['Paper', '论文'], code: ['Code', '代码'], project: ['Website', '项目主页'], website: ['Website', '网站'], poster: ['Poster', '海报'], slides: ['Slides', '幻灯片'] };
 const linkIcons = { pdf: FileText, code: Code2, project: Globe, website: Globe, poster: Presentation, slides: Presentation };
-const glassTheme = { frost: 0.08, dispersion: 0, specular: 0.85, profile: 'squircle' };
 function Panel({ className = '', children }) { return <div className={`academic-panel ${className}`}>{children}</div>; }
 function Surface({ className = '', children, ...props }) {
   return <LiquiGlass elevated radius={28} bezel={20} refraction={48} blur={0.35} className={`surface ${className}`} {...props}>{children}</LiquiGlass>;
@@ -88,6 +88,13 @@ function App() {
     localStorage.setItem('homepage-theme', dark ? 'dark' : 'light');
   }, [dark]);
   useEffect(() => {
+    const syncTheme = (event) => {
+      if (event.key === 'homepage-theme') setDark(event.newValue === 'dark');
+    };
+    window.addEventListener('storage', syncTheme);
+    return () => window.removeEventListener('storage', syncTheme);
+  }, []);
+  useEffect(() => {
     const observer = new IntersectionObserver(entries => {
       const visible = entries.filter(e => e.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
       if (visible[0]) setActive(visible[0].target.id);
@@ -95,7 +102,7 @@ function App() {
     sections.forEach(([id]) => { const node = document.getElementById(id); if (node) observer.observe(node); });
     return () => observer.disconnect();
   }, []);
-  return <LiquiThemeProvider theme={{ glass: glassTheme }}>
+  return <LiquiThemeProvider theme={{ glass: getGlassTheme(dark) }}>
     <a href="#about" className="skip-link">{t('Skip to content', '跳至正文')}</a>
     <div className="topbar-wrap">
       <Surface className="topbar" radius={100} bezel={17} refraction={75} dispersion={0.025}>
@@ -109,7 +116,7 @@ function App() {
       <header className="hero">
         <div className="hero-copy">
           <h1><span className={`name-primary ${lang === 'zh' ? 'chinese-name' : ''}`}>{t('Daoyu Wang', '王道宇')}</span><span className={`name-secondary ${lang === 'en' ? 'chinese-name' : ''}`}>{t('王道宇', 'Daoyu Wang')}</span></h1>
-          <p className="academic-role"><University size={17} aria-hidden="true" /><span>{t('CS Master Student · University of Science and Technology of China', '计算机科学与技术硕士在读 · 中国科学技术大学')}</span></p>
+          <p className="academic-role"><University size={15} aria-hidden="true" /><span>{t('CS Master Student · University of Science and Technology of China', '计算机科学与技术硕士在读 · 中国科学技术大学')}</span></p>
           <a className="email-link" href="mailto:daoyu.wang@mail.ustc.edu.cn"><Mail size={15} aria-hidden="true" /><span>daoyu.wang@mail.ustc.edu.cn</span></a>
           <div className="social-links">{socialLinks.map(([en, zh, href, Icon]) => <a href={href} key={en} target="_blank" rel="noreferrer"><Icon size={15} aria-hidden="true" />{t(en, zh)}</a>)}</div>
         </div>
@@ -142,7 +149,7 @@ function App() {
       <Popover.Portal><Popover.Positioner side="top" align="end" sideOffset={14} collisionPadding={18} className="tools-positioner"><Popover.Popup render={<Surface className="tools-panel" radius={26} bezel={20} refraction={55} frost={0.2} />}><Popover.Title className="tools-title">{t('More Works', '更多工具')}</Popover.Title><p className="tools-subtitle">{t('A few things I have built.', '我构建的一些小作品。')}</p>{tools.map(([title, en, zh, href, Icon]) => <a key={title} href={href} className="tool-link" target="_blank" rel="noreferrer"><span className="tool-icon"><Icon size={22} aria-hidden="true" /></span><div><strong>{title}</strong><span>{t(en, zh)}</span></div><ArrowUpRight size={17} /></a>)}</Popover.Popup></Popover.Positioner></Popover.Portal>
     </Popover.Root>
     <Dialog.Root open={!!preview} onOpenChange={open => { if (!open) setPreview(null); }}>
-      <Dialog.Portal><Dialog.Backdrop className="dialog-backdrop" /><Dialog.Popup aria-describedby={undefined} render={<Surface className="image-dialog" radius={18} bezel={12} refraction={45} frost={0.16} />}><div className="dialog-header"><Dialog.Title className="preview-title">{preview?.title}</Dialog.Title><Dialog.Close nativeButton={false} render={<Button size="sm" className="dialog-close-button" />} aria-label={t('Close image', '关闭图片')}><X size={21} /></Dialog.Close></div>{preview && <img className="preview-image" src={preview.thumbnail} alt={preview.title} />}</Dialog.Popup></Dialog.Portal>
+      <Dialog.Portal><Dialog.Backdrop className="dialog-backdrop" /><Dialog.Popup aria-describedby={undefined} render={<Surface className="image-dialog" radius={18} bezel={12} refraction={45} frost={0.16} />}><div className="dialog-header"><Dialog.Title className="preview-title">{preview?.title}</Dialog.Title><Dialog.Close nativeButton={false} render={<Button size="sm" glass={{ radius: 100, bezel: 8 }} className="dialog-close-button" />} aria-label={t('Close image', '关闭图片')}><X size={21} /></Dialog.Close></div>{preview && <img className="preview-image" src={preview.thumbnail} alt={preview.title} />}</Dialog.Popup></Dialog.Portal>
     </Dialog.Root>
   </LiquiThemeProvider>;
 }

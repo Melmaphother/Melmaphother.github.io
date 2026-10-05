@@ -1,0 +1,14 @@
+:root {
+  --lq-tint: rgba(255,255,255,.68);
+  --lq-tint-deep: rgba(245,248,252,.28);
+  --lq-rim-hi: rgba(255,255,255,.95);
+  --lq-rim-lo: rgba(104,121,146,.28);
+  --lq-shadow: 0 8px 26px rgba(30,48,75,.09), 0 1px 3px rgba(30,48,75,.035);
+}
+[data-theme='dark'] {
+  --lq-tint: rgba(28,35,47,.92);
+  --lq-tint-deep: rgba(23,30,42,.82);
+  --lq-rim-hi: rgba(207,221,245,.14);
+  --lq-rim-lo: rgba(207,221,245,.04);
+  --lq-shadow: 0 5px 24px rgba(0,0,0,.20);
+}

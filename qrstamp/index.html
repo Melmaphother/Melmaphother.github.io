@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <script>document.documentElement.dataset.theme = localStorage.getItem('homepage-theme') === 'dark' ? 'dark' : 'light';</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="QRStamp — Create custom QR codes locally in your browser">
@@ -21,34 +22,15 @@
     <link rel="stylesheet" href="styles.css?v=11">
 </head>
 
-<body>
+<body class="tool-page" data-tool="qrstamp">
+    <div id="tool-chrome"></div>
     <div class="paper-grid" aria-hidden="true"></div>
 
-    <header class="site-header">
-        <a class="brand" href="./" aria-label="QRStamp home">
-            <span class="brand-mark" aria-hidden="true">
-                <img src="assets/qrstamp-logo.png" alt="">
-            </span>
-            <span>QRStamp</span>
-        </a>
-        <div class="header-actions">
-            <a class="icon-link" href="../" aria-label="Back to homepage" title="Back to homepage">
-                <!-- Lucide: house -->
-                <svg class="ui-icon" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/>
-                    <path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                </svg>
-            </a>
-            <a class="icon-link" href="https://github.com/Melmaphother/Melmaphother.github.io" target="_blank"
-                rel="noreferrer" aria-label="View source on GitHub" title="View source">
-                <svg class="brand-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.87c-2.78.6-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.35 1.09 2.92.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02A9.6 9.6 0 0 1 12 6.82a9.6 9.6 0 0 1 2.5.34c1.91-1.3 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.86V21c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
-            </a>
-        </div>
-    </header>
 
     <main class="shell">
         <section class="hero">
-            <h1><span class="stamp-line">Stamp your Link to QR Code.</span></h1>
+            <h1>Create your QR code.</h1>
+            <p class="tool-hero-description">Style a link or email, then export a crisp QR code.</p>
         </section>
 
         <div class="workspace">
@@ -134,7 +116,7 @@
                         <div class="corner-picker" data-custom-corner="0">
                             <span class="corner-title">Top left</span>
                             <button class="corner-trigger" type="button" aria-label="Choose top-left corner style">
-                                <span class="edge-demo edge-square"></span><i>⌄</i>
+                                <span class="edge-demo edge-square"></span><span data-icon="ChevronDown" aria-hidden="true"></span>
                             </button>
                             <div class="corner-menu">
                                 <button type="button" data-corner-style="square" class="active"><span class="edge-demo edge-square"></span></button>
@@ -160,7 +142,7 @@
                         <div class="corner-picker" data-custom-corner="1">
                             <span class="corner-title">Top right</span>
                             <button class="corner-trigger" type="button" aria-label="Choose top-right corner style">
-                                <span class="edge-demo edge-square"></span><i>⌄</i>
+                                <span class="edge-demo edge-square"></span><span data-icon="ChevronDown" aria-hidden="true"></span>
                             </button>
                             <div class="corner-menu">
                                 <button type="button" data-corner-style="square" class="active"><span class="edge-demo edge-square"></span></button>
@@ -186,7 +168,7 @@
                         <div class="corner-picker" data-custom-corner="2">
                             <span class="corner-title">Bottom left</span>
                             <button class="corner-trigger" type="button" aria-label="Choose bottom-left corner style">
-                                <span class="edge-demo edge-square"></span><i>⌄</i>
+                                <span class="edge-demo edge-square"></span><span data-icon="ChevronDown" aria-hidden="true"></span>
                             </button>
                             <div class="corner-menu">
                                 <button type="button" data-corner-style="square" class="active"><span class="edge-demo edge-square"></span></button>
@@ -273,7 +255,7 @@
                     </div>
 
                     <div class="logo-grid" id="logo-grid">
-                        <button type="button" class="logo-option active" data-logo="" aria-pressed="true"><span>∅</span>None</button>
+                        <button type="button" class="logo-option active" data-logo="" aria-pressed="true"><span data-icon="Ban" aria-hidden="true"></span>None</button>
                         <button type="button" class="logo-option" data-logo="github"><img src="assets/logos/github.svg" alt="" aria-hidden="true">GitHub</button>
                         <button type="button" class="logo-option" data-logo="arxiv"><img src="assets/logos/arxiv.svg" alt="" aria-hidden="true">arXiv</button>
                         <button type="button" class="logo-option" data-logo="gmail"><img src="assets/logos/gmail.svg" alt="" aria-hidden="true">Gmail</button>
@@ -485,7 +467,8 @@
     </footer>
 
     <script src="vendor/qrcode-generator.min.js"></script>
-    <script src="app.js?v=14"></script>
+    <script type="module" src="app.js"></script>
+    <script type="module" src="/src/tools/material.jsx"></script>
 </body>
 
 </html>
