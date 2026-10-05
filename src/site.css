@@ -157,7 +157,8 @@ h3 { font-size: 16px; line-height: 1.55; font-weight: 600; margin: 0 0 7px; }
 .page { max-width: 1280px; padding: 124px 48px 0; display: grid; grid-template-columns: 244px minmax(0, 1fr); column-gap: 64px; align-items: start; }
 .profile-sidebar { position: sticky; top: 116px; }
 .hero { display: flex; flex-direction: column; align-items: flex-start; gap: 25px; padding: 0; margin: 0; border: 0; }
-.academic-portrait { order: -1; width: 148px; height: 148px; border-radius: 50%; object-position: center 34%; }
+.academic-portrait { order: -1; align-self: center; width: 164px; height: 164px; border-radius: 50%; object-position: center 34%; }
+.hero-copy { width: 100%; text-align: left; }
 h1 { font-family: Georgia, "Times New Roman", "Songti SC", serif; font-size: 30px; font-weight: 600; letter-spacing: -.5px; margin-bottom: 17px; }
 .name-secondary { display: block; margin: 8px 0 0; font-size: 17px; line-height: 1.5; font-weight: 400; letter-spacing: 0; color: var(--muted); }
 .academic-role { font-size: 14px; margin-bottom: 15px; }
@@ -180,15 +181,15 @@ a:hover { color: var(--accent-hover); }
 @media (max-width: 760px) {
   .page { display: block; padding: 108px 24px 0; }
   .profile-sidebar { position: static; margin-bottom: 32px; padding-bottom: 27px; border-bottom: 1px solid var(--line); }
-  .hero { display: grid; grid-template-columns: minmax(0,1fr) 120px; gap: 18px; align-items: start; }
-  .academic-portrait { order: 0; width: 120px; height: 120px; }
+  .hero { display: flex; flex-direction: column; gap: 24px; align-items: flex-start; }
+  .academic-portrait { order: -1; width: 148px; height: 148px; }
   h1 { font-size: 29px; } .name-secondary { font-size: 16px; margin-top: 6px; }
   .academic-role { font-size: 13px; } .email-link { font-size: 12px; margin-bottom: 15px; }
   .social-links { flex-direction: row; flex-wrap: wrap; gap: 11px 14px; }
   .image-dialog > .liqui-glass__content { padding: 7px; }
   .preview-image { max-width: calc(100vw - 46px); max-height: calc(100dvh - 170px); }
 }
-@media (max-width: 370px) { .page { padding-left: 20px; padding-right: 20px; } .hero { grid-template-columns: minmax(0,1fr) 88px; gap: 12px; } .academic-portrait { width: 88px; height: 88px; } h1 { font-size: 27px; } .email-link { font-size: 11px; } }
+@media (max-width: 370px) { .page { padding-left: 20px; padding-right: 20px; } .academic-portrait { width: 140px; height: 140px; } h1 { font-size: 27px; } .email-link { font-size: 11px; } }
 
 .chinese-name { font-family: "Songti SC", "STSong", "Noto Serif CJK SC", serif; font-weight: 500; }
 .name-secondary.chinese-name { font-size: 19px; }
