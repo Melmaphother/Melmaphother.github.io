@@ -160,7 +160,7 @@ html[data-theme='dark'] .tool-page :is(.action-btn-primary,.download-button) { -
 .tool-page :is(.segmented,.edge-tabs,.logo-color-mode-tabs,.format-switch,.background-switch,.size-switch) button { border-radius: 100px; background: transparent; color: var(--tool-muted); }
 .tool-page :is(.segmented,.edge-tabs,.logo-color-mode-tabs,.format-switch,.background-switch,.size-switch) button.active { color: var(--tool-accent-hover); background: var(--tool-selected); box-shadow: none; }
 .tool-page .edge-tabs { display: flex; gap: 4px; }
-.tool-page .edge-tabs button { flex: 1; min-height: 40px; padding: 8px 16px; }
+.tool-page .edge-tabs button { flex: 1; height: 34px; min-height: 34px; padding: 0 16px; font-size: .82rem; }
 .tool-page .segmented [data-color-mode='gradient'] span { color: inherit; background: none; }
 .tool-page .corner-menu { border-radius: 18px; border: 0; }
 .tool-page .corner-menu button { background: transparent; color: var(--tool-ink); }
