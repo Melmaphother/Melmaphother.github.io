@@ -83,7 +83,7 @@ h3 { font-size: 16px; line-height: 1.55; font-weight: 600; margin: 0 0 7px; }
 .award-item { display: grid; grid-template-columns: 60px 1fr; gap: 18px; padding: 12px 0; font-size: 14px; line-height: 1.75; }
 .award-year { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
 .award-desc { color: var(--ink); }
-.experiences-surface .award-item { grid-template-columns: 150px 1fr; gap: 24px; padding: 17px 0; }
+:is(.experiences-surface, .internships-surface) .award-item { grid-template-columns: 180px 1fr; gap: 24px; padding: 17px 0; }
 .award-desc strong { font-weight: 600; color: var(--accent); }
 .award-desc small { display: inline-block; margin-top: 5px; font-size: 13px; color: var(--muted); line-height: 1.7; }
 .footer-content { padding: 24px 0 85px; border-top: 1px solid var(--line); }
@@ -137,7 +137,7 @@ h3 { font-size: 16px; line-height: 1.55; font-weight: 600; margin: 0 0 7px; }
   .authors { font-size: 12px; } .venue { font-size: 12px; } .work-links a { padding: 5px 0; }
   .image-hint { opacity: 1; padding: 3px; } .image-hint svg { width: 13px; height: 13px; }
   .award-item { grid-template-columns: 44px 1fr; gap: 13px; font-size: 13px; }
-  .experiences-surface .award-item { grid-template-columns: 1fr; gap: 4px; padding: 13px 0; }
+  :is(.experiences-surface, .internships-surface) .award-item { grid-template-columns: 1fr; gap: 4px; padding: 13px 0; }
   .award-year { font-size: 12px; } .award-desc small { font-size: 12px; }
   .footer-colophon { flex-wrap: wrap; gap: 12px; }
   .tools-trigger-surface { bottom: 17px; right: 17px; } .tools-trigger { padding: 14px 20px; }

@@ -18,6 +18,30 @@ const socialLinks = [
   ['Zhihu', '知乎', 'https://www.zhihu.com/people/melmaphother/posts', MessageCircleQuestion],
   ['Xiaohongshu', '小红书', 'https://www.xiaohongshu.com/user/profile/6126f8a100000000010058b0?m_source=pwa', BookHeart],
 ];
+const chineseAuthorNames = {
+  "Daoyu Wang": "王道宇",
+  "Shuo Yu": "于硕",
+  "Mingyue Cheng": "程明月",
+  "Qi Liu": "刘淇",
+  "Xiaoyu Tao": "陶小玉",
+  "Qingchuan Li": "李晴川",
+  "Tian Gao": "高天",
+  "Zhiding Liu": "刘芷町",
+  "Chengzhong Chu": "储诚中",
+  "Yu Duan": "段誉",
+  "Mingkang Long": "龙明康",
+  "Enhong Chen": "陈恩红",
+  "Chunli Liu": "刘春丽",
+  "Shijin Wang": "王士进",
+  "Jie Ouyang": "欧阳杰",
+  "Yucong Luo": "罗彧淙",
+  "Yitong Zhou": "周奕同",
+  "Yuqian Wang": "王雨乾",
+  "Zirui Liu": "刘子瑞",
+  "Ze Guo": "郭泽",
+  "Xin Li": "李鑫",
+  "Jiqian Yang": "杨纪千"
+};
 const tools = [
   ['Nanobanana Peel', 'AI image background removal', 'AI 图像去背景', 'nanobanana-peel/', ImageMinus],
   ['TexPurify', 'A cleaner canvas for LaTeX', '清除 LaTeX 文本格式', 'texpurify/', FileText],
@@ -61,10 +85,10 @@ function WorkCard({ item, type, index, t, onPreview }) {
       <span className="image-hint"><ImagePlus size={16} /></span>
     </button>
     <div className="work-content">
-      <div className="work-meta"><span className="work-index">{String(index + 1).padStart(2, '0')}</span><span className="venue-badge">{item.award || (type === 'publication' ? 'Preprint' : t('Open source', '开源项目'))}</span></div>
+      <div className="work-meta"><span className="work-index">{String(index + 1).padStart(2, '0')}</span><span className="venue-badge">{(item.award && t(item.award, item.awardZh || item.award)) || (type === 'publication' ? 'Preprint' : t('Open source', '开源项目'))}</span></div>
       <h3>{item.title}</h3>
-      <p className="authors">{item.authors.map((author, i) => <React.Fragment key={`${author}-${i}`}>{i > 0 && ', '}{author.includes('Daoyu Wang') ? <strong>{author}</strong> : author}</React.Fragment>)}</p>
-      <p className="venue">{item.venue}</p>
+      <p className="authors">{item.authors.map((englishName, i) => { const author = t(englishName, chineseAuthorNames[englishName] || englishName); return <React.Fragment key={`${englishName}-${i}`}>{i > 0 && t(', ', '、')}{englishName.includes('Daoyu Wang') ? <strong>{author}</strong> : author}</React.Fragment>; })}</p>
+      <p className="venue">{t(item.venue, item.venueZh || item.venue)}</p>
       <div className="work-links">{Object.entries(item.links || {}).map(([key, href]) => { const Icon = linkIcons[key] || Globe; return <a key={key} href={href} target="_blank" rel="noreferrer"><Icon size={14} aria-hidden="true" />{t(...(linkLabels[key] || [key, key]))}</a>; })}</div>
     </div>
   </article>;
@@ -139,7 +163,8 @@ function App() {
       </section>
       <div className="journey-grid">
         <Panel className="section-surface awards-surface"><div id="awards" className="section-anchor" /><SectionHeading t={t} number="05" title="Awards" zh="荣誉奖项" subtitle="RECOGNITION" subtitleZh="成长印记" /><Legacy name="awards" /></Panel>
-        <Panel className="section-surface experiences-surface"><div id="experiences" className="section-anchor" /><SectionHeading t={t} number="06" title="Experience & Education" zh="经历与教育" subtitle="EXPERIENCE & EDUCATION" subtitleZh="我的旅程" /><Legacy name="experiences" /></Panel>
+        <Panel className="section-surface experiences-surface"><div id="experiences" className="section-anchor" /><SectionHeading t={t} number="06" title="Education" zh="教育经历" subtitle="EDUCATION" subtitleZh="我的旅程" /><Legacy name="experiences" /></Panel>
+        <Panel className="section-surface internships-surface"><div id="internships" className="section-anchor" /><SectionHeading t={t} number="07" title="Internships" zh="实习经历" subtitle="INTERNSHIPS" subtitleZh="实践经历" /><Legacy name="internships" /></Panel>
       </div>
       <div className="footer-content"><Legacy name="footer" /><div className="footer-colophon"><span>© {new Date().getFullYear()} Daoyu Wang</span><span><a href="https://github.com/Melmaphother/Melmaphother.github.io" target="_blank" rel="noreferrer">{t('View source', '查看源码')}<Github size={13} aria-hidden="true" /></a></span></div></div>
       </div>

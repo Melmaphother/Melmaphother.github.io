@@ -15,7 +15,9 @@
             "links": {
                 "website": "https://AgentR1.github.io",
                 "code": "https://github.com/AgentR1/Claw-R1"
-            }
+            },
+            "award": "Stars 193",
+            "venueZh": "维护者（2026年2月）"
         },
         {
             "title": "Science-Star: Platform for Building, Extending, and Experimenting with Scientific Agents",
@@ -31,9 +33,28 @@
             "venue": "Maintainer (Aug. 2025)",
             "thumbnail": "images/projects/4.png",
             "selected": 1,
-            "award": "Stars 700+",
+            "award": "Stars 755",
             "links": {
                 "code": "https://github.com/Melmaphother/Science-Star"
+            },
+            "venueZh": "维护者（2025年8月）"
+        },
+        {
+            "title": "GIFT-Eval: General Time Series Forecasting Leaderboard",
+            "authors": [
+                "Daoyu Wang",
+                "Shuo Yu",
+                "Mingyue Cheng",
+                "Qi Liu"
+            ],
+            "venue": "Ranked 1st, June–August 2026 (Jun. 2026)",
+            "venueZh": "2026年6月–8月第一名（2026年6月）",
+            "thumbnail": "images/projects/gift-eval.png",
+            "selected": 1,
+            "award": "1st Place · Jun–Aug 2026",
+            "awardZh": "第一名 · 2026年6月–8月",
+            "links": {
+                "website": "https://huggingface.co/spaces/Salesforce/GIFT-Eval"
             }
         },
         {
@@ -52,12 +73,13 @@
             ],
             "venue": "Committer (May 2025)",
             "thumbnail": "images/projects/3.png",
-            "selected": 1,
-            "award": "Stars 1300+",
+            "selected": 0,
+            "award": "Stars 1,682",
             "links": {
                 "code": "https://github.com/AgentR1/Agent-R1",
                 "pdf": "https://arxiv.org/abs/2511.14460"
-            }
+            },
+            "venueZh": "贡献者（2025年5月）"
         },
         {
             "title": "Meta KDD Cup 2024 CRAG · Comprehensive RAG Benchmark",
@@ -77,23 +99,9 @@
             "links": {
                 "pdf": "https://arxiv.org/abs/2409.15337",
                 "code": "https://github.com/USTCAGI/CRAG-in-KDD-Cup2024"
-            }
-        },
-        {
-            "title": "TimeDART: Codebase for Time Series Self-Supervised Learning and Supervised Finetuning",
-            "authors": [
-                "Daoyu Wang",
-                "Mingyue Cheng",
-                "Zhiding Liu",
-                "Qi Liu"
-            ],
-            "venue": "Maintainer (Apr. 2025)",
-            "thumbnail": "images/projects/2.png",
-            "selected": 0,
-            "award": "Stars 100+",
-            "links": {
-                "code": "https://github.com/Melmaphother/TimeDART"
-            }
+            },
+            "venueZh": "贡献者（2024年6月）",
+            "awardZh": "银牌"
         }
     ]
 }
