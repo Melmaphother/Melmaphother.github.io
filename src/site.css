@@ -95,8 +95,7 @@ h3 { font-size: 16px; line-height: 1.55; font-weight: 600; margin: 0 0 7px; }
 .tools-trigger > svg { color: var(--accent); }
 .tools-plus { display: none; }
 .tools-positioner { z-index: 45; }
-.tools-panel { width: 320px; max-width: calc(100vw - 36px); transform-origin: var(--transform-origin); transition: opacity .2s, transform .2s; }
-.tools-panel[data-starting-style], .tools-panel[data-ending-style] { opacity: 0; transform: translateY(7px) scale(.98); }
+.tools-panel { width: 320px; max-width: calc(100vw - 36px); }
 .tools-panel > .liqui-glass__content { padding: 22px; }
 .tools-title { font-family: inherit; font-size: 17px; font-weight: 600; margin: 0 0 6px; }
 .tools-subtitle { font-size: 12px; color: var(--muted); margin: 0 0 15px; }
