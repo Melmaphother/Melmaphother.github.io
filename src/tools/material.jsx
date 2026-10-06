@@ -53,7 +53,7 @@ function Header() {
     <a className="tool-nav-brand" href={`/${current[0]}/`}><Icon size={22} /><span>{name}</span></a>
     <div className="tool-nav-actions">
       <Popover.Root><Popover.Trigger className="tool-nav-button tool-switcher" aria-label="Switch tool"><FlaskConical size={17} /><span>Tools</span><ChevronDown size={14} /></Popover.Trigger>
-        <Popover.Portal><Popover.Positioner side="bottom" align="end" sideOffset={12} collisionPadding={16} className="tool-switcher-positioner"><Popover.Popup render={<Glass className="tool-switcher-menu" radius={22} frost={0.2} />}><Popover.Title className="tool-menu-title">Small tools</Popover.Title>{tools.map(([slug,title,description,ToolIcon]) => <a className={`tool-menu-link ${slug === current[0] ? 'current' : ''}`} key={slug} href={`/${slug}/`} aria-current={slug === current[0] ? 'page' : undefined}><ToolIcon size={20} /><span><strong>{title}</strong><small>{description}</small></span>{slug === current[0] && <Check size={15} />}</a>)}</Popover.Popup></Popover.Positioner></Popover.Portal>
+        <Popover.Portal><Popover.Positioner side="bottom" align="end" sideOffset={12} collisionPadding={16} className="tool-switcher-positioner"><Popover.Popup render={<Glass className="tool-switcher-menu" radius={22} />}><Popover.Title className="tool-menu-title">Small tools</Popover.Title>{tools.map(([slug,title,description,ToolIcon]) => <a className={`tool-menu-link ${slug === current[0] ? 'current' : ''}`} key={slug} href={`/${slug}/`} aria-current={slug === current[0] ? 'page' : undefined}><ToolIcon size={20} /><span><strong>{title}</strong><small>{description}</small></span>{slug === current[0] && <Check size={15} />}</a>)}</Popover.Popup></Popover.Positioner></Popover.Portal>
       </Popover.Root>
       <a className="tool-nav-button" href="/" aria-label="Back to homepage" title="Back to homepage"><House size={18} /></a>
       <a className="tool-nav-button" href="https://github.com/Melmaphother/Melmaphother.github.io" target="_blank" rel="noreferrer" aria-label="View source on GitHub" title="View source"><Github size={18} /></a>
@@ -84,7 +84,7 @@ for (const host of document.querySelectorAll(surfaceSelectors)) {
   backing.setAttribute('aria-hidden', 'true');
   host.appendChild(backing);
   const popup = host.matches('.toast, .corner-menu');
-  mount(backing, <Theme><Glass className="tool-material-glass" radius={popup ? 18 : 100} frost={popup ? 0.2 : 0.08} /></Theme>);
+  mount(backing, <Theme><Glass className="tool-material-glass" radius={popup ? 18 : 100} /></Theme>);
 }
 const toastIcon = document.querySelector('.toast-icon');
 if (toastIcon) {
