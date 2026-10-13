@@ -119,12 +119,33 @@ function App() {
     return () => window.removeEventListener('storage', syncTheme);
   }, []);
   useEffect(() => {
-    const observer = new IntersectionObserver(entries => {
-      const visible = entries.filter(e => e.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
-      if (visible[0]) setActive(visible[0].target.id);
-    }, { rootMargin: '-18% 0px -55% 0px' });
-    sections.forEach(([id]) => { const node = document.getElementById(id); if (node) observer.observe(node); });
-    return () => observer.disconnect();
+    let frame = 0;
+    const updateActive = () => {
+      frame = 0;
+      const boundary = Math.max(100, window.innerHeight * 0.18);
+      let current = 'about';
+      if (window.scrollY > 0) {
+        sections.forEach(([id]) => {
+          const node = document.getElementById(id);
+          if (node && node.getBoundingClientRect().top <= boundary) current = id;
+        });
+      }
+      setActive(current);
+    };
+    const scheduleUpdate = () => {
+      if (!frame) frame = requestAnimationFrame(updateActive);
+    };
+    window.addEventListener('scroll', scheduleUpdate, { passive: true });
+    window.addEventListener('resize', scheduleUpdate);
+    const observer = new ResizeObserver(scheduleUpdate);
+    observer.observe(document.querySelector('.details-column'));
+    updateActive();
+    return () => {
+      window.removeEventListener('scroll', scheduleUpdate);
+      window.removeEventListener('resize', scheduleUpdate);
+      observer.disconnect();
+      cancelAnimationFrame(frame);
+    };
   }, []);
   return <LiquiThemeProvider theme={{ glass: getGlassTheme(dark) }}>
     <a href="#about" className="skip-link">{t('Skip to content', '跳至正文')}</a>
