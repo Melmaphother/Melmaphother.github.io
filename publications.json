@@ -11,6 +11,7 @@
         "Qi Liu"
       ],
       "venue": "IEEE International Conference on Data Mining (Demo Track)",
+      "venueZh": "IEEE 国际数据挖掘会议（演示赛道）",
       "thumbnail": "images/publications/claw-r1.png",
       "selected": 1,
       "award": "ICDM 2026 Demo",
@@ -33,6 +34,7 @@
         "Enhong Chen"
       ],
       "venue": "Preprint (2026)",
+      "venueZh": "预印本（2026）",
       "thumbnail": "images/publications/capo.png",
       "selected": 1,
       "award": "",
@@ -56,6 +58,7 @@
         "Enhong Chen"
       ],
       "venue": "ACM International Conference on Information and Knowledge Management",
+      "venueZh": "ACM 国际信息与知识管理会议",
       "thumbnail": "images/publications/5.png",
       "selected": 1,
       "award": "CIKM 2026",
@@ -75,10 +78,11 @@
         "Xin Li",
         "Qi Liu"
       ],
-      "venue": "Preprint (2025)",
+      "venue": "ACM International Conference on Web Search and Data Mining",
+      "venueZh": "ACM 国际网络搜索与数据挖掘会议",
       "thumbnail": "images/publications/3.png",
       "selected": 1,
-      "award": "",
+      "award": "WSDM 2027",
       "links": {
         "pdf": "https://arxiv.org/abs/2510.10909",
         "code": "https://github.com/Melmaphother/PaperArena",
@@ -97,6 +101,7 @@
         "Xiaoyu Tao"
       ],
       "venue": "ACM The Web Conference",
+      "venueZh": "ACM 国际万维网大会",
       "thumbnail": "images/publications/4.png",
       "selected": 0,
       "award": "WWW 2026",
@@ -117,6 +122,7 @@
         "Enhong Chen"
       ],
       "venue": "ACM International Conference on Information and Knowledge Management",
+      "venueZh": "ACM 国际信息与知识管理会议",
       "thumbnail": "images/publications/2.png",
       "selected": 0,
       "award": "CIKM 2025",
@@ -135,6 +141,7 @@
         "Qi Liu"
       ],
       "venue": "International Conference on Machine Learning",
+      "venueZh": "国际机器学习会议",
       "thumbnail": "images/publications/1.png",
       "selected": 1,
       "award": "ICML 2025",

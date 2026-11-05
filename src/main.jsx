@@ -85,7 +85,7 @@ function WorkCard({ item, type, index, t, onPreview }) {
       <span className="image-hint"><ImagePlus size={16} /></span>
     </button>
     <div className="work-content">
-      <div className="work-meta"><span className="work-index">{String(index + 1).padStart(2, '0')}</span><span className="venue-badge">{(item.award && t(item.award, item.awardZh || item.award)) || (type === 'publication' ? 'Preprint' : t('Open source', '开源项目'))}</span></div>
+      <div className="work-meta"><span className="work-index">{String(index + 1).padStart(2, '0')}</span><span className="venue-badge">{(item.award && t(item.award, item.awardZh || item.award)) || (type === 'publication' ? t('Preprint', '预印本') : t('Open source', '开源项目'))}</span></div>
       <h3>{item.title}</h3>
       <p className="authors">{item.authors.map((englishName, i) => { const author = t(englishName, chineseAuthorNames[englishName] || englishName); return <React.Fragment key={`${englishName}-${i}`}>{i > 0 && t(', ', '、')}{englishName.includes('Daoyu Wang') ? <strong>{author}</strong> : author}</React.Fragment>; })}</p>
       <p className="venue">{t(item.venue, item.venueZh || item.venue)}</p>
@@ -104,7 +104,7 @@ function App() {
   useEffect(() => {
     document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
     document.body.className = `lang-${lang}`;
-    document.title = 'Daoyu Wang - Homepage';
+    document.title = lang === 'zh' ? '王道宇 - 个人主页' : 'Daoyu Wang - Homepage';
     localStorage.setItem('homepage-language', lang);
   }, [lang]);
   useEffect(() => {
@@ -151,7 +151,7 @@ function App() {
     <a href="#about" className="skip-link">{t('Skip to content', '跳至正文')}</a>
     <div className="topbar-wrap">
       <Surface className="topbar" radius={100} bezel={17} refraction={75} dispersion={0.025}>
-        <a className="wordmark" href="#top" aria-label={t('Daoyu Wang, back to top', '王道宇，回到顶部')}><img src="images/favicon/android-chrome-512x512.png" alt="" /><span>Daoyu Wang</span></a>
+        <a className="wordmark" href="#top" aria-label={t('Daoyu Wang, back to top', '王道宇，回到顶部')}><img src="images/favicon/android-chrome-512x512.png" alt="" /><span>{t('Daoyu Wang', '王道宇')}</span></a>
         <nav className="desktop-nav" aria-label={t('Main navigation', '主导航')}>{sections.map(([id, en, zh, Icon]) => <a key={id} href={`#${id}`} className={active === id ? 'active' : ''} aria-current={active === id ? 'location' : undefined}><Icon size={14} aria-hidden="true" />{t(en, zh)}</a>)}</nav>
         <div className="nav-controls"><Segments label={t('Language', '语言')} value={lang} onChange={setLang} items={[[ 'en', 'EN' ], [ 'zh', '中文' ]]} /><a className="icon-button" href="https://github.com/Melmaphother/Melmaphother.github.io" target="_blank" rel="noreferrer" aria-label={t('View source on GitHub', '在 GitHub 查看源码')} title={t('View source', '查看源码')}><Github size={18} aria-hidden="true" /></a><button className="icon-button" onClick={() => setDark(!dark)} aria-label={t(dark ? 'Switch to light theme' : 'Switch to dark theme', dark ? '切换浅色主题' : '切换深色主题')}>{dark ? <Sun size={18} /> : <Moon size={18} />}</button></div>
       </Surface>
@@ -187,7 +187,7 @@ function App() {
         <Panel className="section-surface experiences-surface"><div id="experiences" className="section-anchor" /><SectionHeading t={t} number="06" title="Education" zh="教育经历" subtitle="EDUCATION" subtitleZh="我的旅程" /><Legacy name="experiences" /></Panel>
         <Panel className="section-surface internships-surface"><div id="internships" className="section-anchor" /><SectionHeading t={t} number="07" title="Internships" zh="实习经历" subtitle="INTERNSHIPS" subtitleZh="实践经历" /><Legacy name="internships" /></Panel>
       </div>
-      <div className="footer-content"><Legacy name="footer" /><div className="footer-colophon"><span>© {new Date().getFullYear()} Daoyu Wang</span><span><a href="https://github.com/Melmaphother/Melmaphother.github.io" target="_blank" rel="noreferrer">{t('View source', '查看源码')}<Github size={13} aria-hidden="true" /></a></span></div></div>
+      <div className="footer-content"><Legacy name="footer" /><div className="footer-colophon"><span>© {new Date().getFullYear()} {t('Daoyu Wang', '王道宇')}</span><span><a href="https://github.com/Melmaphother/Melmaphother.github.io" target="_blank" rel="noreferrer">{t('View source', '查看源码')}<Github size={13} aria-hidden="true" /></a></span></div></div>
       </div>
     </main>
     <Popover.Root>
