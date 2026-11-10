@@ -1,6 +1,28 @@
 {
   "publications": [
     {
+      "title": "PaperArena: An Evaluation Benchmark for Tool-Augmented Agentic Reasoning on Scientific Literature",
+      "authors": [
+        "Daoyu Wang",
+        "Mingyue Cheng",
+        "Shuo Yu",
+        "Zirui Liu",
+        "Ze Guo",
+        "Xin Li",
+        "Qi Liu"
+      ],
+      "venue": "ACM International Conference on Web Search and Data Mining",
+      "venueZh": "ACM 国际网络搜索与数据挖掘会议",
+      "thumbnail": "images/publications/3.png",
+      "selected": 1,
+      "award": "WSDM 2027",
+      "links": {
+        "pdf": "https://arxiv.org/abs/2510.10909",
+        "code": "https://github.com/Melmaphother/PaperArena",
+        "project": "https://paperarena-ai.github.io/"
+      }
+    },
+    {
       "title": "Claw-R1: A Step-Level Data Middleware System for Agentic Reinforcement Learning",
       "authors": [
         "Daoyu Wang",
@@ -16,8 +38,139 @@
       "selected": 1,
       "award": "ICDM 2026 Demo",
       "links": {
-        "pdf": "https://arxiv.org/abs/2606.09138",
+        "pdf": "https://arxiv.org/abs/2606.09138v1",
         "code": "https://github.com/AgentR1/Claw-R1"
+      }
+    },
+    {
+      "title": "Mind2Report: Expert-Level Commercial Report Synthesis via Cognitive Deep Research Agent",
+      "authors": [
+        "Mingyue Cheng",
+        "Daoyu Wang",
+        "Qi Liu",
+        "Shuo Yu",
+        "Xiaoyu Tao",
+        "Yuqian Wang",
+        "Chengzhong Chu",
+        "Yu Duan",
+        "Mingkang Long",
+        "Enhong Chen"
+      ],
+      "venue": "ACM International Conference on Information and Knowledge Management",
+      "venueZh": "ACM 国际信息与知识管理会议",
+      "thumbnail": "images/publications/5.png",
+      "selected": 1,
+      "award": "CIKM 2026",
+      "links": {
+        "pdf": "https://arxiv.org/abs/2601.04879",
+        "code": "https://github.com/Melmaphother/Mind2Report"
+      }
+    },
+    {
+      "title": "Agent-R1: A Unified and Modular Framework for Agentic Reinforcement Learning",
+      "authors": [
+        "Mingyue Cheng",
+        "Shuo Yu",
+        "Daoyu Wang",
+        "Qingchuan Li",
+        "Xiaoyu Tao",
+        "Jie Ouyang",
+        "Yucong Luo",
+        "Yitong Zhou",
+        "Qi Liu",
+        "Enhong Chen"
+      ],
+      "venue": "ACM International Conference on Information and Knowledge Management (Demo Track)",
+      "venueZh": "ACM 国际信息与知识管理会议（演示赛道）",
+      "thumbnail": "images/publications/agent-r1.png",
+      "selected": 0,
+      "award": "CIKM 2026 Demo",
+      "links": {
+        "pdf": "https://arxiv.org/abs/2511.14460v2",
+        "code": "https://github.com/AgentR1/Agent-R1"
+      }
+    },
+    {
+      "title": "TabClaw: An Interactive and Self-Evolving Agent for Spreadsheet Manipulation and Table Reasoning",
+      "authors": [
+        "Mingyue Cheng",
+        "Shuo Yu",
+        "Daoyu Wang",
+        "Qingchuan Li",
+        "Xiaoyu Tao",
+        "Qingyang Mao",
+        "Yitong Zhou",
+        "Qi Liu"
+      ],
+      "venue": "ACM International Conference on Information and Knowledge Management (Demo Track)",
+      "venueZh": "ACM 国际信息与知识管理会议（演示赛道）",
+      "thumbnail": "images/publications/tabclaw.png",
+      "selected": 0,
+      "award": "CIKM 2026 Demo",
+      "links": {
+        "pdf": "https://arxiv.org/abs/2606.10316",
+        "code": "https://github.com/ustc-table-mining/TabClaw"
+      }
+    },
+    {
+      "title": "From Values to Tokens: An LLM-Driven Framework for Context-Aware Time Series Forecasting via Symbolic Discretization",
+      "authors": [
+        "Xiaoyu Tao",
+        "Shilong Zhang",
+        "Mingyue Cheng",
+        "Daoyu Wang",
+        "Tingyue Pan",
+        "Bokai Pan",
+        "Changqing Zhang",
+        "Shijin Wang"
+      ],
+      "venue": "International Joint Conference on Artificial Intelligence",
+      "venueZh": "国际人工智能联合会议",
+      "thumbnail": "images/publications/tokencast.svg",
+      "selected": 0,
+      "award": "IJCAI 2026",
+      "links": {
+        "pdf": "https://ijcai.org/proceedings/2026/338",
+        "code": "https://github.com/Xiaoyu-Tao/TokenCast"
+      }
+    },
+    {
+      "title": "CoGenCast: A Coupled Autoregressive–Flow Generative Framework for Time Series Forecasting",
+      "authors": [
+        "Mingyue Cheng",
+        "Yaguo Liu",
+        "Daoyu Wang",
+        "Xiaoyu Tao",
+        "Qi Liu"
+      ],
+      "venue": "International Conference on Machine Learning",
+      "venueZh": "国际机器学习会议",
+      "thumbnail": "images/publications/cogencast.png",
+      "selected": 0,
+      "award": "ICML 2026",
+      "links": {
+        "pdf": "https://proceedings.mlr.press/v306/cheng26h.html"
+      }
+    },
+    {
+      "title": "MemWeaver: A Hierarchical Memory from Textual Interactive Behaviors for Personalized Generation",
+      "authors": [
+        "Shuo Yu",
+        "Mingyue Cheng",
+        "Daoyu Wang",
+        "Qi Liu",
+        "Zirui Liu",
+        "Ze Guo",
+        "Xiaoyu Tao"
+      ],
+      "venue": "ACM The Web Conference",
+      "venueZh": "ACM 国际万维网大会",
+      "thumbnail": "images/publications/4.png",
+      "selected": 0,
+      "award": "WWW 2026",
+      "links": {
+        "pdf": "https://arxiv.org/abs/2510.07713",
+        "code": "https://github.com/fishsure/MemWeaver"
       }
     },
     {
@@ -44,70 +197,65 @@
       }
     },
     {
-      "title": "Mind2Report: A Cognitive Deep Research Agent for Expert-Level Commercial Report Synthesis",
+      "title": "A Comprehensive Survey of the LLM-Based Agent: The Contextual Cognition Perspective",
       "authors": [
         "Mingyue Cheng",
         "Daoyu Wang",
-        "Qi Liu",
         "Shuo Yu",
-        "Xiaoyu Tao",
-        "Yuqian Wang",
-        "Chengzhong Chu",
-        "Yu Duan",
-        "Mingkang Long",
+        "Qingchuan Li",
+        "Jie Ouyang",
+        "Yucong Luo",
+        "Yiju Zhang",
+        "Qi Liu",
         "Enhong Chen"
       ],
-      "venue": "ACM International Conference on Information and Knowledge Management",
-      "venueZh": "ACM 国际信息与知识管理会议",
-      "thumbnail": "images/publications/5.png",
+      "venue": "Preprint (2026)",
+      "venueZh": "预印本（2026）",
+      "thumbnail": "images/publications/agent-survey.png",
       "selected": 1,
-      "award": "CIKM 2026",
+      "award": "",
       "links": {
-        "pdf": "https://www.arxiv.org/abs/2601.04879",
-        "code": "https://github.com/Melmaphother/Mind2Report"
+        "pdf": "https://www.preprints.org/manuscript/202604.0935"
       }
     },
     {
-      "title": "PaperArena: An Evaluation Benchmark for Tool-Augmented Agentic Reasoning on Scientific Literature",
+      "title": "From Hypothesis to Premises: LLM-based Backward Logical Reasoning with Selective Symbolic Translation",
       "authors": [
-        "Daoyu Wang",
+        "Qingchuan Li",
         "Mingyue Cheng",
-        "Shuo Yu",
         "Zirui Liu",
-        "Ze Guo",
-        "Xin Li",
-        "Qi Liu"
+        "Daoyu Wang",
+        "Yuting Zeng",
+        "Tongxuan Liu"
+      ],
+      "venue": "AAAI Conference on Artificial Intelligence",
+      "venueZh": "AAAI 人工智能会议",
+      "thumbnail": "images/publications/hblr.png",
+      "selected": 0,
+      "award": "AAAI 2026",
+      "links": {
+        "pdf": "https://ojs.aaai.org/index.php/AAAI/article/view/40434",
+        "code": "https://github.com/qingchuanli/HBLR"
+      }
+    },
+    {
+      "title": "Can Slow-Thinking LLMs Reason Over Time? Empirical Studies in Time Series Forecasting",
+      "authors": [
+        "Mingyue Cheng",
+        "Jiahao Wang",
+        "Daoyu Wang",
+        "Xiaoyu Tao",
+        "Qi Liu",
+        "Enhong Chen"
       ],
       "venue": "ACM International Conference on Web Search and Data Mining",
       "venueZh": "ACM 国际网络搜索与数据挖掘会议",
-      "thumbnail": "images/publications/3.png",
-      "selected": 1,
-      "award": "WSDM 2027",
-      "links": {
-        "pdf": "https://arxiv.org/abs/2510.10909",
-        "code": "https://github.com/Melmaphother/PaperArena",
-        "project": "https://paperarena-ai.github.io/"
-      }
-    },
-    {
-      "title": "MemWeaver: A Hierarchical Memory from Textual Interactive Behaviors for Personalized Generation",
-      "authors": [
-        "Shuo Yu",
-        "Mingyue Cheng",
-        "Daoyu Wang",
-        "Qi Liu",
-        "Zirui Liu",
-        "Ze Guo",
-        "Xiaoyu Tao"
-      ],
-      "venue": "ACM The Web Conference",
-      "venueZh": "ACM 国际万维网大会",
-      "thumbnail": "images/publications/4.png",
+      "thumbnail": "images/publications/timereasoner.svg",
       "selected": 0,
-      "award": "WWW 2026",
+      "award": "WSDM 2026",
       "links": {
-        "pdf": "https://arxiv.org/abs/2510.07713",
-        "code": "https://github.com/fishsure/MemWeaver"
+        "pdf": "https://arxiv.org/abs/2505.24511v3",
+        "code": "https://github.com/realwangjiahao/TimeReasoner"
       }
     },
     {
@@ -118,7 +266,9 @@
         "Qi Liu",
         "Daoyu Wang",
         "Jiqian Yang",
-        "...",
+        "Jie Ouyang",
+        "Yucong Luo",
+        "Chenyi Lei",
         "Enhong Chen"
       ],
       "venue": "ACM International Conference on Information and Knowledge Management",
@@ -149,6 +299,27 @@
         "pdf": "https://arxiv.org/abs/2410.05711",
         "code": "https://github.com/Melmaphother/TimeDART",
         "poster": "https://icml.cc/virtual/2025/poster/43701"
+      }
+    },
+    {
+      "title": "Revisiting the Solution of Meta KDD Cup 2024: CRAG",
+      "authors": [
+        "Jie Ouyang",
+        "Yucong Luo",
+        "Mingyue Cheng",
+        "Daoyu Wang",
+        "Shuo Yu",
+        "Qi Liu",
+        "Enhong Chen"
+      ],
+      "venue": "KDD Cup Workshop",
+      "venueZh": "KDD Cup 研讨会",
+      "thumbnail": "images/publications/crag.png",
+      "selected": 0,
+      "award": "KDD Cup 2024",
+      "links": {
+        "pdf": "https://arxiv.org/abs/2409.15337",
+        "code": "https://github.com/USTCAGI/CRAG-in-KDD-Cup2024"
       }
     }
   ]
