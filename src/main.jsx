@@ -1,4 +1,5 @@
 import { getGlassTheme } from './glass-theme.js';
+import { toggleTheme, useDarkTheme } from './theme.js';
 import React, { useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { LiquiGlass, LiquiThemeProvider } from '@liqui-design/glass';
@@ -95,7 +96,7 @@ function WorkCard({ item, type, index, t, onPreview }) {
 }
 function App() {
   const [lang, setLang] = useState(() => localStorage.getItem('homepage-language') || 'en');
-  const [dark, setDark] = useState(() => localStorage.getItem('homepage-theme') === 'dark');
+  const dark = useDarkTheme();
   const [pubFilter, setPubFilter] = useState('selected');
   const [projectFilter, setProjectFilter] = useState('selected');
   const [active, setActive] = useState('about');
@@ -107,17 +108,6 @@ function App() {
     document.title = lang === 'zh' ? '王道宇 - 个人主页' : 'Daoyu Wang - Homepage';
     localStorage.setItem('homepage-language', lang);
   }, [lang]);
-  useEffect(() => {
-    document.documentElement.dataset.theme = dark ? 'dark' : 'light';
-    localStorage.setItem('homepage-theme', dark ? 'dark' : 'light');
-  }, [dark]);
-  useEffect(() => {
-    const syncTheme = (event) => {
-      if (event.key === 'homepage-theme') setDark(event.newValue === 'dark');
-    };
-    window.addEventListener('storage', syncTheme);
-    return () => window.removeEventListener('storage', syncTheme);
-  }, []);
   useEffect(() => {
     let frame = 0;
     const updateActive = () => {
@@ -153,7 +143,7 @@ function App() {
       <Surface className="topbar" radius={100} bezel={17} refraction={75} dispersion={0.025}>
         <a className="wordmark" href="#top" aria-label={t('Daoyu Wang, back to top', '王道宇，回到顶部')}><img src="images/favicon/android-chrome-512x512.png" alt="" /><span>{t('Daoyu Wang', '王道宇')}</span></a>
         <nav className="desktop-nav" aria-label={t('Main navigation', '主导航')}>{sections.map(([id, en, zh, Icon]) => <a key={id} href={`#${id}`} className={active === id ? 'active' : ''} aria-current={active === id ? 'location' : undefined}><Icon size={14} aria-hidden="true" />{t(en, zh)}</a>)}</nav>
-        <div className="nav-controls"><Segments label={t('Language', '语言')} value={lang} onChange={setLang} items={[[ 'en', 'EN' ], [ 'zh', '中文' ]]} /><a className="icon-button" href="https://github.com/Melmaphother/Melmaphother.github.io" target="_blank" rel="noreferrer" aria-label={t('View source on GitHub', '在 GitHub 查看源码')} title={t('View source', '查看源码')}><Github size={18} aria-hidden="true" /></a><button className="icon-button" onClick={() => setDark(!dark)} aria-label={t(dark ? 'Switch to light theme' : 'Switch to dark theme', dark ? '切换浅色主题' : '切换深色主题')}>{dark ? <Sun size={18} /> : <Moon size={18} />}</button></div>
+        <div className="nav-controls"><Segments label={t('Language', '语言')} value={lang} onChange={setLang} items={[[ 'en', 'EN' ], [ 'zh', '中文' ]]} /><a className="icon-button" href="https://github.com/Melmaphother/Melmaphother.github.io" target="_blank" rel="noreferrer" aria-label={t('View source on GitHub', '在 GitHub 查看源码')} title={t('View source', '查看源码')}><Github size={18} aria-hidden="true" /></a><button className="icon-button" onClick={toggleTheme} aria-label={t(dark ? 'Switch to light theme' : 'Switch to dark theme', dark ? '切换浅色主题' : '切换深色主题')}>{dark ? <Sun size={18} /> : <Moon size={18} />}</button></div>
       </Surface>
     </div>
     <main id="top" className="page">

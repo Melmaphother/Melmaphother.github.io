@@ -1,5 +1,6 @@
 import { getGlassTheme } from '../glass-theme.js';
-import React, { useEffect, useState } from 'react';
+import { toggleTheme, useDarkTheme } from '../theme.js';
+import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { LiquiGlass, LiquiThemeProvider } from '@liqui-design/glass';
 import { Popover } from '@base-ui/react/popover';
@@ -14,41 +15,17 @@ const tools = [
 const current = tools.find(([slug]) => slug === document.body.dataset.tool);
 const iconMap = { Ban, QrCode, Upload, SlidersHorizontal, RotateCw, Copy, Download, WandSparkles, Check, TriangleAlert, X, Clipboard, ShieldCheck, Github, ChevronDown, FileText, ImageMinus };
 const roots = [];
-const initialDark = localStorage.getItem('homepage-theme') === 'dark';
-document.documentElement.dataset.theme = initialDark ? 'dark' : 'light';
 
-function useTheme() {
-  const [dark, setDark] = useState(document.documentElement.dataset.theme === 'dark');
-  useEffect(() => {
-    const refresh = () => setDark(document.documentElement.dataset.theme === 'dark');
-    const storage = (event) => {
-      if (event.key === 'homepage-theme') {
-        document.documentElement.dataset.theme = event.newValue === 'dark' ? 'dark' : 'light';
-        refresh();
-      }
-    };
-    document.addEventListener('tool-theme', refresh);
-    window.addEventListener('storage', storage);
-    return () => { document.removeEventListener('tool-theme', refresh); window.removeEventListener('storage', storage); };
-  }, []);
-  return dark;
-}
 function Theme({ children }) {
-  const dark = useTheme();
+  const dark = useDarkTheme();
   return <LiquiThemeProvider theme={{ glass: getGlassTheme(dark) }}>{children}</LiquiThemeProvider>;
 }
 function Glass({ className = '', children, radius = 100, ...props }) {
   return <LiquiGlass elevated radius={radius} bezel={12} refraction={48} blur={0.35} className={`tool-glass ${className}`} {...props}>{children}</LiquiGlass>;
 }
 function Header() {
-  const dark = useTheme();
+  const dark = useDarkTheme();
   const [, name, , Icon] = current;
-  function toggleTheme() {
-    const value = dark ? 'light' : 'dark';
-    document.documentElement.dataset.theme = value;
-    localStorage.setItem('homepage-theme', value);
-    document.dispatchEvent(new Event('tool-theme'));
-  }
   return <Theme><Glass className="tool-nav" bezel={17} refraction={75} dispersion={0.025}>
     <a className="tool-nav-brand" href={`/${current[0]}/`}><Icon size={22} /><span>{name}</span></a>
     <div className="tool-nav-actions">
