@@ -488,13 +488,13 @@
         return dots.join('');
     }
 
-    function finderShapeElement(x, y, outerStyle, centerStyle, fill) {
+    function finderShapeElement(x, y, outerStyle, centerStyle, fill, gapFill = '#ffffff') {
         if (outerStyle === 'dot-square' || outerStyle === 'dot-rounded' || outerStyle === 'dot-dense') {
             return dottedFinderElement(x, y, outerStyle, fill);
         }
         return [
             shapeRect(x, y, 7, outerStyle, fill),
-            shapeRect(x + 1, y + 1, 5, outerStyle, '#ffffff'),
+            shapeRect(x + 1, y + 1, 5, outerStyle, gapFill),
             shapeRect(x + 2, y + 2, 3, centerStyle, fill)
         ].join('');
     }
@@ -509,9 +509,16 @@
         );
     }
 
+    let finderPreviewCount = 0;
+
     function finderPreviewElement(x, y, scale, outerStyle, centerStyle) {
-        const finder = finderShapeElement(0, 0, outerStyle, centerStyle, 'currentColor');
-        return `<g transform="translate(${x} ${y}) scale(${scale})">${finder}</g>`;
+        const maskId = `finder-preview-${++finderPreviewCount}`;
+        return `<g transform="translate(${x} ${y}) scale(${scale})">
+            <mask id="${maskId}" maskUnits="userSpaceOnUse" x="0" y="0" width="7" height="7">
+                ${finderShapeElement(0, 0, outerStyle, centerStyle, 'white', 'black')}
+            </mask>
+            <rect width="7" height="7" fill="currentColor" mask="url(#${maskId})"/>
+        </g>`;
     }
 
     function createEdgePresetPreviewSvg(preset) {
@@ -754,7 +761,7 @@
         if (selectedButton && triggerDemo) {
             const selectedDemo = $('.edge-demo', selectedButton);
             triggerDemo.className = selectedDemo.className;
-            triggerDemo.innerHTML = selectedDemo.innerHTML;
+            triggerDemo.innerHTML = createSingleEdgePreviewSvg(style);
         }
     }
 
@@ -800,6 +807,7 @@
 
     function setLogoColorMode(mode) {
         state.logoColorMode = mode;
+        el.logoGrid.classList.toggle('custom-logo-colors', mode === 'custom');
         $$('[data-logo-color-mode]').forEach((button) => {
             const active = button.dataset.logoColorMode === mode;
             button.classList.toggle('active', active);
