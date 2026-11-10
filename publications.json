@@ -58,7 +58,7 @@
       ],
       "venue": "ACM International Conference on Information and Knowledge Management",
       "venueZh": "ACM 国际信息与知识管理会议",
-      "thumbnail": "images/publications/5.png",
+      "thumbnail": "images/publications/mind2report-motivation.png",
       "selected": 1,
       "award": "CIKM 2026",
       "links": {
@@ -211,7 +211,7 @@
       ],
       "venue": "Preprint (2026)",
       "venueZh": "预印本（2026）",
-      "thumbnail": "images/publications/agent-survey.png",
+      "thumbnail": "images/publications/agent-survey-motivation.png",
       "selected": 1,
       "award": "",
       "links": {
@@ -230,7 +230,7 @@
       ],
       "venue": "AAAI Conference on Artificial Intelligence",
       "venueZh": "AAAI 人工智能会议",
-      "thumbnail": "images/publications/hblr.png",
+      "thumbnail": "images/publications/hblr-motivation.png",
       "selected": 0,
       "award": "AAAI 2026",
       "links": {
@@ -250,7 +250,7 @@
       ],
       "venue": "ACM International Conference on Web Search and Data Mining",
       "venueZh": "ACM 国际网络搜索与数据挖掘会议",
-      "thumbnail": "images/publications/timereasoner.svg",
+      "thumbnail": "images/publications/timereasoner-motivation.svg",
       "selected": 0,
       "award": "WSDM 2026",
       "links": {
@@ -273,7 +273,7 @@
       ],
       "venue": "ACM International Conference on Information and Knowledge Management",
       "venueZh": "ACM 国际信息与知识管理会议",
-      "thumbnail": "images/publications/2.png",
+      "thumbnail": "images/publications/pruningrag-motivation.png",
       "selected": 0,
       "award": "CIKM 2025",
       "links": {
