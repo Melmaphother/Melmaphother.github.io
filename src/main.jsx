@@ -150,7 +150,10 @@ function App() {
       <aside className="profile-sidebar">
       <header className="hero">
         <div className="hero-copy">
-          <h1><span className={`name-primary ${lang === 'zh' ? 'chinese-name' : ''}`}>{t('Daoyu Wang', '王道宇')}</span><span className={`name-secondary ${lang === 'en' ? 'chinese-name' : ''}`}>{t('王道宇', 'Daoyu Wang')}</span></h1>
+          <h1>
+            <span className={`name-primary ${lang === 'zh' ? 'chinese-name' : ''}`}>{t('Melpher Wang', '王道宇')}</span>
+            <span className={`name-secondary ${lang === 'en' ? 'chinese-name' : ''}`}>{t('王道宇', 'Melpher Wang')}</span>
+          </h1>
           <p className="academic-role"><University size={15} aria-hidden="true" /><span>{t('CS Master Student · University of Science and Technology of China', '计算机科学与技术硕士在读 · 中国科学技术大学')}</span></p>
           <a className="email-link" href="mailto:daoyu.wang@mail.ustc.edu.cn"><Mail size={15} aria-hidden="true" /><span>daoyu.wang@mail.ustc.edu.cn</span></a>
           <div className="social-links">{socialLinks.map(([en, zh, href, Icon]) => <a href={href} key={en} target="_blank" rel="noreferrer"><Icon size={15} aria-hidden="true" />{t(en, zh)}</a>)}</div>

@@ -12,7 +12,6 @@
         "Qi Liu"
       ],
       "venue": "ACM International Conference on Web Search and Data Mining",
-      "venueZh": "ACM 国际网络搜索与数据挖掘会议",
       "thumbnail": "images/publications/3.png",
       "selected": 1,
       "award": "WSDM 2027",
@@ -33,7 +32,6 @@
         "Qi Liu"
       ],
       "venue": "IEEE International Conference on Data Mining (Demo Track)",
-      "venueZh": "IEEE 国际数据挖掘会议（演示赛道）",
       "thumbnail": "images/publications/claw-r1.png",
       "selected": 1,
       "award": "ICDM 2026 Demo",
@@ -57,10 +55,9 @@
         "Enhong Chen"
       ],
       "venue": "ACM International Conference on Information and Knowledge Management",
-      "venueZh": "ACM 国际信息与知识管理会议",
       "thumbnail": "images/publications/mind2report-motivation.png",
       "selected": 1,
-      "award": "CIKM 2026",
+      "award": "CIKM 2026 (Oral)",
       "links": {
         "pdf": "https://arxiv.org/abs/2601.04879",
         "code": "https://github.com/Melmaphother/Mind2Report"
@@ -81,7 +78,6 @@
         "Enhong Chen"
       ],
       "venue": "ACM International Conference on Information and Knowledge Management (Demo Track)",
-      "venueZh": "ACM 国际信息与知识管理会议（演示赛道）",
       "thumbnail": "images/publications/agent-r1.png",
       "selected": 0,
       "award": "CIKM 2026 Demo",
@@ -103,7 +99,6 @@
         "Qi Liu"
       ],
       "venue": "ACM International Conference on Information and Knowledge Management (Demo Track)",
-      "venueZh": "ACM 国际信息与知识管理会议（演示赛道）",
       "thumbnail": "images/publications/tabclaw.png",
       "selected": 0,
       "award": "CIKM 2026 Demo",
@@ -125,7 +120,6 @@
         "Shijin Wang"
       ],
       "venue": "International Joint Conference on Artificial Intelligence",
-      "venueZh": "国际人工智能联合会议",
       "thumbnail": "images/publications/tokencast.svg",
       "selected": 0,
       "award": "IJCAI 2026",
@@ -144,7 +138,6 @@
         "Qi Liu"
       ],
       "venue": "International Conference on Machine Learning",
-      "venueZh": "国际机器学习会议",
       "thumbnail": "images/publications/cogencast.png",
       "selected": 0,
       "award": "ICML 2026",
@@ -164,7 +157,6 @@
         "Xiaoyu Tao"
       ],
       "venue": "ACM The Web Conference",
-      "venueZh": "ACM 国际万维网大会",
       "thumbnail": "images/publications/4.png",
       "selected": 0,
       "award": "WWW 2026",
@@ -229,7 +221,6 @@
         "Tongxuan Liu"
       ],
       "venue": "AAAI Conference on Artificial Intelligence",
-      "venueZh": "AAAI 人工智能会议",
       "thumbnail": "images/publications/hblr-motivation.png",
       "selected": 0,
       "award": "AAAI 2026",
@@ -249,7 +240,6 @@
         "Enhong Chen"
       ],
       "venue": "ACM International Conference on Web Search and Data Mining",
-      "venueZh": "ACM 国际网络搜索与数据挖掘会议",
       "thumbnail": "images/publications/timereasoner-motivation.svg",
       "selected": 0,
       "award": "WSDM 2026",
@@ -272,7 +262,6 @@
         "Enhong Chen"
       ],
       "venue": "ACM International Conference on Information and Knowledge Management",
-      "venueZh": "ACM 国际信息与知识管理会议",
       "thumbnail": "images/publications/pruningrag-motivation.png",
       "selected": 0,
       "award": "CIKM 2025",
@@ -291,7 +280,6 @@
         "Qi Liu"
       ],
       "venue": "International Conference on Machine Learning",
-      "venueZh": "国际机器学习会议",
       "thumbnail": "images/publications/1.png",
       "selected": 1,
       "award": "ICML 2025",
@@ -313,7 +301,6 @@
         "Enhong Chen"
       ],
       "venue": "KDD Cup Workshop",
-      "venueZh": "KDD Cup 研讨会",
       "thumbnail": "images/publications/crag.png",
       "selected": 0,
       "award": "KDD Cup 2024",
