@@ -3,10 +3,9 @@ import { toggleTheme, useDarkTheme } from './theme.js';
 import React, { useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { LiquiGlass, LiquiThemeProvider } from '@liqui-design/glass';
-import { Tabs } from '@base-ui/react/tabs';
 import { Dialog } from '@base-ui/react/dialog';
 import { Popover } from '@base-ui/react/popover';
-import { ArrowUpRight, Sun, Moon, Github, Mail, GraduationCap, University, BookOpen, Layers, Compass, BriefcaseBusiness, FlaskConical, X, ImagePlus, MessageCircleQuestion, BookHeart, ImageMinus, FileText, QrCode, Code2, Globe, Presentation } from 'lucide-react';
+import { ArrowUpRight, Sun, Moon, Github, Mail, GraduationCap, University, BookOpen, Layers, Compass, BriefcaseBusiness, FlaskConical, X, ImagePlus, MessageCircleQuestion, BookHeart, ImageMinus, FileText, QrCode, Code2, Globe, Presentation, Languages, ListFilter } from 'lucide-react';
 import { Button } from './components/button';
 import content from './content.json';
 import publicationsData from '../publications.json';
@@ -60,15 +59,21 @@ function Panel({ className = '', children }) { return <div className={`academic-
 function Surface({ className = '', children, ...props }) {
   return <LiquiGlass elevated radius={28} bezel={20} refraction={48} blur={0.35} className={`surface ${className}`} {...props}>{children}</LiquiGlass>;
 }
-function Segments({ value, onChange, items, label }) {
-  return <Surface radius={100} bezel={10} refraction={48} className="segment-surface">
-    <Tabs.Root value={value} onValueChange={onChange}>
-      <Tabs.List aria-label={label} className="segments">
-        <Tabs.Indicator className="segment-indicator" />
-        {items.map(([key, text]) => <Tabs.Tab key={key} value={key} className="segment">{text}</Tabs.Tab>)}
-      </Tabs.List>
-    </Tabs.Root>
-  </Surface>;
+function WorkFilter({ t, value, onChange }) {
+  const isSelected = value === 'selected';
+  const label = isSelected ? t('Selected', '精选') : t('All', '全部');
+  const action = isSelected ? t('Show all items', '显示全部') : t('Show selected items', '显示精选');
+  return <button
+    type="button"
+    className="icon-button labeled-icon-button work-filter"
+    aria-label={`${label} · ${action}`}
+    data-active={isSelected}
+    title={action}
+    onClick={() => onChange(isSelected ? 'all' : 'selected')}
+  >
+    <ListFilter size={18} aria-hidden="true" />
+    <span>{label}</span>
+  </button>;
 }
 function Legacy({ name }) {
   return <div className="legacy-content" dangerouslySetInnerHTML={{ __html: content[name] }} />;
@@ -76,7 +81,7 @@ function Legacy({ name }) {
 function SectionHeading({ t, number, title, zh, subtitle, subtitleZh, filter, onFilter }) {
   return <div className="section-heading">
     <div><div className="eyebrow"><span>{number}</span>{t(subtitle, subtitleZh)}</div><h2>{t(title, zh)}</h2></div>
-    {filter && <Segments label={t('Show items', '筛选条目')} value={filter} onChange={onFilter} items={[[ 'selected', t('Selected', '精选') ], [ 'all', t('All', '全部') ]]} />}
+    {filter && <WorkFilter t={t} value={filter} onChange={onFilter} />}
   </div>;
 }
 function WorkCard({ item, type, index, t, onPreview }) {
@@ -102,6 +107,8 @@ function App() {
   const [active, setActive] = useState('about');
   const [preview, setPreview] = useState(null);
   const t = (en, zh) => lang === 'zh' ? zh : en;
+  const nextLanguage = t('zh', 'en');
+  const languageAction = t('Switch to Chinese', '切换至英文');
   useEffect(() => {
     document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
     document.body.className = `lang-${lang}`;
@@ -112,9 +119,15 @@ function App() {
     let frame = 0;
     const updateActive = () => {
       frame = 0;
+      const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+      if (scrollTop > 0 && scrollHeight - clientHeight - scrollTop <= 2) {
+        setActive(sections.at(-1)[0]);
+        return;
+      }
+
       const boundary = Math.max(100, window.innerHeight * 0.18);
       let current = 'about';
-      if (window.scrollY > 0) {
+      if (scrollTop > 0) {
         sections.forEach(([id]) => {
           const node = document.getElementById(id);
           if (node && node.getBoundingClientRect().top <= boundary) current = id;
@@ -143,7 +156,14 @@ function App() {
       <Surface className="topbar" radius={100} bezel={17} refraction={75} dispersion={0.025}>
         <a className="wordmark" href="#top" aria-label={t('Daoyu Wang, back to top', '王道宇，回到顶部')}><img src="images/favicon/android-chrome-512x512.png" alt="" /><span>{t('Daoyu Wang', '王道宇')}</span></a>
         <nav className="desktop-nav" aria-label={t('Main navigation', '主导航')}>{sections.map(([id, en, zh, Icon]) => <a key={id} href={`#${id}`} className={active === id ? 'active' : ''} aria-current={active === id ? 'location' : undefined}><Icon size={14} aria-hidden="true" />{t(en, zh)}</a>)}</nav>
-        <div className="nav-controls"><Segments label={t('Language', '语言')} value={lang} onChange={setLang} items={[[ 'en', 'EN' ], [ 'zh', '中文' ]]} /><a className="icon-button" href="https://github.com/Melmaphother/Melmaphother.github.io" target="_blank" rel="noreferrer" aria-label={t('View source on GitHub', '在 GitHub 查看源码')} title={t('View source', '查看源码')}><Github size={18} aria-hidden="true" /></a><button className="icon-button" onClick={toggleTheme} aria-label={t(dark ? 'Switch to light theme' : 'Switch to dark theme', dark ? '切换浅色主题' : '切换深色主题')}>{dark ? <Sun size={18} /> : <Moon size={18} />}</button></div>
+        <div className="nav-controls">
+          <button type="button" className="icon-button labeled-icon-button" onClick={() => setLang(nextLanguage)} aria-label={languageAction} title={languageAction}>
+            <Languages size={18} aria-hidden="true" />
+            <span lang={nextLanguage}>{t('中文', 'EN')}</span>
+          </button>
+          <a className="icon-button" href="https://github.com/Melmaphother/Melmaphother.github.io" target="_blank" rel="noreferrer" aria-label={t('View source on GitHub', '在 GitHub 查看源码')} title={t('View source', '查看源码')}><Github size={18} aria-hidden="true" /></a>
+          <button className="icon-button" onClick={toggleTheme} aria-label={t(dark ? 'Switch to light theme' : 'Switch to dark theme', dark ? '切换浅色主题' : '切换深色主题')}>{dark ? <Sun size={18} /> : <Moon size={18} />}</button>
+        </div>
       </Surface>
     </div>
     <main id="top" className="page">
