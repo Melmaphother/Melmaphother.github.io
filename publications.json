@@ -14,7 +14,7 @@
       "venue": "ACM International Conference on Web Search and Data Mining",
       "thumbnail": "images/publications/3.png",
       "selected": 1,
-      "award": "WSDM 2027",
+      "award": "WSDM 2027 (Oral)",
       "links": {
         "pdf": "https://arxiv.org/abs/2510.10909",
         "code": "https://github.com/Melmaphother/PaperArena",
