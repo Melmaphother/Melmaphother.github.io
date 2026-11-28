@@ -13,8 +13,9 @@
             "thumbnail": "images/projects/5.png",
             "selected": 1,
             "links": {
-                "website": "https://AgentR1.github.io",
-                "code": "https://github.com/AgentR1/Claw-R1"
+                "website": "https://agentr1.github.io/Claw-R1/",
+                "code": "https://github.com/AgentR1/Claw-R1",
+                "data": "https://huggingface.co/datasets/Melmaphother/Agent-R1-data"
             },
             "award": "Stars 193",
             "awardZh": "193 颗星",
@@ -37,7 +38,7 @@
             "award": "Stars 755",
             "awardZh": "755 颗星",
             "links": {
-                "code": "https://github.com/Melmaphother/Science-Star"
+                "code": "https://github.com/ustc-ai4science/Science-Star"
             },
             "venueZh": "维护者（2025年8月）"
         },
@@ -56,7 +57,8 @@
             "award": "1st Place · Jun–Aug 2026",
             "awardZh": "第一名 · 2026年6月–8月",
             "links": {
-                "website": "https://huggingface.co/spaces/Salesforce/GIFT-Eval"
+                "website": "https://huggingface.co/spaces/Salesforce/GIFT-Eval",
+                "data": "https://huggingface.co/datasets/Salesforce/GiftEval"
             }
         },
         {
@@ -80,7 +82,9 @@
             "awardZh": "1,682 颗星",
             "links": {
                 "code": "https://github.com/AgentR1/Agent-R1",
-                "pdf": "https://arxiv.org/abs/2511.14460"
+                "pdf": "https://arxiv.org/abs/2511.14460",
+                "data": "https://huggingface.co/datasets/Melmaphother/Agent-R1-data",
+                "website": "https://agentr1.github.io/agent-r1/"
             },
             "venueZh": "贡献者（2025年5月）"
         },
@@ -101,7 +105,8 @@
             "award": "Silver Medal",
             "links": {
                 "pdf": "https://arxiv.org/abs/2409.15337",
-                "code": "https://github.com/USTCAGI/CRAG-in-KDD-Cup2024"
+                "code": "https://github.com/USTCAGI/CRAG-in-KDD-Cup2024",
+                "data": "https://github.com/facebookresearch/CRAG/blob/main/docs/dataset.md#download-crag-data"
             },
             "venueZh": "贡献者（2024年6月）",
             "awardZh": "银牌"

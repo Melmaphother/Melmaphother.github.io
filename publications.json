@@ -17,7 +17,8 @@
       "award": "WSDM 2027 (Oral)",
       "links": {
         "pdf": "https://arxiv.org/abs/2510.10909",
-        "code": "https://github.com/Melmaphother/PaperArena",
+        "code": "https://github.com/ustc-ai4science/PaperArena",
+        "data": "https://huggingface.co/datasets/Melmaphother/PaperArena-Data",
         "project": "https://paperarena-ai.github.io/"
       }
     },
@@ -36,8 +37,10 @@
       "selected": 1,
       "award": "ICDM 2026 Demo",
       "links": {
-        "pdf": "https://arxiv.org/abs/2606.09138v1",
-        "code": "https://github.com/AgentR1/Claw-R1"
+        "pdf": "https://arxiv.org/abs/2606.09138",
+        "code": "https://github.com/AgentR1/Claw-R1",
+        "data": "https://huggingface.co/datasets/Melmaphother/Agent-R1-data",
+        "project": "https://agentr1.github.io/Claw-R1/"
       }
     },
     {
@@ -60,7 +63,7 @@
       "award": "CIKM 2026 (Oral)",
       "links": {
         "pdf": "https://arxiv.org/abs/2601.04879",
-        "code": "https://github.com/Melmaphother/Mind2Report"
+        "code": "https://github.com/ustc-ai4science/Mind2Report"
       }
     },
     {
@@ -82,8 +85,10 @@
       "selected": 0,
       "award": "CIKM 2026 Demo",
       "links": {
-        "pdf": "https://arxiv.org/abs/2511.14460v2",
-        "code": "https://github.com/AgentR1/Agent-R1"
+        "pdf": "https://arxiv.org/abs/2511.14460",
+        "code": "https://github.com/AgentR1/Agent-R1",
+        "data": "https://huggingface.co/datasets/Melmaphother/Agent-R1-data",
+        "project": "https://agentr1.github.io/agent-r1/"
       }
     },
     {
@@ -104,7 +109,8 @@
       "award": "CIKM 2026 Demo",
       "links": {
         "pdf": "https://arxiv.org/abs/2606.10316",
-        "code": "https://github.com/ustc-table-mining/TabClaw"
+        "code": "https://github.com/ustc-table-mining/TabClaw",
+        "project": "https://agentr1.github.io/tab-claw/"
       }
     },
     {
@@ -125,7 +131,8 @@
       "award": "IJCAI 2026",
       "links": {
         "pdf": "https://ijcai.org/proceedings/2026/338",
-        "code": "https://github.com/Xiaoyu-Tao/TokenCast"
+        "code": "https://github.com/ustc-time-series/TokenCast",
+        "data": "https://drive.google.com/file/d/1HOCE20FQgLl0xCv_dOmLcTbN1RCZWwqd/view?usp=drive_link"
       }
     },
     {
@@ -142,7 +149,8 @@
       "selected": 0,
       "award": "ICML 2026",
       "links": {
-        "pdf": "https://proceedings.mlr.press/v306/cheng26h.html"
+        "pdf": "https://arxiv.org/pdf/2602.03564",
+        "code": "https://github.com/ustc-time-series/CoGenCast"
       }
     },
     {
@@ -185,7 +193,8 @@
       "award": "",
       "links": {
         "pdf": "https://arxiv.org/abs/2604.18401",
-        "code": "https://github.com/AgentR1/CAPO"
+        "code": "https://github.com/AgentR1/CAPO",
+        "data": "https://huggingface.co/datasets/Melmaphother/Agent-R1-data"
       }
     },
     {
@@ -245,7 +254,7 @@
       "award": "WSDM 2026",
       "links": {
         "pdf": "https://arxiv.org/abs/2505.24511v3",
-        "code": "https://github.com/realwangjiahao/TimeReasoner"
+        "code": "https://github.com/ustc-time-series/TimeReasoner"
       }
     },
     {
@@ -268,6 +277,7 @@
       "links": {
         "pdf": "https://arxiv.org/abs/2409.13694",
         "code": "https://github.com/USTCAGI/PruningRAG",
+        "data": "https://huggingface.co/datasets/fishsure/RM3QA",
         "project": "https://ustc-rag-x.github.io/"
       }
     },
@@ -285,7 +295,8 @@
       "award": "ICML 2025",
       "links": {
         "pdf": "https://arxiv.org/abs/2410.05711",
-        "code": "https://github.com/Melmaphother/TimeDART",
+        "code": "https://github.com/ustc-time-series/TimeDART",
+        "data": "https://drive.google.com/drive/folders/19P---oV4nQ53JgKnE0VX3t_N1jLliVSv?usp=drive_link",
         "poster": "https://icml.cc/virtual/2025/poster/43701"
       }
     },
@@ -306,7 +317,8 @@
       "award": "KDD Cup 2024",
       "links": {
         "pdf": "https://arxiv.org/abs/2409.15337",
-        "code": "https://github.com/USTCAGI/CRAG-in-KDD-Cup2024"
+        "code": "https://github.com/USTCAGI/CRAG-in-KDD-Cup2024",
+        "data": "https://github.com/facebookresearch/CRAG/blob/main/docs/dataset.md#download-crag-data"
       }
     }
   ]

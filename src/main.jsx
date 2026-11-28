@@ -5,7 +5,7 @@ import { createRoot } from 'react-dom/client';
 import { LiquiGlass, LiquiThemeProvider } from '@liqui-design/glass';
 import { Dialog } from '@base-ui/react/dialog';
 import { Popover } from '@base-ui/react/popover';
-import { ArrowUpRight, Sun, Moon, Github, Mail, GraduationCap, University, BookOpen, Layers, Compass, BriefcaseBusiness, FlaskConical, X, ImagePlus, MessageCircleQuestion, BookHeart, ImageMinus, FileText, QrCode, Code2, Globe, Presentation, Languages, ListFilter } from 'lucide-react';
+import { ArrowUpRight, Sun, Moon, Github, Mail, GraduationCap, University, BookOpen, Layers, Compass, BriefcaseBusiness, FlaskConical, X, ImagePlus, MessageCircleQuestion, BookHeart, ImageMinus, FileText, QrCode, Code2, Database, Globe, Presentation, Languages, ListFilter } from 'lucide-react';
 import { Button } from './components/button';
 import content from './content.json';
 import publicationsData from '../publications.json';
@@ -53,8 +53,8 @@ const sections = [
   ['projects', 'Projects', '项目', Layers],
   ['experiences', 'Journey', '经历', BriefcaseBusiness],
 ];
-const linkLabels = { pdf: ['Paper', '论文'], code: ['Code', '代码'], project: ['Website', '项目主页'], website: ['Website', '网站'], poster: ['Poster', '海报'], slides: ['Slides', '幻灯片'] };
-const linkIcons = { pdf: FileText, code: Code2, project: Globe, website: Globe, poster: Presentation, slides: Presentation };
+const linkLabels = { pdf: ['Paper', '论文'], code: ['Code', '代码'], data: ['Data', '数据'], project: ['Website', '项目主页'], website: ['Website', '网站'], poster: ['Poster', '海报'], slides: ['Slides', '幻灯片'] };
+const linkIcons = { pdf: FileText, code: Code2, data: Database, project: Globe, website: Globe, poster: Presentation, slides: Presentation };
 function Panel({ className = '', children }) { return <div className={`academic-panel ${className}`}>{children}</div>; }
 function Surface({ className = '', children, ...props }) {
   return <LiquiGlass elevated radius={28} bezel={20} refraction={48} blur={0.35} className={`surface ${className}`} {...props}>{children}</LiquiGlass>;
